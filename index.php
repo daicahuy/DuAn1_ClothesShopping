@@ -1,172 +1,220 @@
 <?php
-    require_once "global.php";
-    requireFiles(CONTROLLERS_URL . "admin");
-    requireFiles(MODELS_URL);
+require_once "global.php";
+requireFiles(CONTROLLERS_URL . "admin");
+requireFiles(MODELS_URL);
 
-    // ROUTER
-    $url = isset($_GET["url"]) ? $_GET["url"] : 'admin';
+// ROUTER
+$url = isset($_GET["url"]) ? $_GET["url"] : 'admin';
 
+// Header admin
+if (strpos($url, "admin") == 0) {
     // Header admin
-    if(strpos($url,"admin") == 0) {
-        // Header admin
-        $arrayDirectional = [];
+    $arrayDirectional = [];
 
-        if (strpos($url,"danhmuc")) {
-            $pageTitle = $textQuanLyDanhMuc;
-            if(strpos($url,"them")) {
-                array_push($arrayDirectional,$textThem);
-            }
-            else if(strpos($url,"sua")) {
-                array_push($arrayDirectional,$textSua);
-            }
+    if (strpos($url, "danhmuc")) {
+        $pageTitle = $textQuanLyDanhMuc;
+        if (strpos($url, "them")) {
+            array_push($arrayDirectional, $textThem);
+        } else if (strpos($url, "sua")) {
+            array_push($arrayDirectional, $textSua);
         }
-        else if(strpos($url,"sanpham")) {
-            $pageTitle = $textQuanLySanPham;
-            if(strpos($url,"danhsach")) {
-                array_push($arrayDirectional,$textDanhSachSanPham);
-                if(strpos($url,"chitiet")) {
-                    if(isset($_POST["btn-add"])) {
-                        array_push($arrayDirectional,$textThem);
-                    }
-                    else {
-                        array_push($arrayDirectional,$textChiTietSanPham);
-                    }
+    } else if (strpos($url, "sanpham")) {
+        $pageTitle = $textQuanLySanPham;
+        if (strpos($url, "danhsach")) {
+            array_push($arrayDirectional, $textDanhSachSanPham);
+            if (strpos($url, "chitiet")) {
+                if (isset($_POST["btn-add"])) {
+                    array_push($arrayDirectional, $textThem);
+                } else {
+                    array_push($arrayDirectional, $textChiTietSanPham);
                 }
             }
-            else if(strpos($url,"mausac")) {
-                array_push($arrayDirectional,$textMauSac);
-            }
-            else if(strpos($url,"kichthuoc")) {
-                array_push($arrayDirectional,$textKichThuoc);
-            }
+        } else if (strpos($url, "mausac")) {
+            array_push($arrayDirectional, $textMauSac);
+        } else if (strpos($url, "kichthuoc")) {
+            array_push($arrayDirectional, $textKichThuoc);
         }
-        else if (strpos($url,"nguoidung")) {
-            $pageTitle = $textQuanLyNguoiDung;
-            if(strpos($url,"doimatkhau")) {
-                array_push($arrayDirectional,$textDoiMatKhau);
-            }
+    } else if (strpos($url, "nguoidung")) {
+        $pageTitle = $textQuanLyNguoiDung;
+        if (strpos($url, "doimatkhau")) {
+            array_push($arrayDirectional, $textDoiMatKhau);
         }
-        else if (strpos($url,"binhluan")) {
-            $pageTitle = $textQuanLyBinhLuan;
-        }
-        else if (strpos($url,"donhang")) {
-            $pageTitle = $textQuanLyDonHang;
-        }
-        else if (strpos($url,"thongke")) {
-            $pageTitle = $textThongKe;
-        }
-        else {
-            $pageTitle = $textBangDieuKhien;
-        }
-
-        include "includes/admin/header.php";
-    }
-    else {
-        // Header user
-        include "includes/users/header.php";
+    } else if (strpos($url, "binhluan")) {
+        $pageTitle = $textQuanLyBinhLuan;
+    } else if (strpos($url, "donhang")) {
+        $pageTitle = $textQuanLyDonHang;
+    } else if (strpos($url, "thongke")) {
+        $pageTitle = $textThongKe;
+    } else {
+        $pageTitle = $textBangDieuKhien;
     }
 
-    // CONTENT
-    switch($url) {
+    include "includes/admin/header.php";
+} else {
+    // Header user
+    include "includes/users/header.php";
+}
+
+// CONTENT
+switch ($url) {
         // DASHBOARD
-        case 'admin': {
+    case 'admin': {
             dashboard();
             break;
         }
 
         // QUAN LY DANH MUC
-        case 'admin/danhmuc': {
+    case 'admin/danhmuc': {
             quanLyDanhMuc();
             break;
         }
-        case 'admin/danhmuc/them': {
+    case 'admin/danhmuc/them': {
             themDanhMuc();
             break;
         }
-        case 'admin/danhmuc/sua': {
+    case 'admin/danhmuc/sua': {
             suaDanhMuc();
             break;
         }
-        case 'admin/danhmuc/xoa': {
+    case 'admin/danhmuc/xoa': {
             xoaDanhMuc();
             break;
         }
 
         // QUAN LY SAN PHAM
-        case 'admin/sanpham/danhsach': {
+    case 'admin/sanpham/danhsach': {
             danhSachSanPham();
             break;
         }
-        case 'admin/sanpham/danhsach/binhthuong/them': {
+    case 'admin/sanpham/danhsach/binhthuong/them': {
             themBinhThuong();
             break;
         }
-        case 'admin/sanpham/danhsach/bienthe/them': {
+    case 'admin/sanpham/danhsach/bienthe/them': {
             themBienThe();
             break;
         }
-        case 'admin/sanpham/danhsach/bienthe/chitiet': {
+    case 'admin/sanpham/danhsach/bienthe/chitiet': {
             chiTietBienThe();
             break;
         }
-        case 'admin/sanpham/danhsach/sua': {
+    case 'admin/sanpham/danhsach/sua': {
             suaSanPham();
             break;
         }
-        case 'admin/sanpham/danhsach/xoaanh': {
+    case 'admin/sanpham/danhsach/xoaanh': {
             xoaBoSuuTap();
             break;
         }
-        case 'admin/sanpham/danhsach/dsan': {
+    case 'admin/sanpham/danhsach/dsan': {
             danhSachSanPhamAn();
             break;
         }
 
-        case 'admin/sanpham/danhsach/an': {
+    case 'admin/sanpham/danhsach/an': {
             anSanPham();
             break;
         }
+        //Kích thước
+    case 'admin/sanpham/kichthuoc':
+        kichThuoc();
+        break;
+
+    case 'admin/sanpham/kichthuoc/them':
+        themKichThuoc();
+        break;
+
+    case 'admin/sanpham/kichthuoc/xoa':
+        xoaKichThuoc();
+        break;
+
+    case 'admin/sanpham/kichthuoc/sua':
+        suaKichThuoc();
+        break;
+
+        //Màu Sắc
+    case 'admin/sanpham/mausac':
+        mauSac();
+        break;
+
+    case 'admin/sanpham/mausac/them':
+        themMauSac();
+        break;
+
+    case 'admin/sanpham/mausac/xoa':
+        xoaMauSac();
+        break;
+
+    case 'admin/sanpham/mausac/sua':
+        suaMauSac();
+        break;
 
         // QUAN LY NGUOI DUNG
-        case 'admin/nguoidung': {
+    case 'admin/nguoidung': {
             quanLyNguoiDung();
             break;
         }
-        case 'admin/nguoidung/doimatkhau': {
-            doiMatKhauNguoiDung();
+    case 'admin/nguoidung/taikhoanbikhoa': {
+            quanLyTKKhoa();
+            break;
+        }
+    case 'admin/nguoidung/an': {
+            KhoaTaiKhoan();
+            break;
+        }
+    case 'admin/nguoidung/hien': {
+            MoTaiKhoan();
+            break;
+        }
+    case 'admin/nguoidung/phanquyen': {
+            capNhatNguoiDung();
+            break;
+        }
+    case 'admin/nguoidung/resset': {
+            RessetMKNguoiDung();
             break;
         }
 
         // QUAN LY BINH LUAN
-        case 'admin/binhluan': {
+    case 'admin/binhluan': {
             quanLyBinhLuan();
             break;
         }
-
+    case 'admin/binhluan/tatcabinhluan': {
+            BinhLuan();
+            break;
+        }
+    case 'admin/binhluan/traloi': {
+            ChiTietBinhLuan();
+            break;
+        }
+    case 'admin/binhluan/xoa': {
+            xoaBinhLuan();
+            break;
+        }
+    case 'admin/binhluan/xoatraloi': {
+            xoaChiTietBinhLuan();
+            break;
+        }
         // QUAN LY DON HANG
-        case 'admin/donhang': {
+    case 'admin/donhang': {
             quanLyDonHang();
             break;
         }
 
         // THONG KE
-        case 'admin/thongke': {
+    case 'admin/thongke': {
             quanLyThongKe();
             break;
         }
-    }
+}
 
 
-    // FOOTER
-    if(strpos($url,"admin") == 0) {
-        // Footer admin
-        include "includes/admin/footer.php";
-    }
-    else {
-        // Footer user
-        include "includes/users/footer.php";
-    }
-
-
-
-?>
+// FOOTER
+if (strpos($url, "admin") == 0) {
+    // Footer admin
+    include "includes/admin/footer.php";
+} else {
+    // Footer user
+    include "includes/users/footer.php";
+}
