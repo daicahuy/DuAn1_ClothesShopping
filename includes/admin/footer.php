@@ -147,6 +147,12 @@
         });
     </script>
 
+<script src="assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+<script src="dist/js/custom.min.js"></script> 
+<script src="assets/libs/flot/jquery.flot.js"></script>
+<script src="assets/libs/flot/jquery.flot.pie.js"></script>
+<script src="assets/libs/chart/matrix.charts.js"></script>
+
 </body>
 
 </html>

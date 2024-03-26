@@ -91,6 +91,18 @@
             xoaDanhMuc();
             break;
         }
+        case 'admin/danhmuc/an': {
+            anDanhMuc();
+            break;
+        }
+        case 'admin/danhmuc/hien': {
+            hienDanhMuc();
+            break;
+        }
+        case 'admin/danhmuc/danhmucan': {
+            danhMucAn();
+            break;
+        } 
 
         // QUAN LY SAN PHAM
         case 'admin/sanpham/danhsach': {
