@@ -1,13 +1,14 @@
 <?php
 require_once "global.php";
 requireFiles(CONTROLLERS_URL . "admin");
+requireFiles(CONTROLLERS_URL . "users");
 requireFiles(MODELS_URL);
 
 // ROUTER
 $url = isset($_GET["url"]) ? $_GET["url"] : 'admin';
 
 // Header admin
-if (strpos($url, "admin") == 0) {
+if (strpos($url, "admin") === 0) {
     // Header admin
     $arrayDirectional = [];
 
@@ -57,6 +58,23 @@ if (strpos($url, "admin") == 0) {
 
 // CONTENT
 switch ($url) {
+        // HOME PAGE
+    case '/': {
+            homePage();
+            break;
+        }
+
+        // TRANG LOC
+    case 'loc': {
+            loc();
+            break;
+        }
+    
+    case 'chitietsanpham': {
+        chiTietSanPham();
+        break;
+    }
+
         // DASHBOARD
     case 'admin': {
             dashboard();
@@ -80,18 +98,18 @@ switch ($url) {
             xoaDanhMuc();
             break;
         }
-        case 'admin/danhmuc/an': {
+    case 'admin/danhmuc/an': {
             anDanhMuc();
             break;
         }
-        case 'admin/danhmuc/hien': {
+    case 'admin/danhmuc/hien': {
             hienDanhMuc();
             break;
         }
-        case 'admin/danhmuc/danhmucan': {
+    case 'admin/danhmuc/danhmucan': {
             danhMucAn();
             break;
-        } 
+        }
 
         // QUAN LY SAN PHAM
     case 'admin/sanpham/danhsach': {
@@ -223,7 +241,7 @@ switch ($url) {
 
 
 // FOOTER
-if (strpos($url, "admin") == 0) {
+if (strpos($url, "admin") === 0) {
     // Footer admin
     include "includes/admin/footer.php";
 } else {

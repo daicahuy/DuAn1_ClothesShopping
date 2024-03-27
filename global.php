@@ -3,6 +3,8 @@
     const IMAGES_URL = 'assets/images/';
     const EXTRA_LIBS_URL = 'assets/extra-libs/';
     const LIBS_URL = 'assets/libs/';
+    const CLIENT_URL = 'assets/gd-client/';
+    const SWEETPICK_URL = 'assets/gd-client/max-themes.net/demos/sweetpick/';
 
     const CSS_URL = 'dist/css/';
     const JS_URL = 'dist/js/';
