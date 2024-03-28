@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="<?php echo IMAGES_URL ?>favicon.png">
-    <title>Matrix Template - The Ultimate Multipurpose admin template</title>
+    <title>SweetPick</title>
     <!-- Custom CSS -->
     <link href="<?php echo LIBS_URL ?>flot/css/float-chart.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<?php echo EXTRA_LIBS_URL ?>multicheck/multicheck.css">
