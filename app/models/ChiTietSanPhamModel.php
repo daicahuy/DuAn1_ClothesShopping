@@ -30,8 +30,8 @@
     // Them chi tiet san pham
     function insertChiTietSanPham(
         $ma_san_pham,
-        $ma_kich_thuoc,
-        $ma_mau_sac,
+        $ma_kich_thuoc = 'NULL',
+        $ma_mau_sac = 'NULL',
         $gia_bien_dong = 'NULL',
         $so_luong = 'NULL',
         $anh_chi_tiet = 'NULL'

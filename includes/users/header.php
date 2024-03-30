@@ -79,34 +79,36 @@
 					</div>
 					<div class="right-line clearfix">
 						<ul>
-							<!-- <li><a href="#">Tài khoản của tôi</a></li> -->
-							<li><a href="#login-box" class="login-window">Đăng nhập</a></li>
+
+							<?php if(isset($_SESSION["user"])) { ?>
+								<li>
+									<a href="#!">Chào, <?php echo $_SESSION["user"]["email"]?></a>
+									
+								</li>
+								<?php if($_SESSION["user"]["quyen"] == 1) : ?>
+									<li>
+										<a href="?url=admin">Quản trị</a>
+									</li>
+								<?php endif?>
+								<li>
+									<a href="?url=taikhoan">Tài khoản</a>
+								</li>
+								<li>
+									<a href="?url=dangxuat">Đăng xuất</a>
+								</li>
+							<?php } else { ?>
+								<li>
+									<a href="?url=dangnhap" class="login-window">Đăng nhập</a>
+								</li>
+							<?php } ?>
+
 						</ul>
+          
 						<div class="mobile-version">
 							<div class="cart-icon">
 								<a href="#"><img src="<?php echo SWEETPICK_URL ?>/images/cart-white.png" alt="">
 								<span>8 Items</span></a>
 							</div>
-						</div>
-
-				        <div id="login-box" class="login-popup">
-				        	<a href="#" class="close"><img src="<?php echo SWEETPICK_URL ?>/images/delete.png" class="btn_close" title="Close Window" alt="Close" /></a>
-				         	<form method="post" class="signin" action="#">
-				                <fieldset class="textbox">
-					                <h4 class="login-title">Đăng nhập </h4>
-
-					                <input placeholder="Email*">				                
-					                <input placeholder="Mật khẩu*">
-					                
-
-					                <button class="submit button" type="button">Đăng nhập</button>
-					                <p>
-						                <a class="recover" href="#">Đăng ký</a>
-						                <a href="#" class="forgot2">Quên mật khẩu?</a>
-					                </p>
-					                <div class="clear"></div>
-				                </fieldset>
-				          </form>
 						</div>
 
 					</div>
@@ -156,7 +158,8 @@
 								Tổng tiền: <span>300000 VND</span>
 							</div>
 
-							<button class="viewcard"> Xem giỏ hàng</button>
+							<a class="viewcard" href="?url=giohang"> Xem giỏ hàng</a>
+
 						</div>
 					</div>
 

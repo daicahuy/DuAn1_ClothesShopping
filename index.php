@@ -1,13 +1,15 @@
 <?php
 require_once "global.php";
+require_once LIBRARIES_URL . "sendmail.php";
+
 requireFiles(CONTROLLERS_URL . "admin");
 requireFiles(CONTROLLERS_URL . "users");
-requireFiles(MODELS_URL );
-// requireFiles(MODELS_URL . "users");
+requireFiles(MODELS_URL);
 
+session_start();
 
 // ROUTER
-$url = isset($_GET["url"]) ? $_GET["url"] : 'admin';
+$url = isset($_GET["url"]) ? $_GET["url"] : '/';
 
 // Header admin
 if (strpos($url, "admin") === 0) {
@@ -55,7 +57,9 @@ if (strpos($url, "admin") === 0) {
     include "includes/admin/header.php";
 } else {
     // Header user
-    include "includes/users/header.php";
+    if (!($url == 'dangnhap' || $url == 'dangky' || $url == 'khoiphucmatkhau')) {
+        include "includes/users/header.php";
+    }
 }
 
 // CONTENT
@@ -67,27 +71,71 @@ switch ($url) {
         }
 
         // TRANG LOC
-    case 'nam': {
-            nam();
+    case 'loc': {
+            loc();
             break;
         }
-    case 'nu': {
-        nu();
-        break;
-    }
-    // case 'loc': {
-    //     loc();
-    //     break;
-    // }
+
+        // CHI TIET SAN PHAM
+    case 'chitietsanpham': {
+            chiTietSanPham();
+            break;
+        }
+
+        // DANG NHAP
+    case 'dangnhap': {
+            dangNhap();
+            break;
+        }
+
+        // DANG KY
+    case 'dangky': {
+            dangKy();
+            break;
+        }
+
+        // DANG XUAT
+    case 'dangxuat': {
+            dangXuat();
+            break;
+        }
+
+        // XAC NHAN MA KHOI PHUC MAT KHAU
+    case 'khoiphucmatkhau': {
+            khoiPhucMatKhau();
+            break;
+        }
+
+        // GIO HANG
+    case 'giohang': {
+            gioHang();
+            break;
+        }
+
+        // THANH TOAN
+    case 'thanhtoan': {
+            thanhToan();
+            break;
+        }
+
+    case 'confirm': {
+            confirm();
+            break;
+        }
     
     case 'chitietsanpham': {
         chiTietSanPham();
         break;
     }
 
-        // DASHBOARD
+        // DASHBOARD ADMIN
     case 'admin': {
             dashboard();
+            break;
+        }
+
+    case 'taikhoan': {
+            taiKhoan();
             break;
         }
 
@@ -108,18 +156,18 @@ switch ($url) {
             xoaDanhMuc();
             break;
         }
-        case 'admin/danhmuc/an': {
+    case 'admin/danhmuc/an': {
             anDanhMuc();
             break;
         }
-        case 'admin/danhmuc/hien': {
+    case 'admin/danhmuc/hien': {
             hienDanhMuc();
             break;
         }
-        case 'admin/danhmuc/danhmucan': {
+    case 'admin/danhmuc/danhmucan': {
             danhMucAn();
             break;
-        } 
+        }
 
         // QUAN LY SAN PHAM
     case 'admin/sanpham/danhsach': {
@@ -256,5 +304,7 @@ if (strpos($url, "admin") === 0) {
     include "includes/admin/footer.php";
 } else {
     // Footer user
-    include "includes/users/footer.php";
+    if (!($url == 'dangnhap' || $url == 'dangky' || $url == 'khoiphucmatkhau')) {
+        include "includes/users/footer.php";
+    }
 }

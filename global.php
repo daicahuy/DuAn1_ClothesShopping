@@ -39,12 +39,13 @@
 
     // Kiểm tra đăng nhập
     function checkLogin($message) {
-        if(!isset($_COOKIE["tenEmail"])) {
+        if(!isset($_SESSION["user"])) {
             echo 
             "<script>
                 alert('$message');
-                window.location.href = 'index.php?url=dangnhap';
+                window.location.href = '?url=dangnhap';
             </script>";
+            die;
         }
         return true;
     }
