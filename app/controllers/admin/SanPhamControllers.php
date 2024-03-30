@@ -80,6 +80,7 @@
                 $tenAnhMacDinh = uploadFiles($anhMacDinh["name"],$anhMacDinh["tmp_name"],'products');
                 
                 if($maSanPham = insertSanPham($tenSanPham,$tenAnhMacDinh,$moTa,$trangThai,$gia,$giamGiaSelected,$soLuong)) {
+                    insertChiTietSanPham($maSanPham);
                     foreach($danhMucSelecteds as $danhMucSelected) {
                         insertChiTietDanhMuc($danhMucSelected,$maSanPham);
                     }
@@ -182,7 +183,6 @@
     
                     foreach($kichThuocSelecteds as $kichThuocSelected) {
                         foreach($mauSacSelecteds as $mauSacSelected) {
-                            echo $kichThuocSelected, $mauSacSelected;
                             insertChiTietSanPham($maSanPham,$kichThuocSelected,$mauSacSelected);
                         }
                     }

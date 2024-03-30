@@ -135,8 +135,8 @@ INSERT INTO `giam_gia` (`ma_giam_gia`, `giam_gia`, `ten_giam_gia`) VALUES
 CREATE TABLE `Chi_Tiet_San_Pham` (
     `ma_chi_tiet_san_pham` int(11) AUTO_INCREMENT PRIMARY KEY,
     `ma_san_pham` int(11) NOT NULL,
-    `ma_kich_thuoc` int(11) NOT NULL,
-    `ma_mau_sac` int(11) NOT NULL,
+    `ma_kich_thuoc` int(11) NULL,
+    `ma_mau_sac` int(11) NULL,
     `gia_bien_dong` int NULL,
     `so_luong` int NULL,
     `anh_chi_tiet` varchar(255) NULL
@@ -181,18 +181,18 @@ CREATE TABLE `Nguoi_Dung`(
     `quyen` int(1) NOT NULL,
     `anh_dai_dien` varchar(255) DEFAULT "users/avatar.jpg",
     `ho_va_ten` varchar(255) NULL,
-    `gioi_tinh` int(1) NULL,
-    `ngay_sinh` date NOT NULL,
-    `dia_chi` varchar(255) NOT NULL,
-    `so_dien_thoai` varchar(255) NOT NULL,
-    `trang_thai` int(1) DEFAULT 1
+    `dia_chi` varchar(255) NULL,
+    `so_dien_thoai` varchar(255) NULL,
+    `trang_thai` int(1) DEFAULT 1,
+    `kich_hoat` BOOLEAN DEFAULT FALSE,
+    `ma` int(11) NULL
 );
 INSERT INTO `Nguoi_Dung`
 (`ma_nguoi_dung`, `email`, `mat_khau`, `quyen`, `anh_dai_dien`, `ho_va_ten`, `gioi_tinh`, `ngay_sinh`, `dia_chi`, `so_dien_thoai`)
  VALUES 
- (NULL,'abc@gmail.com','u1','0','users/1-old.jpg','Nguyễn Văn A','0','2004-01-18','Nhà số X Phường Y Quận Z Thành phố V','0147852096'),
- (NULL,'def@gmail.com','u2','0','users/d1.jpg','Nguyễn Thị N','1','2001-11-28','Nhà số D Phường E Quận Q Thành phố T','0369852014'),
- (NULL,'admin@gmail.com','a1','1','users/d5.jpg','Nguyễn Văn Xếp','0','1998-12-27','Nhà số A Phường B Quận C Thành phố Q','0987456321');
+ (NULL,'abc@gmail.com','123','0','users/1-old.jpg','Nguyễn Văn A','Nhà số X Phường Y Quận Z Thành phố V','0147852096',NULL,TRUE),
+ (NULL,'def@gmail.com','456','0','users/d1.jpg','Nguyễn Thị N','Nhà số D Phường E Quận Q Thành phố T','0369852014',NULL,TRUE),
+ (NULL,'admin@gmail.com','789','1','users/d5.jpg','Nguyễn Văn Xếp','Nhà số A Phường B Quận C Thành phố Q','0987456321',NULL,TRUE);
 
 
 -- Gio hang

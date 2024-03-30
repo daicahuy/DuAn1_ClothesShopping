@@ -1,3 +1,18 @@
+<?php
+    if(checkLogin("Bạn cần phải đăng nhập để quản trị")) {
+        if($_SESSION["user"]["quyen"] == 0) {
+            echo "
+                <script>
+                    alert('Bạn không có quyền để quản trị');
+                </script>
+            ";
+            nextPage('?');
+            die;
+        }
+    }
+
+?>
+
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 
@@ -144,30 +159,26 @@
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#!" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                             <span class="d-none d-md-block">Chào, <?php echo $_SESSION["user"]["email"] ?></span>
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic"
                                 href=""
                                 data-toggle="dropdown"
                                 aria-haspopup="true"
                                 aria-expanded="false"
                             >
-                                <img src="<?php echo IMAGES_URL ?>users/1.jpg" alt="user" class="rounded-circle" width="31">
+                                <img src="<?php echo IMAGES_URL . $_SESSION["user"]["anh_dai_dien"] ?>" alt="user" class="rounded-circle" width="31">
                             </a>
                             <div class="dropdown-menu dropdown-menu-right user-dd animated">
-                                <a class="dropdown-item" href="javascript:void(0)">
-                                    <i class="ti-user m-r-5 m-l-5"></i>
-                                    Thông tin của tôi
-                                </a>
-                                <a class="dropdown-item" href="javascript:void(0)">
-                                    <i class="ti-email m-r-5 m-l-5"></i>
-                                    Tin nhắn
+                                <a class="dropdown-item" href="?">
+                                    <i class="fas fa-home m-r-5 m-l-5"></i>
+                                    Trang chủ
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="javascript:void(0)">
-                                    <i class="ti-settings m-r-5 m-l-5"></i>
-                                    Cài đặt
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="javascript:void(0)">
+                                <a class="dropdown-item" href="?url=dangxuat">
                                     <i class="fa fa-power-off m-r-5 m-l-5"></i>
                                     Đăng xuất
                                 </a>

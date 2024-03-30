@@ -12,7 +12,14 @@ function getNguoiDungID($ma_nguoi_dung){
     $sql = "SELECT * FROM nguoi_dung WHERE ma_nguoi_dung = $ma_nguoi_dung";
     return getData($sql, false);
 }
-//Thêm người dùng
+
+// Lấy người dùng theo email
+function getNguoiDungEmail($email){
+    $sql = "SELECT * FROM nguoi_dung WHERE email = '$email'";
+    return getData($sql, false);
+} 
+
+//Sửa quyền người dùng
 function updateNguoiDung($ma_nguoi_dung,$quyen){
     $sql = "UPDATE `nguoi_dung` SET `quyen`= '$quyen'  WHERE ma_nguoi_dung=$ma_nguoi_dung";
     
@@ -30,6 +37,50 @@ function AnTaiTKhoan($ma_nguoi_dung,$trangthai){
     
     return executeCommand($sql);
 }
+
+// Them nguoi dung
+function insertNguoiDung($email,$matKhau, $code) {
+    $sql = "INSERT nguoi_dung (email, mat_khau, quyen, trang_thai, kich_hoat, ma)
+            VALUES ('$email', '$matKhau', 0, 1, FALSE, $code)";
+    return executeCommand($sql);
+}
+
+// Sua trang thai kich hoat nguoi dung
+function updateKichHoatNguoiDung($email) {
+    $sql = "UPDATE nguoi_dung SET kich_hoat = TRUE WHERE email = '$email'";
+    return executeCommand($sql);
+}
+
+// Update ma cua nguoi dung
+function updateMaNguoiDung($email, $code) {
+    $sql = "UPDATE nguoi_dung SET ma = $code WHERE email = '$email'";
+    return executeCommand($sql);
+}
+
+function updateThongTinNguoiDung($hoVaTen, $soDienThoai, $diaChi, $email) {
+    $sql = "UPDATE nguoi_dung
+            SET
+            ho_va_ten = '$hoVaTen',
+            dia_chi = '$diaChi',
+            so_dien_thoai = '$soDienThoai'
+            WHERE email = '$email'
+            ";
+    return executeCommand($sql);
+}
+
+function updatePasswordNguoiDung($matKhau, $email) {
+    $sql = "UPDATE nguoi_dung
+            SET
+            mat_khau = '$matKhau'
+            WHERE email = '$email'
+            ";
+
+    return executeCommand($sql);
+}
+
+
+
+
 
 
 ?>
