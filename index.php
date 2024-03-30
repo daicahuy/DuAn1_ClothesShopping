@@ -2,7 +2,9 @@
 require_once "global.php";
 requireFiles(CONTROLLERS_URL . "admin");
 requireFiles(CONTROLLERS_URL . "users");
-requireFiles(MODELS_URL);
+requireFiles(MODELS_URL );
+// requireFiles(MODELS_URL . "users");
+
 
 // ROUTER
 $url = isset($_GET["url"]) ? $_GET["url"] : 'admin';
@@ -65,10 +67,18 @@ switch ($url) {
         }
 
         // TRANG LOC
-    case 'loc': {
-            loc();
+    case 'nam': {
+            nam();
             break;
         }
+    case 'nu': {
+        nu();
+        break;
+    }
+    // case 'loc': {
+    //     loc();
+    //     break;
+    // }
     
     case 'chitietsanpham': {
         chiTietSanPham();
