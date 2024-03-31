@@ -4,7 +4,7 @@ const DB_DATABASE = "duan1";
 const DB_USERNAME = "root";
 const DB_PASSWORD = "";
 const DB_CHARSET = "utf8";
-const DB_PORT = 3307;
+const DB_PORT = 3306;
 
 
 function getConnect() {
