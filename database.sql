@@ -44,9 +44,64 @@ INSERT INTO `Chi_Tiet_Danh_Muc`(`ma_danh_muc`, `ma_san_pham`) VALUES
 -- Nam 
 
 -- ÁO 
- ('1','1'),
+('1','1'),
  ('1','2'),
- ('2','3');
+ ('1','3'),
+ ('1','4'),
+--  quần 
+ ('2','5'),
+ ('2','6'),
+ ('2','7'),
+ ('2','8'),
+--  Đồ mặc ngoài 
+ ('3','9'),
+ ('3','10'),
+ ('3','11'),
+ ('3','12'),
+--  Đồ mặc trong 
+ ('4','13'),
+ ('4','14'),
+ ('4','15'),
+ ('4','16'), 
+--  Nữ 
+-- áo 
+ ('5','17'),
+ ('5','18'),
+ ('5','19'),
+ ('5','20'),
+--  quần 
+ ('6','21'),
+ ('6','22'),
+ ('6','23'),
+
+--  Đồ mặc ngoài
+ ('7','24'),
+ ('7','25'),
+ ('7','26'),
+ ('7','27'),
+
+
+-- đồ mặc trong 
+ ('8','28'),
+ ('8','29'),
+ ('8','30'),
+ ('8','31'),
+
+
+
+-- Đầm, chân váy
+ ('9','32'),
+ ('9','33'),
+ ('9','34'),
+ ('9','35'),
+
+
+-- Đồ mặc nhà 
+ ('10','36'),
+ ('10','37'),
+ ('10','38'),
+ ('10','39');
+
 
 CREATE TABLE `San_Pham` (
     `ma_san_pham` int(11) AUTO_INCREMENT PRIMARY KEY,
@@ -61,58 +116,48 @@ CREATE TABLE `San_Pham` (
 );
 --  (NULL,'ten','products/anh.jpg','mota','1','[value-6]','000',NULL),
 
-INSERT INTO `San_Pham` VALUES
-                                                                    -- Nam 
--- áo 
- (NULL,'Áo Polo Vải Dry Pique Ngắn Tay (Kẻ Sọc)','products/anh.jpg','Mềm mại và mịn màng với kết cấu đẹp mắt. Cổ áo có đường viền với nút trên cùng được cài hoặc mở.','1','[value-6]','489000',NULL, NULL),
- (NULL,'DRY-EX Áo Thun Ngắn Tay','products/anh.jpg','Nhanh khô để giữ cho bạn cảm giác tươi mát. Thích hợp mặc khi chơi thể thao hoặc mặc thường ngày','1','[value-6]','391000',2,1),
- (NULL,'Áo Thun Vải Slub Cotton Cổ Tròn Ngắn Tay (Họa Tiết Kẻ Sọc)','products/anh.jpg','Được giặt trước để có cảm giác bình thường. Mẫu sọc đa năng.','1','[value-6]','421000', NULL,   200);
--- quần
--- (NULL,'Quần Short Thể Thao Siêu Co Giãn','products/anh.jpg','Độ giãn đáng kinh ngạc để tự do di chuyển. Vải mịn và nhanh khô.','1','[value-6]','489000',NULL),
--- (NULL,'Miracle Air Quần Short','products/anh.jpg','Quần short hiệu suất cao được làm bằng vải nhẹ, co giãn và nhanh khô. Chống nhăn để dễ dàng chăm sóc.','1','[value-6]','784000',NULL),
--- (NULL,'Quần Short Parachute Túi Hộp (Cargo)','products/anh.jpg','Vải dày tạo ra một phong cách riêng. Được tạo điểm nhấn bởi túi lớn và kiểu dáng rộng.','1','[value-6]','588000',NULL),
--- (NULL,'Miracle Air Quần Dài (AirSense Quần Dài) (Vải Lai Cotton)','products/anh.jpg','Nhẹ và co giãn đáng kinh ngạc cho bạn cảm giác luôn thoáng mát. Quần thoải mái, hiệu suất cao phù hợp cho mọi dịp.Nhẹ và co giãn đáng kinh ngạc cho bạn cảm giác luôn thoáng mát. Quần thoải mái, hiệu suất cao phù hợp cho mọi dịp.','1','[value-6]','980000',NULL),
--- -- Đồ mặc ngoài
--- (NULL,'Áo Gi-Lê Đa Năng','products/anh.jpg','Kết cấu tự nhiên. Thiết kế thực tế với nhiều túi.','1','[value-6]','784000',NULL),
--- (NULL,'Áo Khoác Kéo Khóa','products/anh.jpg','Sợi slub thông thường. Đường cắt rộng rãi, quá khổ.','1','[value-6]','1275000',NULL),
--- (NULL,'Áo Khoác Có Mũ Đa Năng','products/anh.jpg','Túi thực tế với nhiều khả năng lưu trữ. Bộ điều chỉnh viền cho phép bạn điều chỉnh hình bóng.','1','[value-6]','1471000',NULL),
--- (NULL,'Áo Parka Hai Mặt','products/anh.jpg','Thiết kế hai mặt. Lớp lót mềm mại và thoải mái với lớp ngoài chống bám nước.','1','[value-6]','980000',NULL),
--- -- Đồ mặc trong
--- (NULL,'AIRism Quần Lót Boxer Brief Cạp Thấp','products/anh.jpg','AIRism mượt mà mang lại cảm giác thoải mái, thoáng mát. Thiết kế cạp thấp đẹp mắt.','1','[value-6]','244000',NULL),
--- (NULL,'AIRism Quần Boxer Brief Không Đường May (In Họa Tiết)','products/anh.jpg','AIRism mượt mà được tích hợp nhiều tính năng tiện nghi. Thiết kế liền mạch và vải co giãn cho vừa vặn thoải mái.','1','[value-6]','255000',NULL),
--- (NULL,'AIRism Áo Thun Cổ V Ngắn Tay','products/anh.jpg','Được trang bị các tính năng tiện nghi giúp bạn luôn cảm thấy thoải mái. Cổ chữ V sâu ẩn dưới lớp áo sơ mi của bạn.','1','[value-6]','224000',NULL),
--- (NULL,'AIRism Áo Ba Lỗ Vải Mắt Lưới','products/anh.jpg','Chất liệu AIRism hiệu suất cao mang lại cảm giác thoải mái. Lưới thoáng khí.','1','[value-6]','244000',NULL),
---                                                                     -- Nữ
--- -- áo 
--- (NULL,'Áo Thun SUPIMA COTTON Cổ Tròn Ngắn Tay','products/anh.jpg','100% bông SUPIMA® cao cấp. Phần thân và tay áo dài hơn một chút tạo cảm giác tôn dáng.','1','[value-6]','293000',NULL),
--- (NULL,'AIRism Áo Thun Chống UV Dài Tay (Chống Nắng)','products/anh.jpg','Mềm mịn và siêu co giãn. Một cách dễ dàng để bảo vệ làn da của bạn khỏi ánh nắng mặt trời.','1','[value-6]','489000',NULL),
--- (NULL,'AIRism Cotton Áo Thun Dáng Relax Ngắn Tay','products/anh.jpg','Vải AIRism mịn có vẻ ngoài như cotton. Kiểu cắt hình hộp, thư giãn.','1','[value-6]','391000',NULL),
--- (NULL,'Áo Thun Cổ Tròn Ngắn Tay','products/anh.jpg','Chất vải và đường may đẹp mắt, tỉ mỉ. Cho bạn cảm giác mịn màng của 100% cotton.','1','[value-6]','293000',NULL),
--- -- quần 
--- (NULL,'Quần Dài Dáng Parachute Lửng','products/anh.jpg','Đường cắt cong với những nếp gấp lớn đặc biệt. Chiều dài cắt kiểu dáng đẹp.','1','[value-6]','980000',NULL),
--- (NULL,'Quần Jeans Dáng Suông Rộng','products/anh.jpg','Chiều rộng tôn dáng, đường cắt thẳng. Chất jeans 100% cotton mềm mại và thoải mái.','1','[value-6]','979000',NULL),
--- (NULL,'Quần Easy Short Vải Cotton','products/anh.jpg','Đơn giản, dễ dàng phối đồ và đầy phong cách. Tất cả được gói gọn trong thiết kế quần short kiểu dáng thoải mái.','1','[value-6]','391000',NULL),
--- -- đồ mặc ngoài 
--- (NULL,'AIRism Áo Khoác Khóa Kéo Chống UV Vải Mắt Lưới (Chống Nắng)','products/anh.jpg','Hoodie lưới cập nhật với thiết kế bỏ túi. Một chiếc áo khoác tiện dụng và đa năng bạn có thể mang theo bất cứ nơi nào. UPF50+.','1','[value-6]','686000',NULL),
--- (NULL,'Áo Khoác Không Tay','products/anh.jpg','Chất liệu vải mềm mại cho phong cách tinh tế. Thiết kế cổ chữ V thanh lịch.','1','[value-6]','980000',NULL),
--- (NULL,'Áo Khoác Dáng Rộng Cổ Đứng','products/anh.jpg','Chất liệu cotton-nylon chống bám nước. Kiểu dáng rộng (oversized) cho bạn phong cách thoải mái.','1','[value-6]','1471000',NULL),
--- (NULL,'Áo Khoác Vải Jersey Dáng Relax','products/anh.jpg','Kiểu dáng và chất liệu vải thoải mái. Chiều dài được thiết kế ngắn hơn kết hợp hoàn hảo với bất kỳ chiếc quần nào.','1','[value-6]','784000',NULL),
--- -- đồ mặc trong 
--- (NULL,'Áo Ngực Không Gọng (Ultra Relax)','products/anh.jpg','Chất vải co giãn siêu mỏng và tấm đệm giúp nâng đỡ nhẹ nhàng. Thiết kế liền mạch giúp không bị lộ khi mặc áo.','1','[value-6]','489000',NULL),
--- (NULL,'AIRism Áo Bra Hai Dây','products/anh.jpg','Tôn dáng với cúp ngực tích hợp. Không có dải lót ở phía sau để tạo vẻ phẳng, bóng bẩy.','1','[value-6]','489000',NULL),
--- (NULL,'Áo Bra Hai Dây Dáng Ngắn Không Đường May','products/anh.jpg','Tôn dáng với cúp ngực tích hợp. Thiết kế liền mạch tạo sự vừa vặn thoải mái.','1','[value-6]','489000',NULL),
--- (NULL,'AIRism Áo Bra Hai Dây','products/anh.jpg','Cập nhật phù hợp với các chi tiết tinh chỉnh. Thiết kế viền ở phía sau cho kiểu dáng đẹp.','1','[value-6]','489000',NULL),
--- -- Đầm & Chân váy
--- (NULL,'Đầm Vải Cotton Nhẹ Không Tay','products/anh.jpg','Chất liệu 100% cotton mang lại cảm giác nhẹ nhàng, thoải mái. Kiểu dáng chữ A phồng.','1','[value-6]','980000',NULL),
--- (NULL,'AIRism Cotton Đầm Thun Ngắn Tay','products/anh.jpg','Vải AIRism mịn màng có vẻ ngoài như cotton. Đường cắt chữ A tôn dáng.','1','[value-6]','588000',NULL),
--- (NULL,'Chân Váy Dài Vải Denim','products/anh.jpg','Chất jean 100% cotton. Thiết kế cạp cao tạo hiệu ứng tôn dáng','1','[value-6]','784000',NULL),
--- (NULL,'AIRism Chân Váy Siêu Co Giãn Dáng Dài','products/anh.jpg','Vải khô nhanh, dễ di chuyển. Kiểu dáng dài cho vẻ ngoài xinh xắn.','1','[value-6]','588000',NULL),
--- -- đồ mặc nhà 
--- (NULL,'Bộ Pyjama Vải Linen Pha (Ngắn Tay)','products/anh.jpg','Chất liệu vải pha linen mát mẻ. Kiểu dáng thoải mái.','1','[value-6]','588000',NULL),
--- (NULL,'miffy Bộ Mặc Nhà Ngắn Tay','products/anh.jpg','Bộ mặc nhà nay đã có mặt với sự kết hợp cùng miffy.','1','[value-6]','588000',NULL),
--- (NULL,'AIRism Cotton Bộ Pyjama Ngắn Tay','products/anh.jpg','Vải AIRism mịn có vẻ ngoài như cotton. Bộ đồ ngủ thoải mái với cảm giác luôn tươi mới.','1','[value-6]','588000',NULL),
--- (NULL,'Bộ Pyjama Ngắn Tay','products/anh.jpg','Chất vải nhẹ, không bết dính. Hoàn hảo để thư giãn.','1','[value-6]','588000',NULL);
--- Ma bo suu tap 
+INSERT INTO `san_pham` (`ma_san_pham`, `ten_san_pham`, `anh`, `mo_ta`, `trang_thai`, `luot_mua`, `gia`, `ma_giam_gia`, `so_luong`) VALUES
+(1, 'Áo Polo Vải Dry Pique Ngắn Tay (Kẻ Sọc)', 'products/anh.jpg', 'Mềm mại và mịn màng với kết cấu đẹp mắt. Cổ áo có đường viền với nút trên cùng được cài hoặc mở.', 1, 0, 489000, NULL, 5),
+(2, 'DRY-EX Áo Thun Ngắn Tay', 'products/anh.jpg', 'Nhanh khô để giữ cho bạn cảm giác tươi mát. Thích hợp mặc khi chơi thể thao hoặc mặc thường ngày', 1, 0, 391000, 2, 1),
+(3, 'Áo Thun Vải Slub Cotton Cổ Tròn Ngắn Tay (Họa Tiết Kẻ Sọc)', 'products/anh.jpg', 'Được giặt trước để có cảm giác bình thường. Mẫu sọc đa năng.', 1, 0, 421000, NULL, 200),
+(4, 'Áo Polo Dệt Len Ngắn Tay', 'products/option-9.jpg', 'Vải dệt kim jersey mềm mại và thoải mái. Có thể mặc theo phong cách giản dị hoặc sang trọng.', 1, 0, 588000, NULL, 4),
+(5, 'Quần Short Thể Thao Siêu Co Giãn', 'products/anh.jpg', 'Độ giãn đáng kinh ngạc để tự do di chuyển. Vải mịn và nhanh khô.', 1, 0, 489000, NULL, 5),
+(6, 'Miracle Air Quần Short', 'products/anh.jpg', 'Quần short hiệu suất cao được làm bằng vải nhẹ, co giãn và nhanh khô. Chống nhăn để dễ dàng chăm sóc.', 1, 0, 784000, NULL, 15),
+(7, 'Quần Short Parachute Túi Hộp (Cargo)', 'products/anh.jpg', 'Vải dày tạo ra một phong cách riêng. Được tạo điểm nhấn bởi túi lớn và kiểu dáng rộng.', 1, 0, 588000, NULL, 65),
+(8, 'Miracle Air Quần Dài (AirSense Quần Dài) (Vải Lai Cotton)', 'products/anh.jpg', 'Nhẹ và co giãn đáng kinh ngạc cho bạn cảm giác luôn thoáng mát. Quần thoải mái, hiệu suất cao phù hợp cho mọi dịp.Nhẹ và co giãn đáng kinh ngạc cho bạn cảm giác luôn thoáng mát. Quần thoải mái, hiệu suất cao phù hợp cho mọi dịp.', 1, 0, 980000, NULL, 10),
+(9, 'Áo Gi-Lê Đa Năng', 'products/anh.jpg', 'Kết cấu tự nhiên. Thiết kế thực tế với nhiều túi.', 1, 0, 784000, NULL, 78),
+(10, 'Áo Khoác Kéo Khóa', 'products/anh.jpg', 'Sợi slub thông thường. Đường cắt rộng rãi, quá khổ.', 1, 0, 1275000, NULL, 4),
+(11, 'Áo Khoác Có Mũ Đa Năng', 'products/anh.jpg', 'Túi thực tế với nhiều khả năng lưu trữ. Bộ điều chỉnh viền cho phép bạn điều chỉnh hình bóng.', 1, 0, 1471000, NULL, 54),
+(12, 'Áo Parka Hai Mặt', 'products/anh.jpg', 'Thiết kế hai mặt. Lớp lót mềm mại và thoải mái với lớp ngoài chống bám nước.', 1, 0, 980000, NULL, 4),
+(13, 'AIRism Quần Lót Boxer Brief Cạp Thấp', 'products/anh.jpg', 'AIRism mượt mà mang lại cảm giác thoải mái, thoáng mát. Thiết kế cạp thấp đẹp mắt.', 1, 0, 244000, NULL, 87),
+(14, 'AIRism Quần Boxer Brief Không Đường May (In Họa Tiết)', 'products/anh.jpg', 'AIRism mượt mà được tích hợp nhiều tính năng tiện nghi. Thiết kế liền mạch và vải co giãn cho vừa vặn thoải mái.', 1, 0, 255000, NULL, 5),
+(15, 'AIRism Áo Thun Cổ V Ngắn Tay', 'products/anh.jpg', 'Được trang bị các tính năng tiện nghi giúp bạn luôn cảm thấy thoải mái. Cổ chữ V sâu ẩn dưới lớp áo sơ mi của bạn.', 1, 0, 224000, NULL, 45),
+(16, 'AIRism Áo Ba Lỗ Vải Mắt Lưới', 'products/anh.jpg', 'Chất liệu AIRism hiệu suất cao mang lại cảm giác thoải mái. Lưới thoáng khí.', 1, 0, 244000, NULL, 54),
+(17, 'Áo Thun SUPIMA COTTON Cổ Tròn Ngắn Tay', 'products/anh.jpg', '100% bông SUPIMA® cao cấp. Phần thân và tay áo dài hơn một chút tạo cảm giác tôn dáng.', 1, 0, 293000, NULL, 45),
+(18, 'AIRism Áo Thun Chống UV Dài Tay (Chống Nắng)', 'products/anh.jpg', 'Mềm mịn và siêu co giãn. Một cách dễ dàng để bảo vệ làn da của bạn khỏi ánh nắng mặt trời.', 1, 0, 489000, NULL, 1),
+(19, 'AIRism Cotton Áo Thun Dáng Relax Ngắn Tay', 'products/anh.jpg', 'Vải AIRism mịn có vẻ ngoài như cotton. Kiểu cắt hình hộp, thư giãn.', 1, 0, 391000, NULL, 45),
+(20, 'Áo Thun Cổ Tròn Ngắn Tay', 'products/anh.jpg', 'Chất vải và đường may đẹp mắt, tỉ mỉ. Cho bạn cảm giác mịn màng của 100% cotton.', 1, 0, 293000, NULL, 1),
+(21, 'Quần Dài Dáng Parachute Lửng', 'products/anh.jpg', 'Đường cắt cong với những nếp gấp lớn đặc biệt. Chiều dài cắt kiểu dáng đẹp.', 1, 0, 980000, NULL, 8),
+(22, 'Quần Jeans Dáng Suông Rộng', 'products/anh.jpg', 'Chiều rộng tôn dáng, đường cắt thẳng. Chất jeans 100% cotton mềm mại và thoải mái.', 1, 0, 979000, NULL, 543),
+(23, 'Quần Easy Short Vải Cotton', 'products/anh.jpg', 'Đơn giản, dễ dàng phối đồ và đầy phong cách. Tất cả được gói gọn trong thiết kế quần short kiểu dáng thoải mái.', 1, 0, 391000, NULL, 74),
+(24, 'AIRism Áo Khoác Khóa Kéo Chống UV Vải Mắt Lưới (Chống Nắng)', 'products/anh.jpg', 'Hoodie lưới cập nhật với thiết kế bỏ túi. Một chiếc áo khoác tiện dụng và đa năng bạn có thể mang theo bất cứ nơi nào. UPF50+.', 1, 0, 686000, NULL, 98),
+(25, 'Áo Khoác Không Tay', 'products/anh.jpg', 'Chất liệu vải mềm mại cho phong cách tinh tế. Thiết kế cổ chữ V thanh lịch.', 1, 0, 980000, NULL, 5),
+(26, 'Áo Khoác Dáng Rộng Cổ Đứng', 'products/anh.jpg', 'Chất liệu cotton-nylon chống bám nước. Kiểu dáng rộng (oversized) cho bạn phong cách thoải mái.', 1, 0, 1471000, NULL, 2),
+(27, 'Áo Khoác Vải Jersey Dáng Relax', 'products/anh.jpg', 'Kiểu dáng và chất liệu vải thoải mái. Chiều dài được thiết kế ngắn hơn kết hợp hoàn hảo với bất kỳ chiếc quần nào.', 1, 0, 784000, NULL, 74),
+(28, 'Áo Ngực Không Gọng (Ultra Relax)', 'products/anh.jpg', 'Chất vải co giãn siêu mỏng và tấm đệm giúp nâng đỡ nhẹ nhàng. Thiết kế liền mạch giúp không bị lộ khi mặc áo.', 1, 0, 489000, NULL, 15),
+(29, 'AIRisms Áo Bra Hai Dây', 'products/anh.jpg', 'Tôn dáng với cúp ngực tích hợp. Không có dải lót ở phía sau để tạo vẻ phẳng, bóng bẩy.', 1, 0, 489000, NULL, 71),
+(30, 'Áo Bra Hai Dây Dáng Ngắn Không Đường May', 'products/anh.jpg', 'Tôn dáng với cúp ngực tích hợp. Thiết kế liền mạch tạo sự vừa vặn thoải mái.', 1, 0, 489000, NULL, 21),
+(31, 'AIRism Áo Bra Hai Dây', 'products/option-9.jpg', 'Cập nhật phù hợp với các chi tiết tinh chỉnh. Thiết kế viền ở phía sau cho kiểu dáng đẹp.', 1, 0, 489000, NULL, 78),
+(32, 'Đầm Vải Cotton Nhẹ Không Tay', 'products/anh.jpg', 'Chất liệu 100% cotton mang lại cảm giác nhẹ nhàng, thoải mái. Kiểu dáng chữ A phồng.', 1, 0, 980000, NULL, 231),
+(33, 'AIRism Cotton Đầm Thun Ngắn Tay', 'products/anh.jpg', 'Vải AIRism mịn màng có vẻ ngoài như cotton. Đường cắt chữ A tôn dáng.', 1, 0, 588000, NULL, 874),
+(34, 'Chân Váy Dài Vải Denim', 'products/anh.jpg', 'Chất jean 100% cotton. Thiết kế cạp cao tạo hiệu ứng tôn dáng', 1, 0, 784000, NULL, 123),
+(35, 'AIRism Chân Váy Siêu Co Giãn Dáng Dài', 'products/anh.jpg', 'Vải khô nhanh, dễ di chuyển. Kiểu dáng dài cho vẻ ngoài xinh xắn.', 1, 0, 588000, NULL, 87),
+(36, 'Bộ Pyjama Vải Linen Pha (Ngắn Tay)', 'products/anh.jpg', 'Chất liệu vải pha linen mát mẻ. Kiểu dáng thoải mái.', 1, 0, 588000, NULL, 12),
+(37, 'miffy Bộ Mặc Nhà Ngắn Tay', 'products/anh.jpg', 'Bộ mặc nhà nay đã có mặt với sự kết hợp cùng miffy.', 1, 0, 588000, NULL, 12),
+(38, 'AIRism Cotton Bộ Pyjama Ngắn Tay', 'products/anh.jpg', 'Vải AIRism mịn có vẻ ngoài như cotton. Bộ đồ ngủ thoải mái với cảm giác luôn tươi mới.', 1, 0, 588000, NULL, 88),
+(39, 'Bộ Pyjama Ngắn Tay', 'products/option-10.jpg', 'Chất vải nhẹ, không bết dính. Hoàn hảo để thư giãn.', 1, 0, 588000, NULL, 12),
+(40, 'Set Nam Tước', 'products/Lý Trung Đức.jfif', '<p>Hàng Việt Nam chất lượng tạm</p>', 1, 0, 129, NULL, NULL);
+ 
 CREATE TABLE `Bo_Suu_Tap_San_Pham` (
     `ma_bo_suu_tap` int(11) AUTO_INCREMENT PRIMARY KEY,
     `ma_san_pham` int(11) NOT NULL, -- FK
@@ -143,11 +188,19 @@ CREATE TABLE `Chi_Tiet_San_Pham` (
 );
 
 -- (NULL,'idSP','1','1','000','99','detail_product/anh.jpg'),
-INSERT INTO `Chi_Tiet_San_Pham`
-(`ma_chi_tiet_san_pham`, `ma_san_pham`, `ma_kich_thuoc`, `ma_mau_sac`, `gia_bien_dong`, `so_luong`, `anh_chi_tiet`) VALUES 
-(NULL,'1','1','1','0','99','detail_product/anh.jpg'),
-(NULL,'1','2','1','30000','99','detail_product/anh.jpg'),
-(NULL,'1','3','1','30000','99','detail_product/anh.jpg');
+INSERT INTO `chi_tiet_san_pham` (`ma_chi_tiet_san_pham`, `ma_san_pham`, `ma_kich_thuoc`, `ma_mau_sac`, `gia_bien_dong`, `so_luong`, `anh_chi_tiet`) VALUES
+(1, 1, 1, 1, 0, 99, 'detail_product/anh.jpg'),
+(2, 1, 2, 1, 30000, 99, 'detail_product/anh.jpg'),
+(3, 1, 3, 1, 30000, 99, 'detail_product/anh.jpg'),
+(4, 40, 4, 4, NULL, NULL, ''),
+(5, 40, 4, 5, NULL, NULL, ''),
+(6, 40, 4, 6, NULL, NULL, ''),
+(7, 40, 5, 4, NULL, NULL, ''),
+(8, 40, 5, 5, NULL, NULL, ''),
+(9, 40, 5, 6, NULL, NULL, ''),
+(10, 40, 6, 4, NULL, NULL, ''),
+(11, 40, 6, 5, NULL, NULL, ''),
+(12, 40, 6, 6, NULL, NULL, '');
 -- Kich thuoc 
 CREATE TABLE `Kich_Thuoc` (
     `ma_kich_thuoc` int(11) AUTO_INCREMENT  PRIMARY KEY, -- FK
@@ -188,11 +241,11 @@ CREATE TABLE `Nguoi_Dung`(
     `ma` int(11) NULL
 );
 INSERT INTO `Nguoi_Dung`
-(`ma_nguoi_dung`, `email`, `mat_khau`, `quyen`, `anh_dai_dien`, `ho_va_ten`, `gioi_tinh`, `ngay_sinh`, `dia_chi`, `so_dien_thoai`)
+
  VALUES 
- (NULL,'abc@gmail.com','123','0','users/1-old.jpg','Nguyễn Văn A','Nhà số X Phường Y Quận Z Thành phố V','0147852096',NULL,TRUE),
- (NULL,'def@gmail.com','456','0','users/d1.jpg','Nguyễn Thị N','Nhà số D Phường E Quận Q Thành phố T','0369852014',NULL,TRUE),
- (NULL,'admin@gmail.com','789','1','users/d5.jpg','Nguyễn Văn Xếp','Nhà số A Phường B Quận C Thành phố Q','0987456321',NULL,TRUE);
+ (NULL,'abc@gmail.com','123','0','users/1-old.jpg','Nguyễn Văn A','Nhà số X Phường Y Quận Z Thành phố V','0147852096',NULL,TRUE,NULL),
+ (NULL,'def@gmail.com','456','0','users/d1.jpg','Nguyễn Thị N','Nhà số D Phường E Quận Q Thành phố T','0369852014',NULL,TRUE,NULL),
+ (NULL,'admin@gmail.com','789','1','users/d5.jpg','Nguyễn Văn Xếp','Nhà số A Phường B Quận C Thành phố Q','0987456321',NULL,TRUE,NULL);
 
 
 -- Gio hang

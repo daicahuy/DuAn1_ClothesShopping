@@ -12,12 +12,12 @@
                         <?php if ($maLoai == 1) { ?>
                             <ul>
                                 <?php  ?>
-                                <li><a href="?url=nam&ma_loai=1&ma_danh_muc=0">Tất cả cả sản phẩm <span><?= $soLuongTatCaSanPham[0]['so_luong_san_pham'] ?></span></a></li>
+                                <li><a href="?url=loc&ma_loai=1&ma_danh_muc=0">Tất cả cả sản phẩm <span><?= $soLuongTatCaSanPham[0]['so_luong_san_pham'] ?></span></a></li>
                                 <?php foreach ($danhMucs as $key => $danhMuc) : ?>
                                     <!-- đếm số lượng sản phẩm từng danh mục  -->
                                     <?php $soLuongSanPhams = soLuongSanPhamDanhMuc($danhMuc['ma_danh_muc'], $maLoai); ?>
                                     <li>
-                                        <a href="?url=nam&ma_loai=1&ma_danh_muc=<?= $danhMuc['ma_danh_muc'] ?>"><?= $danhMuc['ten_danh_muc'] ?>
+                                        <a href="?url=loc&ma_loai=1&ma_danh_muc=<?= $danhMuc['ma_danh_muc'] ?>"><?= $danhMuc['ten_danh_muc'] ?>
                                             <?php foreach ($soLuongSanPhams as $key => $soLuongSanPham) : ?>
                                                 <span>
                                                     <?= $soLuongSanPham['so_luong_san_pham'] ?>
@@ -32,11 +32,11 @@
                         <!-- Nữ  -->
                         <?php if ($maLoai == 2) { ?>
                             <ul>
-                                <li><a href="?url=nu&ma_loai=2&ma_danh_muc=0">Tất cả cả sản phẩm <span><?= $soLuongTatCaSanPham[0]['so_luong_san_pham'] ?></span></a></li>
+                                <li><a href="?url=loc&ma_loai=2&ma_danh_muc=0">Tất cả cả sản phẩm <span><?= $soLuongTatCaSanPham[0]['so_luong_san_pham'] ?></span></a></li>
                                 <?php foreach ($danhMucs as $key => $danhMuc) : ?>
                                     <?php $soLuongSanPhams = soLuongSanPhamDanhMuc($danhMuc['ma_danh_muc'], $maLoai); ?>
                                     <li>
-                                        <a href="?url=nu&ma_loai=2&ma_danh_muc=<?= $danhMuc['ma_danh_muc'] ?>"><?= $danhMuc['ten_danh_muc'] ?>
+                                        <a href="?url=loc&ma_loai=2&ma_danh_muc=<?= $danhMuc['ma_danh_muc'] ?>"><?= $danhMuc['ten_danh_muc'] ?>
                                             <?php foreach ($soLuongSanPhams as $key => $soLuongSanPham) : ?>
                                                 <span>
                                                     <?= $soLuongSanPham['so_luong_san_pham'] ?>
@@ -50,23 +50,22 @@
 
 
                     </div>
-                <!-- FORM  -->
-                    <form action=
-                    "
+                    <!-- FORM  -->
+                    <form action="
                     <?php if ($maLoai == 1) {
-                        echo "?url=nam&ma_loai=1";
+                        echo "?url=loc&ma_loai=1";
                     } ?>
                     <?php if ($maLoai == 2) {
-                        echo "?url=nu&ma_loai=2";
+                        echo "?url=loc&ma_loai=2";
                     } ?>
-                    " 
-                    method="POST">
+                    " method="POST">
+
                         <div class="shop-price mb30">
-                            <h1 class="asidetitle">Giá</h1>
+                            <h1 class="asidetitle">Giá</h1> <!--  PRICE  -->
 
 
                             <p>
-                                <input type="text" id="amount">
+                                <input type="text" id="amount" name="price">
                             </p>
 
 
@@ -82,20 +81,25 @@
 
                                     <div class="accordion-content">
                                         <div class="brands mb30">
+                                            <!-- COLOR  -->
                                             <!-- <form action="#"> -->
                                             <ul>
                                                 <?php foreach ($getMauSacs as $key => $getMauSac) : ?>
                                                     <li>
-                                                        <input type="checkbox" value="<?= $getMauSac['ma_mau_sac'] ?>" name="ma_mau_sac[]"><?= $getMauSac['ten_mau'] ?>
+                                                        <input type="checkbox" value="<?= $getMauSac['ma_mau_sac'] ?>" name="ma_mau_sac[]" 
+                                                        <?php
+                                                                if (isset($_POST['ma_mau_sac']) && in_array($getMauSac['ma_mau_sac'], $_POST['ma_mau_sac'])) {
+                                                                    // kiểm tra khởi tạo, kiêm tra xm gữ liệu gửi đi không
+                                                                    // in_arry kiếm tra giá cụ thể có trong mảng không  ở đây càn tìm  getMauSac trong mảng $_POST
+                                                                    echo 'checked';
+                                                                }
+                                                            ?>
+                                                            >
+                                                        <?= $getMauSac['ten_mau'] ?>
                                                         <span><?= $getMauSac['so_luong_san_pham'] ?></span>
                                                     </li>
                                                 <?php endforeach ?>
 
-                                                <!-- <li><input type="checkbox" value="Brand">White <span>(15)</span></li>
-                                                <li><input type="checkbox" value="Brand">Black <span>(31)</span></li>
-                                                <li><input type="checkbox" value="Brand">Grey <span>(89)</span></li>
-                                                <li><input type="checkbox" value="Brand">Red <span>(95)</span></li>
-                                                <li><input type="checkbox" value="Brand">Blue <span>(26)</span></li> -->
                                             </ul>
                                             <!-- </form> -->
 
@@ -104,21 +108,21 @@
                                     <h2 class="accordion-header">Sizes</h2>
                                     <div class="accordion-content">
                                         <div class="brands mb30">
+                                            <!-- SIZE  -->
                                             <!-- <form action="#"> -->
                                             <ul>
                                                 <?php foreach ($getKichThuocs as $key => $getKichThuoc) : ?>
-                                                    <li><input type="checkbox" value="<?= $getKichThuoc['ma_kich_thuoc'] ?>" name="ma_kich_thuoc[]"><?= $getKichThuoc['ten_kich_thuoc'] ?>
-                                                        <span><?= $getKichThuoc['so_luong_san_pham'] ?></span>
+                                                    <li>
+                                                    <input type="checkbox" value="<?= $getKichThuoc['ma_kich_thuoc'] ?>" name="ma_kich_thuoc[]" 
+                                                    <?php echo (isset($_POST['ma_kich_thuoc']) && in_array($getKichThuoc['ma_kich_thuoc'], $_POST['ma_kich_thuoc'])) ? 'checked' : '' ?>
+                                                    >
+                                                    <?= $getKichThuoc['ten_kich_thuoc'] ?>
+                                                    <span><?= $getKichThuoc['so_luong_san_pham'] ?></span>
                                                     </li>
                                                 <?php endforeach ?>
 
 
-                                                <!-- <li><input type="checkbox" value="Brand">M <span>(31)</span></li>
-                                                <li><input type="checkbox" value="Brand">L <span>(89)</span></li>
-                                                <li><input type="checkbox" value="Brand">XL <span>(95)</span></li>
-                                                <li><input type="checkbox" value="Brand">XXL <span>(26)</span></li>
-                                                <li><input type="checkbox" value="Brand">XXXL <span>(26)</span></li>
-                                                <li><input type="checkbox" value="Brand">4XL <span>(26)</span></li> -->
+
                                             </ul>
                                             <!-- </form> -->
 
@@ -128,17 +132,15 @@
                             </div>
                             <!-- End Accordion -->
                         </div>
-                        <?php if ($maLoai == 1) { ?>
-                            <button type="submit" class="medium-button button-red mt20" style="border: none;">
+                        <button type="submit" class="medium-button button-red mt20" style="border: none;">
                                 Lọc
                             </button>
+                        <?php if ($maLoai == 1) { ?>
+                            
                             <!-- <a href="#" class="medium-button button-red mt20" >Lọc</a> -->
                         <?php } ?>
-                        <?php if ($maLoai == 2) { ?>
-                            <button type="submit" class="medium-button button-red mt20" style="border: none;">
-                                Lọc
-                            </button>
-                        <?php } ?>
+
+                       
 
 
 
@@ -185,7 +187,7 @@
                                     </p>
                                     <div class="arrival-mask">
                                         <a href="#" class="medium-button button-red add-cart">Thêm vào giỏ hàng</a>
-                                        <a href="#" class="wishlist">Xem chi tiết</a>
+                                        <a href="?url=ma_san_pham=<?= $sanPham['ma_san_pham'] ?>" class="wishlist">Xem chi tiết</a>
                                     </div>
                                 </div>
                                 <div class="arr-content">
@@ -200,7 +202,7 @@
                             </div>
                         <?php endforeach ?>
 
-                     <!-- <?php foreach ($sanPhams as $key => $sanPham) : ?>
+                        <!-- <?php foreach ($sanPhams as $key => $sanPham) : ?>
 
 
                         <div class="col-md-4 grid-item mb30">

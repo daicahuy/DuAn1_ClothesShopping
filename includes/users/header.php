@@ -174,10 +174,10 @@
 			<div class="container">
 				<!-- Navigation -->
 				<nav id="nav">
-					<ul id="navlist" class="sf-menu clearfix">
+					<ul id="navlist" class="sf-menu clearfix ">
 						<li class="current" ><a href="?url=/">Trang chủ</a></li>
-						<li  > <a href="?url=nam&ma_loai=1">Nam</a></li>
-						<li> <a href="?url=nu&ma_loai=2">Nữ</a></li>
+						<li  > <a href="?url=loc&ma_loai=1">Nam</a></li>
+						<li> <a href="?url=loc&ma_loai=2">Nữ</a></li>
 						<!-- <li><a href="#">Blog</a>
 							<ul class="sub-menu">
 								<li><a href="blog.html"><span>--</span>Blog</a></li>

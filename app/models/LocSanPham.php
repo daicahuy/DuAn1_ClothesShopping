@@ -18,12 +18,15 @@ function soLuongSanPhamDanhMuc($danhMuc,$maLoai){
     return getData($sql);
 }
 // Lấy sản phẩm theo mã loại 
-function getSanPhamLoai($maLoai,$maDanhMuc){
+function getSanPhamLoai($maLoai,$maDanhMuc,$min,$max){
     $sql = "SELECT * FROM san_pham A 
             JOIN chi_tiet_danh_muc B ON A.ma_san_pham = B.ma_san_pham
             JOIN danh_muc C ON B.ma_danh_muc = C.ma_danh_muc 
             JOIN loai D ON C.ma_loai = D.ma_loai
             WHERE D.ma_loai = $maLoai ";
+            if (!empty($min) && !empty($max)) {
+                $sql .=" AND A.gia >= $min AND A.gia <= $max";
+            }
             if ($maDanhMuc > 0) {
                 $sql .=" AND B.ma_danh_muc=$maDanhMuc";
             }
@@ -70,22 +73,24 @@ function getMauSac($maLoai,$maDanhMuc){
                 GROUP BY A.ma_san_pham";
         return getData($sql);
     }
-    function locSanPham($maLoai,$maMauSac,$maKichThuoc){
+    function locSanPham($maLoai,$maMauSac,$maKichThuoc,$min,$max){
         $sql = "SELECT D.* FROM loai A 
                 JOIN  danh_muc B ON A.ma_loai = B.ma_loai
                 JOIN chi_tiet_danh_muc C ON B.ma_danh_muc = C.ma_danh_muc
                 JOIN san_pham D ON C.ma_san_pham = D.ma_san_pham
                 JOIN chi_tiet_san_pham E ON D.ma_san_pham = E.ma_san_pham
-                WHERE A.ma_loai =$maLoai";
-                if ($maMauSac > 0 && $maKichThuoc > 0) {
-                    $sql .=" AND E.ma_mau_sac = $maMauSac AND E.ma_kich_thuoc = $maKichThuoc";
+                WHERE A.ma_loai =$maLoai  AND D.gia >= $min AND D.gia <= $max" ;
+                if ($maMauSac > 0 && $maKichThuoc > 0 ) {
+                    $sql .=" AND E.ma_mau_sac = $maMauSac  AND E.ma_kich_thuoc = $maKichThuoc";
                 }
+                
                 if ($maMauSac > 0 && empty($maKichThuoc) ) {
                     $sql .=" AND E.ma_mau_sac = $maMauSac ";
                 }
                 if (empty($maMauSac)  && $maKichThuoc > 0) {
                     $sql .=" AND  E.ma_kich_thuoc = $maKichThuoc";
                 }
+                
                  $sql .=" GROUP BY D.ma_san_pham";
                 // if ($maMauSac = 0 && $maKichThuoc = 0) {
                    
@@ -93,3 +98,6 @@ function getMauSac($maLoai,$maDanhMuc){
                     
         return getData($sql);
     }
+
+    // Lọc giá 
+ 
