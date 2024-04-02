@@ -241,7 +241,7 @@ CREATE TABLE `Nguoi_Dung`(
     `ma` int(11) NULL
 );
 INSERT INTO `Nguoi_Dung`
-
+(`ma_nguoi_dung`, `email`, `mat_khau`, `quyen`, `anh_dai_dien`, `ho_va_ten`, `gioi_tinh`, `ngay_sinh`, `dia_chi`, `so_dien_thoai`)
  VALUES 
  (NULL,'abc@gmail.com','123','0','users/1-old.jpg','Nguyễn Văn A','Nhà số X Phường Y Quận Z Thành phố V','0147852096',NULL,TRUE,NULL),
  (NULL,'def@gmail.com','456','0','users/d1.jpg','Nguyễn Thị N','Nhà số D Phường E Quận Q Thành phố T','0369852014',NULL,TRUE,NULL),
