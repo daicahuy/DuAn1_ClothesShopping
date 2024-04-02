@@ -176,84 +176,64 @@
                     </div>
 
                     <div class="row shop-grid">
-                        <?php foreach ($sanPhams as $key => $sanPham) : ?>
-
+                        <?php foreach ($sanPhams as $key => $sanpham) : ?>
 
                             <div class="col-md-4 grid-item mb30">
                                 <div class="arrival-overlay">
-                                    <img src="<?= IMAGES_URL . $sanPham['anh'] ?>" alt="image">
-                                    <p class="new" style="padding: 4px; background-color: red; color: #fff;">
-                                        Giảm giá 50%
-                                    </p>
+                                    <img src="<?php echo IMAGES_URL . $sanpham['anh'] ?>" alt="">
+                                    <?php if (!($sanpham['ma_giam_gia'] == NULL)) : ?>
+                                        <?php $giam_gia = getGiamGiaID($sanpham['ma_giam_gia']); ?>
+
+                                        <p class="new" style="padding: 4px; background-color: red; color: #fff;">
+                                            <?= $giam_gia['ten_giam_gia']?>
+                                        </p>
+                                    <?php endif ?>
                                     <div class="arrival-mask">
                                         <a href="#" class="medium-button button-red add-cart">Thêm vào giỏ hàng</a>
-                                        <a href="?url=ma_san_pham=<?= $sanPham['ma_san_pham'] ?>" class="wishlist">Xem chi tiết</a>
+                                        <a href="?url=chitietsanpham&maSanPham=<?= $sanpham['ma_san_pham'] ?>" class="wishlist">Xem chi tiết</a>
                                     </div>
                                 </div>
                                 <div class="arr-content">
-                                    <a href="#">
-                                        <p><?= $sanPham['ten_san_pham'] ?></p>
-                                    </a>
-                                    <p class="high-price">6000000 VND</p>
-                                    <p class="low-price"><?= $sanPham['gia'] ?> VND</p>
+                                    <a href="#"><p><?= $sanpham['ten_san_pham'] ?></p></a>
+                                    <?php
+                                        $giaBienDongMax = getGiaChiTietSanPhamIDSanPham($sanpham["ma_san_pham"]);
+                                        $giaBienDongMin = getGiaChiTietSanPhamIDSanPham($sanpham["ma_san_pham"], false);
+                                        $tienMin = $sanpham["gia"] + $giaBienDongMin[0];
+                                        $tienMax = $sanpham["gia"] + $giaBienDongMax[0];
+                                    ?>
+                                    <?php if (!($sanpham['ma_giam_gia'] == NULL)) { ?>
+                                        <?php if($sanpham["so_luong"] == NULL) : ?>
+                                            <?php
+                                                $tienGiamGiaMin = ($giam_gia["giam_gia"]/100)*($tienMin);
+                                                $tienGiamGiaMax = ($giam_gia["giam_gia"]/100)*($tienMax);
+                                            ?>
+                                            <p class="high-price">
+                                                <?php echo $tienMax ?> VNĐ
+                                            </p>
+                                            <p class="low-price">
+                                                <?php echo $tienMin - $tienGiamGiaMin ?> VNĐ
+                                            </p>
+                                        <?php else : ?>
+                                            <?php
+                                                $tienGiamGia = $giam_gia["giam_gia"]/100*$sanpham["gia"];
+                                            ?>
+                                            <p class="high-price"><?php echo $sanpham["gia"] ?> VNĐ</p>
+                                            <p class="low-price"><?php echo $sanpham["gia"] - $tienGiamGia ?> VNĐ</p>
+                                        <?php endif ?>
+                                    <?php } else { ?>
+                                        <?php if($sanpham["so_luong"] == NULL) : ?>
+                                            <p class="low-price">
+                                                <?php echo $tienMin ?> VNĐ
+                                            </p>
+                                        <?php else : ?>
+                                            <p class="low-price"><?php echo $sanpham["gia"] ?> VNĐ</p>
+                                        <?php endif ?>
+                                    <?php } ?>
 
                                     <div class="stars"><img src="<?php echo SWEETPICK_URL ?>upload/stars.png" alt=""></div>
                                 </div>
                             </div>
                         <?php endforeach ?>
-
-                        <!-- <?php foreach ($sanPhams as $key => $sanPham) : ?>
-
-
-                        <div class="col-md-4 grid-item mb30">
-                            <div class="arrival-overlay">
-                                <img src="<?= IMAGES_URL . $sanPham['anh'] ?>" alt="image">
-                                <p class="new" style="padding: 4px; background-color: red; color: #fff;">
-                                    Giảm giá 50%
-                                </p>
-                                <div class="arrival-mask">
-                                    <a href="#" class="medium-button button-red add-cart">Thêm vào giỏ hàng</a>
-                                    <a href="#" class="wishlist">Xem chi tiết</a>
-                                </div>
-                            </div>
-                            <div class="arr-content">
-                                <a href="#">
-                                    <p><?= $sanPham['ten_san_pham'] ?></p>
-                                </a>
-                                <p class="high-price">6000000 VND</p>
-                                <p class="low-price"><?= $sanPham['gia'] ?> VND</p>
-
-                                <div class="stars"><img src="<?php echo SWEETPICK_URL ?>upload/stars.png" alt=""></div>
-                            </div>
-                        </div>
-                        <?php endforeach ?> -->
-
-                        <!-- <div class="col-md-4 grid-item mb30">
-                            <div class="arrival-overlay">
-                                <img src="<?php echo SWEETPICK_URL ?>upload/arrival1.jpg" alt="">
-                                <p class="new" style="padding: 4px; background-color: red; color: #fff;">
-                                    Giảm giá 50%
-                                </p>
-                                <div class="arrival-mask">
-                                    <a href="#" class="medium-button button-red add-cart">Thêm vào giỏ hàng</a>
-                                    <a href="#" class="wishlist">Xem chi tiết</a>
-                                </div>
-                            </div>
-                            <div class="arr-content">
-                                <a href="#">
-                                    <p>Áo chống nước</p>
-                                </a>
-                                <p class="high-price">6000000 VND</p>
-                                <p class="low-price">3000000 VND</p>
-
-                                <div class="stars"><img src="<?php echo SWEETPICK_URL ?>upload/stars.png" alt=""></div>
-                            </div>
-                        </div> -->
-
-
-
-
-
 
                     </div>
 

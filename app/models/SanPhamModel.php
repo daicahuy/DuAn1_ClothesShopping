@@ -1,4 +1,5 @@
 <?php
+    require_once "pdo.php";
     // Lay tat ca san pham
     function getAllSanPham() {
         $sql = "SELECT A.*, C.ten_danh_muc, D.ten_loai, COUNT(A.ma_san_pham) as so_luong_danh_muc
@@ -83,10 +84,21 @@
         return executeCommand($sql);
     }
 
-    // Cap nhat trang thai san pham
+    // Cap nhat trang thai san pham an hien
     function updateStatusSanPham($id, $status = 1) {
         $sql = "UPDATE san_pham SET trang_thai = $status WHERE ma_san_pham = $id";
         return executeCommand($sql);
+    }
+
+    // Lay top 10 san pham ban chay
+    function getAllSanPhamBanChay() {
+        $sql = "SELECT * FROM san_pham
+                WHERE trang_thai = 1
+                ORDER BY luot_mua DESC
+                LIMIT 0, 10
+                ";
+
+        return getData($sql);
     }
 
 ?>

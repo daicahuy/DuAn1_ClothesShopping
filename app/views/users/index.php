@@ -76,87 +76,70 @@
 				<div class="filters">
 					<div class="filter clearfix">
 						<div class="holder">
-							<ul>
-								<li><a href="?url=ttt" class="active" data-filter="*">Tất cả</a></li>
-								<li><a href="?url=spmoi" data-filter=".class1"><i class="fa fa-star"></i> Sản phẩm mới</a></li>
-								<li><a href="?url=spbanchay" data-filter=".class2"><i class="fa fa-star"></i> Sản phẩm bán chạy</a></li>
-							</ul>
+								<li><a href="#!"><i class="fa fa-star"></i> Sản phẩm bán chạy</a></li>
 							<div class="holder-border"></div>
 						</div>
 					</div>
 					<div class="clear"></div>
 
 					<div class="demo1 clearfix">
-						<ul class="filter-container clearfix">
-							<!-- Tất cả: là tất cả sản phẩm của sản phẩm mới và sản phẩm bán chạy
-								( không phải làm tất cả vì chỉ cần làm hiện sản phẩm mới và sản phẩm bán chạy thì tất cả nó tự hiện ) 
-								-->
-							<!-- CLASS 1: Sản phẩm hiện ở sản phẩm mới -->
-							<!-- CLASS 2: Sản phẩm hiện ở sản phẩm bán chạy -->
-
-							<?php $listSanPham = getAllSanPhamNew(); ?>
-							<?php foreach ($listSanPham as $sp) : ?>
-
-								<li class="class1">
-
+							<?php foreach ($listSanPhamBanChay as $sanpham) : ?>
+								<div class="col-md-3 grid-item mb30">
 									<div class="arrival-overlay">
-										<img src="<?= IMAGES_URL . $sp['anh'] ?>" height="200px" style="object-fit: cover;" alt="">
-										<?php if (!($sp['ma_giam_gia'] == NULL)) : ?>
-											<?php $giam_gia = getGiamGiaID($sp['ma_giam_gia']);?>
+										<img src="<?php echo IMAGES_URL . $sanpham['anh'] ?>" alt="">
+										<?php if (!($sanpham['ma_giam_gia'] == NULL)) : ?>
+											<?php $giam_gia = getGiamGiaID($sanpham['ma_giam_gia']); ?>
+
 											<p class="new" style="padding: 4px; background-color: red; color: #fff;">
-
-												<?= $giam_gia['ten_giam_gia'] ?>
-
-											</p>
-										<?php endif ?>
-										<div class="arrival-mask">
-											<a href="#" class="medium-button button-red add-cart">Thêm vào giỏ hàng</a>
-											<a href="?url=chitietsanpham&ma_san_pham=<?= $sp['ma_san_pham'] ?>" class="wishlist">Xem chi tiết</a>
-										</div>
-									</div>
-									<div class="arr-content">
-										<a href="?url=chitietsanpham">
-											<p><?= $sp['ten_san_pham'] ?></p>
-										</a>
-										<p class="high-price">6000000 VND</p>
-										<p class="low-price"><?= $sp['gia'] ?></p>
-
-										<div class="stars"><img src="<?php echo SWEETPICK_URL ?>upload/stars.png" alt=""></div>
-									</div>
-								</li>
-							<?php endforeach ?>
-
-							<?php $listSanPhamhot = getAllSanPhamBanChay(); ?>
-							<?php foreach ($listSanPhamhot as $sp) : ?>
-								<li class="class2">
-
-									<div class="arrival-overlay">
-										<img src="<?= IMAGES_URL . $sp['anh'] ?>" height="200px" style="object-fit: cover;" alt="">
-										<?php if (!($sp['ma_giam_gia'] == NULL)) : ?>
-											<p class="new" style="padding: 4px; background-color: red; color: #fff;">
-											
-												<?php $giam_gia = getGiamGiaID($sp['ma_giam_gia']); ?>
 												<?= $giam_gia['ten_giam_gia']?>
 											</p>
 										<?php endif ?>
-
 										<div class="arrival-mask">
 											<a href="#" class="medium-button button-red add-cart">Thêm vào giỏ hàng</a>
-											<a href="?url=chitietsanpham&ma_san_pham=<?= $sp['ma_san_pham'] ?>" class="wishlist">Xem chi tiết</a>
+											<a href="?url=chitietsanpham&maSanPham=<?= $sanpham['ma_san_pham'] ?>" class="wishlist">Xem chi tiết</a>
 										</div>
 									</div>
 									<div class="arr-content">
-										<a href="#">
-											<p><?= $sp['ten_san_pham'] ?></p>
-										</a>
-										<p class="high-price">6000000 VND</p>
-										<p class="low-price"><?= $sp['gia'] ?></p>
+										<a href="#"><p><?= $sanpham['ten_san_pham'] ?></p></a>
+										<?php
+											$giaBienDongMax = getGiaChiTietSanPhamIDSanPham($sanpham["ma_san_pham"]);
+											$giaBienDongMin = getGiaChiTietSanPhamIDSanPham($sanpham["ma_san_pham"], false);
+											$tienMin = $sanpham["gia"] + $giaBienDongMin[0];
+											$tienMax = $sanpham["gia"] + $giaBienDongMax[0];
+										?>
+										<?php if (!($sanpham['ma_giam_gia'] == NULL)) { ?>
+											<?php if($sanpham["so_luong"] == NULL) : ?>
+												<?php
+													$tienGiamGiaMin = ($giam_gia["giam_gia"]/100)*($tienMin);
+													$tienGiamGiaMax = ($giam_gia["giam_gia"]/100)*($tienMax);
+												?>
+												<p class="high-price">
+													<?php echo $tienMax ?> VNĐ
+												</p>
+												<p class="low-price">
+													<?php echo $tienMin - $tienGiamGiaMin ?> VNĐ
+												</p>
+											<?php else : ?>
+												<?php
+													$tienGiamGia = $giam_gia["giam_gia"]/100*$sanpham["gia"];
+												?>
+												<p class="high-price"><?php echo $sanpham["gia"] ?> VNĐ</p>
+												<p class="low-price"><?php echo $sanpham["gia"] - $tienGiamGia ?> VNĐ</p>
+											<?php endif ?>
+										<?php } else { ?>
+											<?php if($sanpham["so_luong"] == NULL) : ?>
+												<p class="low-price">
+													<?php echo $tienMin ?> VNĐ
+												</p>
+											<?php else : ?>
+												<p class="low-price"><?php echo $sanpham["gia"] ?> VNĐ</p>
+											<?php endif ?>
+										<?php } ?>
 
 										<div class="stars"><img src="<?php echo SWEETPICK_URL ?>upload/stars.png" alt=""></div>
 									</div>
-								</li>
+								</div>
 							<?php endforeach ?>
-						</ul>
 					</div>
 				</div>
 				<!-- End Filters -->

@@ -7,6 +7,7 @@ requireFiles(CONTROLLERS_URL . "users");
 requireFiles(MODELS_URL);
 
 session_start();
+setlocale(LC_MONETARY, 'vi_VN');
 
 // ROUTER
 $url = isset($_GET["url"]) ? $_GET["url"] : '/';
@@ -130,11 +131,6 @@ switch ($url) {
             confirm();
             break;
         }
-    
-    case 'chitietsanpham': {
-        chiTietSanPham();
-        break;
-    }
 
         // DASHBOARD ADMIN
     case 'admin': {
