@@ -64,7 +64,7 @@ function suaDanhMuc()
         } else {
             $erros['maLoai'] = "MỜi chọn loại";
         }
-
+        // debug($maLoais);
         // if (isset($_POST['ma_loai_hidden'])) {
         //    $maLoais = $_POST['ma_loai_hidden'];
         // }
