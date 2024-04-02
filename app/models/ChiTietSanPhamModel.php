@@ -19,13 +19,48 @@
         return getData($sql, false);
     }
 
-    // Dem so luong chi tiet san pham
+    // Lay gia cua chi tiet san pham theo id san pham
+    function getGiaChiTietSanPhamIDSanPham($idSanPham, $max = true) {
+        if($max) { $value = "MAX"; }
+        else { $value = "MIN"; }
+
+        $sql = "SELECT $value(gia_bien_dong) as gia_cao_nhat FROM chi_tiet_san_pham
+                WHERE ma_san_pham = $idSanPham";
+        return getData($sql,false);
+    }
+
+    // Dem tong so luong ton kho chi tiet san pham
     function countSoLuongChiTietSanPham($id) {
         $sql = "SELECT SUM(so_luong) AS so_luong 
                 FROM chi_tiet_san_pham
                 WHERE ma_san_pham = $id";
         return getData($sql,false);
     }
+
+    // Lay size cua chi tiet san pham
+    function getSizeChiTietSanPham($id) {
+        $sql = "SELECT A.ma_kich_thuoc, B.ten_kich_thuoc FROM chi_tiet_san_pham A
+                JOIN kich_thuoc B ON A.ma_kich_thuoc = B.ma_kich_thuoc
+                WHERE ma_san_pham = $id
+                GROUP BY A.ma_kich_thuoc
+                ";
+        return getData($sql);
+    }
+
+    // Lay mau cua chi tiet san pham
+    function getColorChiTietSanPham($id) {
+        $sql = "SELECT A.ma_mau_sac, B.ten_mau FROM chi_tiet_san_pham A
+                JOIN mau_sac B ON A.ma_mau_sac = B.ma_mau_sac
+                WHERE ma_san_pham = $id
+                GROUP BY A.ma_mau_sac
+                ";
+        return getData($sql);
+    }
+
+
+    // --------------------------------------------------------------
+    //------------------CRUD-----------------------------------------
+    // --------------------------------------------------------------
 
     // Them chi tiet san pham
     function insertChiTietSanPham(

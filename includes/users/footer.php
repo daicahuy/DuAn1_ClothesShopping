@@ -73,9 +73,6 @@
 						<div class="copyright">
 							© 2024 | Copyright by Group 6
 						</div>
-						<div class="payment">
-							<a href="#"><img src="upload/payments.png" alt=""></a>
-						</div>
 						<div class="clear"></div>
 					</div>
 
@@ -132,7 +129,6 @@
 	<script type="text/javascript" src="<?php echo SWEETPICK_URL ?>js/jquery.superfish.js"></script>
 	<script type="text/javascript" src="<?php echo SWEETPICK_URL ?>js/jquery.bxslider.js"></script>
 	<script type="text/javascript" src="<?php echo SWEETPICK_URL ?>js/bootstrap.js"></script>
-	<script type="text/javascript" src="<?php echo SWEETPICK_URL ?>js/jquery.nicescroll.min.js"></script>
   	<script type="text/javascript" src="<?php echo SWEETPICK_URL ?>js/jquery.isotope.min.js"></script>
 	<script type="text/javascript" src="<?php echo SWEETPICK_URL ?>js/jquery.imagesloaded.min.js"></script>
      <!-- jQuery KenBurn Slider  -->
