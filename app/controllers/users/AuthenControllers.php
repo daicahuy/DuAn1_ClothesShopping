@@ -163,7 +163,8 @@ function dangKy() {
             ";
 
             if (sendMail($email,$title,$content)) {
-                insertNguoiDung($email,$password,$code);
+                $maNguoiDung = insertNguoiDung($email,$password,$code);
+                insertGioHang($maNguoiDung);
                 $thongbao = "Vui lòng kiểm tra email của bạn";
                 $type = "success";
                 $password = "";

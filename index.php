@@ -58,7 +58,7 @@ if (strpos($url, "admin") === 0) {
     include "includes/admin/header.php";
 } else {
     // Header user
-    if (!($url == 'dangnhap' || $url == 'dangky' || $url == 'khoiphucmatkhau')) {
+    if (!($url == 'dangnhap' || $url == 'dangky' || $url == 'khoiphucmatkhau' || $url == 'themgiohang')) {
         include "includes/users/header.php";
     }
 }
@@ -76,10 +76,10 @@ switch ($url) {
             loc();
             break;
         }
-    case 'timkiem': {
-        timKiem();
-        break;
-    }
+        case 'timkiem': {
+            timKiem();
+            break;
+        }
     // case 'nam': {
     //     nam();
     //     break;
@@ -124,6 +124,21 @@ switch ($url) {
             gioHang();
             break;
         }
+
+    case 'themgiohang': {
+            themGioHang();
+            break;
+    }
+
+    case 'xoasanphamgiohang': {
+            xoaSanPhamGioHang();
+            break;
+    }
+
+    case 'xoatoanbogiohang': {
+            xoaToanBoGioHang();
+            break;
+    }
 
         // THANH TOAN
     case 'thanhtoan': {
@@ -312,7 +327,7 @@ if (strpos($url, "admin") === 0) {
     include "includes/admin/footer.php";
 } else {
     // Footer user
-    if (!($url == 'dangnhap' || $url == 'dangky' || $url == 'khoiphucmatkhau')) {
+    if (!($url == 'dangnhap' || $url == 'dangky' || $url == 'khoiphucmatkhau' || $url == 'themgiohang')) {
         include "includes/users/footer.php";
     }
 }

@@ -42,7 +42,7 @@ function AnTaiTKhoan($ma_nguoi_dung,$trangthai){
 function insertNguoiDung($email,$matKhau, $code) {
     $sql = "INSERT nguoi_dung (email, mat_khau, quyen, trang_thai, kich_hoat, ma)
             VALUES ('$email', '$matKhau', 0, 1, FALSE, $code)";
-    return executeCommand($sql);
+    return executeCommandAndGetID($sql);
 }
 
 // Sua trang thai kich hoat nguoi dung

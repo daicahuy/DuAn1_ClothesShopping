@@ -76,6 +76,20 @@
     function nextPage($link) {
         echo "<script>window.location.href='$link'</script>";
     }
-    
+
+    // Lấy all param
+    function getAllParam($arrayParam) {
+        $keys = array_keys($arrayParam);
+        $keysLength = count($keys);
+        $params = "";
+        foreach($keys as $index => $key) {
+            if($index == $keysLength - 1) {
+                $params .= $key . "=" . $arrayParam["$key"];
+                break;
+            }
+            $params .= $key . "=" . $arrayParam["$key"] . "$"; 
+        }
+        return $params;
+    }
 
 ?>

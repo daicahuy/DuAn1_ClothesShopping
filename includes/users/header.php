@@ -32,8 +32,8 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo CLIENT_URL ?>max-themes.net/demos/sweetpick/css/style.css" media="screen">
 	<link rel="stylesheet" type="text/css" href="<?php echo CLIENT_URL ?>max-themes.net/demos/sweetpick/css/responsive.css" media="screen">
 	
-	<link rel="shortcut icon" href="<?php echo SWEETPICK_URL ?>/images/favicon.png" type="image/x-icon">
-	<link rel="icon" href="<?php echo SWEETPICK_URL ?>/images/favicon.png" type="image/x-icon">
+	<link rel="shortcut icon" href="<?php echo IMAGES_URL ?>favicon.png" type="image/x-icon">
+	<link rel="icon" href="<?php echo IMAGES_URL ?>favicon.png" type="image/x-icon">
 
 	<!-- Style Switch -->
 	
@@ -106,7 +106,7 @@
           
 						<div class="mobile-version">
 							<div class="cart-icon">
-								<a href="#"><img src="<?php echo SWEETPICK_URL ?>/images/cart-white.png" alt="">
+								<a href="#"><img src="<?php echo IMAGES_URL ?>cart-white.png" alt="">
 								<span>8 Items</span></a>
 							</div>
 						</div>
@@ -128,40 +128,151 @@
 					</div>
 
 					<div class="logo">
-						<a href="?url=/"><img src="<?php echo SWEETPICK_URL ?>/images/logo.png" alt=""></a>
+						<a href="?url=/"><img src="<?php echo IMAGES_URL ?>logo.png" alt=""></a>
 					</div>
-					
-					<div class="cart">
-						<a href="#" class="cartmain">GIỎ HÀNG</a>
-						<div class="card-icon">
-							<img src="<?php echo SWEETPICK_URL ?>/images/cart.png" alt="">
-							<div class="shop-items">0</div>
-						</div>
-						<div class="hover-cart">
+					<?php if(isset($_SESSION["user"])) : ?>
+						<?php
+							$maNguoiDung = $_SESSION["user"]["ma_nguoi_dung"];
+							$gioHang = getGioHangByIdUser($maNguoiDung);
+							$maGioHang = $gioHang["ma_gio_hang"];
+							$sumCart = 0;
+							$params = getAllParam($_GET);
 
-							<div class="hover-box">
-
-								<a href="#"><img src="<?php echo SWEETPICK_URL ?>/images/hover1.png" alt="" class="left-hover"></a>
-								<div class="hover-details">
-									<p>Váy siêu cấp</p>
-									<span>300000 VND</span>
-									<div class="quantity">Số lượng: 1</div>
+							$productsInCart = getAllProductInCart($maGioHang);
+							// debug($productsInCart);
+							$sumProductInCart = getSumProductInCart($maGioHang);
+						?>
+						<div class="cart">
+							<a href="?url=giohang" class="cartmain">GIỎ HÀNG</a>
+							<div class="card-icon">
+								<img src="<?php echo IMAGES_URL ?>cart.png" alt="">
+								<div class="shop-items"><?php echo $sumProductInCart["tong"] ?></div>
+							</div>
+							<div class="hover-cart" style="min-width: 340px;">
+								<div style="max-height: 300px; overflow: auto;">
+									<?php foreach($productsInCart as $productInCart) : ?>
+										<?php if($productInCart["so_luong"] == NULL) : ?>
+											<?php
+												$kichThuoc = getKichThuocID($productInCart["ma_kich_thuoc"]);
+												$mauSac = getMauSacID($productInCart["ma_mau_sac"]);
+												$sumCart += ($productInCart["gia"] + $productInCart["gia_bien_dong"])*$productInCart["so_luong_muon_mua"];
+											?>
+											<div class="hover-box">
+												<a href="?url=chitietsanpham&maSanPham=<?= $productInCart['ma_san_pham'] ?>">
+													<img
+														src="<?php echo IMAGES_URL . $productInCart["anh_chi_tiet"] ?>"
+														alt=""
+														class="left-hover"
+													>
+												</a>
+												<div class="hover-details">
+													<p
+														style="
+															display: -webkit-box;
+															-webkit-box-orient: vertical;
+															overflow: hidden;
+															-webkit-line-clamp: 2;
+														"
+													>
+														<?php echo $productInCart["ten_san_pham"] ?>
+													</p>
+													<p
+														style="
+															font-family: 'Merriweather';
+															font-size: 13px;
+															font-style: italic;
+															color: #9b9b9b;
+															"
+													>
+														Size: <?php echo $kichThuoc["ten_kich_thuoc"] ?> , <?php echo $mauSac["ten_mau"] ?>
+													</p>
+													<span><?php echo $productInCart["gia"] + $productInCart["gia_bien_dong"] ?> VNĐ</span>
+													<div class="quantity">Số lượng: <?php echo $productInCart["so_luong_muon_mua"] ?></div>
+												</div>
+												<a
+													href="?url=xoasanphamgiohang&maChiTietSanPham=<?php echo $productInCart["ma_chi_tiet_san_pham"] ?>&view=<?php echo $params ?>"
+													class="right-hover"
+													onclick="return confirm('Bạn có muốn xóa sản phẩm này khỏi giỏ hàng không ?')"
+												>
+													<img src="<?php echo IMAGES_URL ?>/delete.png" alt="">
+												</a>
+				
+												<div class="clear"></div>
+											</div>
+										<?php else : ?>
+											<?php $sumCart += $productInCart["gia"]*$productInCart["so_luong_muon_mua"]; ?>
+											<div class="hover-box">
+												<a href="?url=chitietsanpham&maSanPham=<?= $productInCart['ma_san_pham'] ?>">
+													<img
+														src="<?php echo IMAGES_URL . $productInCart["anh"] ?>"
+														alt=""
+														class="left-hover"
+													>
+												</a>
+												<div class="hover-details">
+													<p
+														style="
+															display: -webkit-box;
+															-webkit-box-orient: vertical;
+															overflow: hidden;
+															-webkit-line-clamp: 2;
+														"
+													>
+														<?php echo $productInCart["ten_san_pham"] ?>
+													</p>
+													<span><?php echo $productInCart["gia"] ?> VNĐ</span>
+													<div class="quantity">Số lượng: <?php echo $productInCart["so_luong_muon_mua"] ?></div>
+												</div>
+												
+												<a
+													href="?url=xoasanphamgiohang&maChiTietSanPham=<?php echo $productInCart["ma_chi_tiet_san_pham"] ?>&view=<?php echo $params ?>"
+													class="right-hover"
+													onclick="return confirm('Bạn có muốn xóa sản phẩm này khỏi giỏ hàng không ?')"
+												>
+													<img src="<?php echo IMAGES_URL ?>/delete.png" alt="">
+												</a>
+				
+												<div class="clear"></div>
+											</div>
+										<?php endif ?>
+									<?php endforeach ?>
+									<?php if(!$productsInCart) : ?>
+										<div style="text-align: center;">
+											<img style="width: 100px;" src="<?php echo IMAGES_URL ?>no-product.png" alt="">
+										</div>
+										<div class="hover-box">
+											<h6 style="text-align: center; line-height: 22px;">
+												Không có sản phẩm nào
+											</h6>
+										</div>
+									<?php endif ?>
 								</div>
-								
-								<a href="#" class="right-hover"><img src="<?php echo SWEETPICK_URL ?>/images/delete.png" alt=""></a>
+								<?php if($sumCart !== 0) : ?>
+									<div class="subtotal mt15">
+										Tổng tiền: <span><?php echo $sumCart ?> VNĐ</span>
+									</div>
+								<?php endif ?>
 
-								<div class="clear"></div>
+								<a class="viewcard" href="?url=giohang"> Xem giỏ hàng</a>
 
 							</div>
-
-							<div class="subtotal">
-								Tổng tiền: <span>300000 VND</span>
-							</div>
-
-							<a class="viewcard" href="?url=giohang"> Xem giỏ hàng</a>
-
 						</div>
-					</div>
+					<?php else : ?>
+						<div class="cart">
+							<a href="#!" class="cartmain">GIỎ HÀNG</a>
+							<div class="card-icon">
+								<img src="<?php echo IMAGES_URL ?>cart.png" alt="">
+								<div class="shop-items">0</div>
+							</div>
+							<div class="hover-cart">
+								<div class="hover-box">
+									<h6 style="text-align: center; line-height: 22px;">
+										Bạn cần <a href="?url=dangnhap">đăng nhập</a> để sử dụng tính năng này
+									</h6>
+								</div>
+							</div>
+						</div>
+					<?php endif ?>
 
 					<div class="clear"></div>
 

@@ -12,6 +12,16 @@
         return getData($sql);
     }
 
+    // Lay chi tiet san pham theo id san pham binh thuong
+    function getChiTietSanPhamIDSanPhamBinhThuong($idSanPham) {
+        $sql = "SELECT A.ma_chi_tiet_san_pham
+                FROM chi_tiet_san_pham A
+                WHERE A.ma_san_pham = $idSanPham
+                ";
+
+        return getData($sql,false);
+    }
+
     // Lay chi tiet san pham theo ma san pham, kich thuoc, mau sac
     function get3ChiTietSanPham($ma_san_pham, $ma_kich_thuoc, $ma_mau_sac) {
         $sql = "SELECT * FROM chi_tiet_san_pham
