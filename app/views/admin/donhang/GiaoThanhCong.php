@@ -35,11 +35,10 @@
                         background: #0056b3;
                     }
                     </style>
-                    
                 <div class="content-wrapper">
                     <div class="card" style="border: 1px solid gray; width: 98%; margin: 10px auto;">
                         <div class="card-header border-0">
-                            <h3>Đóng gói đơn hàng</h3>
+                            <h3>Giao thành công đơn hàng</h3>
                         </div>
                         <div class="actions-search-container" style="display: flex; justify-content: space-between; align-items: center; margin: 20px 10px;">
                             <div class="action-buttons">
@@ -55,8 +54,6 @@
                                 </form>
                             </div>
                         </div>
-                        
-                        
 
                         <div class="card-body table-responsive p-0">
                             <table class="table table-striped table-valign-middle">
@@ -80,14 +77,12 @@
                                         <td>Nguyễn Văn A</td>
                                         <!-- <td>2</td> -->
                                         <td>500,000 VND</td>
-                                        <td>Đang đóng gói</td>
+                                        <td>Đã giao</td>
                                         <td>
                                             <a href="ChiTietDonHang.html" class="btn btn-primary">
                                                 <i class="bi bi-eye-fill"></i>
                                             </a>
-                                            <a href="VanChuyenDonHang.html" class="btn btn-success" style="margin: 0 10px;">
-                                                <i class="bi bi-check-lg"></i> 
-                                            </a>
+                                           
                                            
                                         </td>         
                                     </tr>
@@ -98,14 +93,12 @@
                                         <td>Nguyễn Văn A</td>
                                         <!-- <td>2</td> -->
                                         <td>500,000 VND</td>
-                                        <td>Đang đóng gói</td>
+                                        <td>Đã giao</td>
                                         <td>
                                             <a href="ChiTietDonHang.html" class="btn btn-primary">
                                                 <i class="bi bi-eye-fill"></i>
                                             </a>
-                                            <a href="VanChuyenDonHang.html" class="btn btn-success" style="margin: 0 10px;">
-                                                <i class="bi bi-check-lg"></i> 
-                                            </a>
+                                           
                                            
                                         </td>         
                                     </tr>
@@ -116,14 +109,12 @@
                                         <td>Nguyễn Văn A</td>
                                         <!-- <td>2</td> -->
                                         <td>500,000 VND</td>
-                                        <td>Đang đóng gói</td>
+                                        <td>Đã giao</td>
                                         <td>
                                             <a href="ChiTietDonHang.html" class="btn btn-primary">
                                                 <i class="bi bi-eye-fill"></i> <!--Chi tiết-->
                                             </a>
-                                            <a href="VanChuyenDonHang.html" class="btn btn-success" style="margin: 0 10px;">
-                                                <i class="bi bi-check-lg"></i>  <!--Sửa-->
-                                            </a>
+                                            
                                            
                                         </td>         
                                     </tr>
@@ -142,7 +133,6 @@
                                 </ul>
                             </div>
                         </div>
-                        
                     </div>
                     <!-- /.card -->
                 </div>

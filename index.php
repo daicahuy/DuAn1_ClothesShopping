@@ -76,14 +76,18 @@ switch ($url) {
             loc();
             break;
         }
-    case 'nam': {
-        nam();
+    case 'timkiem': {
+        timKiem();
         break;
     }
-    case 'nu': {
-        nu();
-        break;
-    }
+    // case 'nam': {
+    //     nam();
+    //     break;
+    // }
+    // case 'nu': {
+    //     nu();
+    //     break;
+    // }
 
         // CHI TIET SAN PHAM
     case 'chitietsanpham': {

@@ -9,7 +9,15 @@
 
                     <div class="shop-categories mb30">
                         <h1 class="asidetitle">Danh Mục</h1>
+                        
+                        
                         <?php if ($maLoai == 1) { ?>
+                             <form action="?url=timkiem&ma_loai=1" method="post">
+                       <div class="timkiem">
+                            <input type="text" placeholder="Tìm kiếm..." name="tim_kiem">  <button type="submit">TÌM KIẾM</button>
+                           
+                       </div>
+                       </form>
                             <ul>
                                 <?php  ?>
                                 <li><a href="?url=loc&ma_loai=1&ma_danh_muc=0">Tất cả cả sản phẩm <span><?= $soLuongTatCaSanPham[0]['so_luong_san_pham'] ?></span></a></li>
@@ -31,6 +39,12 @@
 
                         <!-- Nữ  -->
                         <?php if ($maLoai == 2) { ?>
+                            <form action="?url=timkiem&ma_loai=2" method="post">
+                       <div class="timkiem">
+                            <input type="text" placeholder="Tìm kiếm..." name="tim_kiem">  <button type="submit">TÌM KIẾM</button>
+                           
+                       </div>
+                       </form>
                             <ul>
                                 <li><a href="?url=loc&ma_loai=2&ma_danh_muc=0">Tất cả cả sản phẩm <span><?= $soLuongTatCaSanPham[0]['so_luong_san_pham'] ?></span></a></li>
                                 <?php foreach ($danhMucs as $key => $danhMuc) : ?>
@@ -272,4 +286,45 @@
     </div>
 
 </div>
-<!-- End content -->
+<!-- End content -->\
+
+<style>
+    .timkiem {
+    display: flex;
+    justify-content: start;
+    gap: 5px; /* Khoảng cách giữa input và nút */
+    padding: 5px ;
+    background-color: #fff; /* Đồng bộ với màu nền của sidebar */
+    border: 1px solid #ccc; /* Màu viền nhẹ nhàng */
+    border-radius: 4px; /* Bo góc nhẹ để phù hợp với các phần tử khác */
+    margin: 10px 0;
+}
+
+.timkiem input[type="text"] {
+    flex-grow: 1; /* Cho phép input mở rộng tối đa */
+    padding: 5px 0;
+    border: none; /* Loại bỏ viền để đơn giản hóa */
+    font-size: 11px; /* Kích thước chữ phù hợp với giao diện */
+    color: #333; /* Màu chữ tối */
+    
+}
+
+.timkiem input[type="text"]::placeholder {
+    color: #aaa; /* Màu chữ placeholder nhẹ nhàng */
+}
+
+.timkiem button {
+    padding: 5px 5px;
+    background-color: #76b852; /* Màu sắc phù hợp với nút "Giảm giá 25%" */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 10px; /* Kích thước chữ đồng bộ */
+    text-transform: uppercase; /* Chữ hoa */
+}
+
+.timkiem button:hover {
+    background-color: #689f38; /* Màu khi hover nút, tối hơn một chút */
+}
+</style>
