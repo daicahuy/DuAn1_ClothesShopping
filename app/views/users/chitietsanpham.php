@@ -7,9 +7,22 @@
             <div class="col-md-6">
                 <div class="single-img">
                     <div class="sp-wrap">
-                        <a href="<?php echo IMAGES_URL . $sanpham["anh"] ?>">
-                            <img src="<?php echo IMAGES_URL . $sanpham["anh"] ?>" alt="">
-                        </a>
+                        <?php if(isset($detailProduct)) : ?>
+                            <?php if($detailProduct) : ?>
+                                <a href="<?php echo IMAGES_URL . $detailProduct["anh_chi_tiet"] ?>">
+                                    <img src="<?php echo IMAGES_URL . $detailProduct["anh_chi_tiet"] ?>" alt="">
+                                </a>
+                            <?php else : ?>
+                                <a href="<?php echo IMAGES_URL . $sanpham["anh"] ?>">
+                                    <img src="<?php echo IMAGES_URL . $sanpham["anh"] ?>" alt="">
+                                </a>
+                            <?php endif ?>
+                        <?php else : ?>
+                            <a href="<?php echo IMAGES_URL . $sanpham["anh"] ?>">
+                                <img src="<?php echo IMAGES_URL . $sanpham["anh"] ?>" alt="">
+                            </a>
+                        <?php endif ?>
+              
                         <?php foreach($listBoSuuTap as $boSuuTap ) : ?>
                             <a href="<?php echo IMAGES_URL . $boSuuTap["anh"] ?>">
                                 <img src="<?php echo IMAGES_URL . $boSuuTap["anh"] ?>" alt="">
@@ -20,161 +33,185 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="single-desc">
-                    <div class="top-single">
-                        <span>Trang chủ / Chi tiết sản phẩm / <?php echo $sanpham["ten_san_pham"]?></span>
-                        <div class="right-arrows">
-                            <a href="#"><i class="fa fa-angle-left"></i></a>
-                            <a href="#"><i class="fa fa-angle-right"></i></a>
+
+                <?php if(isset($errors)) : ?>
+                    <?php foreach($errors as $error ) : ?>
+                        <div class="alert alert-danger" role="alert">
+                            Lỗi: <?php echo $error ?>
                         </div>
-                        <div class="clear"></div>
-                    </div>
-
-                    <div class="middle-single">
-                        <h1 style="position: relative;">
-                            <?php echo $sanpham['ten_san_pham'] ?>
-                            <?php if(!($sanpham['ma_giam_gia'] == NULL)) : ?>
-                                <?php $giam_gia = getGiamGiaID($sanpham['ma_giam_gia']); ?>
-                                <span
-                                    style="
-                                        background-color: red;
-                                        font-size: medium;
-                                        color:#fff;
-                                        padding: 1px 6px;
-                                        margin-left: 16px;
-                                    "
-                                        
-                                >
-                                    <?php echo $giam_gia["ten_giam_gia"] ?>
-                                </span>
-                            <?php endif ?>
-                        </h1>
-                        <img src="<?php echo SWEETPICK_URL ?>upload/stars.png" alt="">
-
-                        <div class="reviews">
-                            <a href="#">10 Bình luận</a>
+                    <?php endforeach ?>
+                <?php endif ?>
+                <form action="?url=chitietsanpham&maSanPham=<?php echo $sanpham["ma_san_pham"] ?>" method="post">
+                    <input
+                        type="hidden"
+                        name="maChiTietSanPham"
+                        value="<?php
+                            if(isset($detailProduct)) {
+                                if($detailProduct) {
+                                    echo $detailProduct['ma_chi_tiet_san_pham'];
+                                }
+                            }
+                            if($sanpham["so_luong"] !== NULL) {
+                                $chiTietSanPhamIdSanPhamBinhThuong = getChiTietSanPhamIDSanPhamBinhThuong($sanpham["ma_san_pham"]);
+                                echo $chiTietSanPhamIdSanPhamBinhThuong["ma_chi_tiet_san_pham"];
+                            }
+                        ?>"
+                    >
+                    <div class="single-desc">
+                        <div class="top-single">
+                            <span>Trang chủ / Chi tiết sản phẩm / <?php echo $sanpham["ten_san_pham"]?></span>
+                            <div class="right-arrows">
+                                <a href="#"><i class="fa fa-angle-left"></i></a>
+                                <a href="#"><i class="fa fa-angle-right"></i></a>
+                            </div>
+                            <div class="clear"></div>
                         </div>
-
-                    </div>
-
-                    <div class="single-price">
-                        <ul>
-                            <?php
-                                $giaBienDongMax = getGiaChiTietSanPhamIDSanPham($sanpham["ma_san_pham"]);
-                                $giaBienDongMin = getGiaChiTietSanPhamIDSanPham($sanpham["ma_san_pham"], false);
-                                $tienMin = $sanpham["gia"] + $giaBienDongMin[0];
-                                $tienMax = $sanpham["gia"] + $giaBienDongMax[0];
-                            ?>
-                            <?php if (!($sanpham['ma_giam_gia'] == NULL)) { ?>
-                                <?php if($sanpham["so_luong"] == NULL) : ?>
-                                    <?php
-                                        $tienGiamGiaMin = ($giam_gia["giam_gia"]/100)*($tienMin);
-                                        $tienGiamGiaMax = ($giam_gia["giam_gia"]/100)*($tienMax);
-                                    ?>
-                                    <li>
-                                        <span class="high-price">
-                                            <?php echo $tienMin ?> VNĐ - 
-                                            <?php echo $tienMax ?> VNĐ
-                                        </span>
-                                    </li>
-                                    <li>
-                                        <span class="low-price">
-                                            <?php echo $tienMin - $tienGiamGiaMin ?> VNĐ - 
-                                            <?php echo $tienMax - $tienGiamGiaMax ?> VNĐ
-                                        </span>
-                                    </li>
-                                <?php else : ?>
-                                    <?php
-                                        $tienGiamGia = $giam_gia["giam_gia"]/100*$sanpham["gia"];
-                                    ?>
-                                    <li>
-                                        <span class="high-price"><?php echo $sanpham["gia"] ?> VNĐ</span>
-                                    </li>
-                                    <li>
-                                        <span class="low-price"><?php echo $sanpham["gia"] - $tienGiamGia ?> VNĐ</span>
-                                    </li>
-                                <?php endif ?>
-                            <?php } else { ?>
+                        <div class="middle-single">
+                            <h1 style="position: relative;">
+                                <?php echo $sanpham['ten_san_pham'] ?>
+                            </h1>
+                            <img src="<?php echo SWEETPICK_URL ?>upload/stars.png" alt="">
+                            <div class="reviews">
+                                <a href="#">10 Bình luận</a>
+                            </div>
+                        </div>
+                        <div class="single-price">
+                            <ul>
+                                <?php
+                                    $giaBienDongMax = getGiaChiTietSanPhamIDSanPham($sanpham["ma_san_pham"]);
+                                    $giaBienDongMin = getGiaChiTietSanPhamIDSanPham($sanpham["ma_san_pham"], false);
+                                    $tienMin = $sanpham["gia"] + $giaBienDongMin[0];
+                                    $tienMax = $sanpham["gia"] + $giaBienDongMax[0];
+                                ?>
                                 <?php if($sanpham["so_luong"] == NULL) : ?>
                                     <p class="low-price">
-                                        <?php echo $tienMin ?> VNĐ - 
+                                        <?php echo $tienMin ?> VNĐ -
                                         <?php echo $tienMax ?> VNĐ
                                     </p>
                                 <?php else : ?>
                                     <p class="low-price"><?php echo $sanpham["gia"] ?> VNĐ</p>
                                 <?php endif ?>
-                            <?php } ?>
-                        </ul>
-                    </div>
-
-                    <div class="single-infos">
-                        <p>
-                            <span>
-                                Số lượng tồn kho:
-                                <?php if($sanpham["so_luong"] == NULL) : ?>
-                                    <?php
-                                        $soLuong = countSoLuongChiTietSanPham($sanpham["ma_san_pham"]);
-                                        echo $soLuong["so_luong"];
-                                    ?>
-                                <?php else : ?>
-                                    <?php echo $sanpham['so_luong'] ?>
-                                <?php endif ?>
-                            </span>
-                        </p>
-                    </div>
-                    <?php if ($sanpham['so_luong'] == NULL) : ?>
-                        <?php
-                            $listSize = getSizeChiTietSanPham($sanpham["ma_san_pham"]);
-                            $listColor = getColorChiTietSanPham($sanpham["ma_san_pham"]);    
-                        ?>
-                        <div class="single-inputs row variants">
-                            <div class="col-md-6">
-                                <select class="select variants-size">
-
-                                    <option value="Select Size" disabled selected >Chọn Kích Thước</option>
-                                    
-                                    <?php foreach ($listSize as $key => $size) : ?>
-                                        <option value="<?= $size['ma_kich_thuoc'] ?>"><?= $size['ten_kich_thuoc'] ?></option>
-                                    <?php endforeach; ?>
-
-
-                                </select>
-                            </div>
-                            <div class="col-md-6">
-                                <select class="select variants-color">
-                                    <option value="Select Color" disabled selected>Chọn Màu Sắc</option>
-
-                                    <?php foreach ($listColor as $key => $color) : ?>
-                                        <option value="<?= $color['ma_mau_sac'] ?>"><?= $color['ten_mau'] ?></option>
-                                    <?php endforeach; ?>
-                              
-
-                                </select>
-                            </div>
+                            </ul>
                         </div>
-                    <?php endif ?>
-
-
-                    <div class="prod-end">
-                        <a href="#" class="medium-button button-red add-cart">Thêm vào giỏ hàng</a>
-                        <input type="text" placeholder="1">
-                        <div class="clear"></div>
-
+                    
+                        <?php if(isset($detailProduct)) : ?>
+                            <?php if($detailProduct) : ?>
+                                <div class="single-infos">
+                                    <p><span>Số lượng trong kho: <?php echo $detailProduct['so_luong'] ?></span></p>
+                                </div>
+                                <input type="hidden" name="so_luong_bien_the" value="<?php echo $detailProduct['so_luong']?>">
+                            <?php endif ?>
+                        <?php endif ?>
+                        <?php if($sanpham["so_luong"] != NULL) : ?>
+                            <div class="single-infos">
+                                <p><span>Số lượng trong kho: <?php echo $sanpham['so_luong'] ?></span></p>
+                            </div>
+                        <?php endif ?>
+                        <input type="hidden" name="so_luong" value="<?php echo $sanpham["so_luong"] ?>">
+                        <?php if ($sanpham['so_luong'] == NULL) : ?>
+                            <?php
+                                $listSize = getSizeChiTietSanPham($sanpham["ma_san_pham"]);
+                                $listColor = getColorChiTietSanPham($sanpham["ma_san_pham"]);
+                            ?>
+                                <div class="single-inputs row variants">
+                                    <div class="col-md-6">
+                                        <select class="select variants-size" name="size">
+                                            <option
+                                                value="undefined"
+                                                <?php if(!isset($maKichThuoc)) : ?>
+                                                    <?php echo "disabled selected"?>
+                                                <?php else : ?>
+                                                    <?php echo "disabled" ?>
+                                                <?php endif ?>
+                                            >
+                                                Chọn Kích Thước
+                                            </option>
+                    
+                                            <?php foreach ($listSize as $key => $size) : ?>
+                                                <option
+                                                    value="<?= $size['ma_kich_thuoc'] ?>"
+                                                    <?php if(isset($maKichThuoc)) : ?>
+                                                        <?php echo $maKichThuoc == $size["ma_kich_thuoc"] ? 'selected' : ''?>
+                                                    <?php endif ?>
+                                                >
+                                                    <?= $size['ten_kich_thuoc'] ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <select class="select variants-color" name="color">
+                                            <option
+                                                value="undefined"
+                                                <?php if(!isset($maMauSac)) : ?>
+                                                    <?php echo "disabled selected"?>
+                                                <?php else : ?>
+                                                    <?php echo "disabled" ?>
+                                                <?php endif ?>
+                                            >
+                                                Chọn Màu Sắc
+                                            </option>
+                                            <?php foreach ($listColor as $key => $color) : ?>
+                                                <option
+                                                    value="<?= $color['ma_mau_sac'] ?>"
+                                                    <?php if(isset($maMauSac)) : ?>
+                                                        <?php echo $maMauSac == $color["ma_mau_sac"] ? 'selected' : ''?>
+                                                    <?php endif ?>
+                                                >
+                                                    <?= $color['ten_mau'] ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                    
+                                        </select>
+                                    </div>
+                                </div>
+                        <?php endif ?>
+                        <?php if(isset($detailProduct)) : ?>
+                            <div class="single-inputs">
+                                <?php if($detailProduct) : ?>
+                                    <p style="font-family: 'Noticia Text'; font-size: 23px; font-weight: bold; color: #ea5748;">
+                                        <?php echo $sanpham["gia"]+$detailProduct["gia_bien_dong"]?> VNĐ
+                                    </p>
+                                <?php else : ?>
+                                    <p style="font-family: 'Noticia Text'; font-size: 20px; font-weight: bold;">
+                                        <?php echo "Không có biến thể này" ?>
+                                    </p>
+                                <?php endif ?>
+                            </div>
+                        <?php endif ?>
+                    
+                        <div class="prod-end">
+                            <button 
+                                class="btn medium-button button-red add-cart"
+                                type="submit"
+                                name="btn-add-cart"
+                            >
+                            Thêm vào giỏ hàng
+                            </button>
+                            <button
+                                style="display: none;"
+                                type="submit"
+                                name="btn-load-variants"
+                                class="btn-load-variants"
+                            >
+                                loadvariants
+                            </button>
+                            <input type="text" placeholder="1" name="so_luong_muon_mua" value="<?php echo $soLuongMuonMua ?? ''?>">
+                            <div class="clear"></div>
+                        </div>
+                        <div class="share">
+                            <span>Share</span>
+                            <ul>
+                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                                <li><a href="#"><i class="fa fa-envelope"></i></a></li>
+                            </ul>
+                        </div>
                     </div>
-
-                    <div class="share">
-                        <span>Share</span>
-                        <ul>
-                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                            <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                            <li><a href="#"><i class="fa fa-envelope"></i></a></li>
-                        </ul>
-                    </div>
-
-                </div>
+                </form>
             </div>
         </div>
 
@@ -294,44 +331,27 @@
     let variants = document.querySelector('.variants');
     let variantsSize = document.querySelector('.variants-size');
     let variantsColor = document.querySelector('.variants-color');
+    let btnLoadVariants = document.querySelector('.btn-load-variants');
 
     let urlParams = new URLSearchParams(window.location.search);
-    
+  
     let idSanPham = urlParams.get('maSanPham');
-    let size;
-    let color;
 
-    variantsSize.addEventListener('input', () => {
+    let size = variantsSize.value;
+    let color = variantsColor.value;
+    
+    variantsSize.addEventListener('change', () => {
         size = variantsSize.value
     })
-    variantsColor.addEventListener('input', () => {
+    variantsColor.addEventListener('change', () => {
         color = variantsColor.value
     })
-
+    
     variants.onchange = function() {
-        if(size !== undefined && color !== undefined) {
-            let postData = {
-                id: idSanPham,
-                size: size,
-                color: color
-            }
-
-            fetch("http://localhost/DuAn1_ClothesShopping/app/controllers/users/DetailProductControllers.php", {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(postData)
-            })
-            .then(response => {
-                return response.json()
-            })
-            .then(data => {
-                console.log(data)
-            })
-            .catch(error => {
-                console.log(error)
-            })
+        if(size != "undefined" && color != "undefined") {
+            btnLoadVariants.click();
         }
     }
+                            
+ 
 </script>

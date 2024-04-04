@@ -58,7 +58,7 @@ if (strpos($url, "admin") === 0) {
     include "includes/admin/header.php";
 } else {
     // Header user
-    if (!($url == 'dangnhap' || $url == 'dangky' || $url == 'khoiphucmatkhau')) {
+    if (!($url == 'dangnhap' || $url == 'dangky' || $url == 'khoiphucmatkhau' || $url == 'themgiohang')) {
         include "includes/users/header.php";
     }
 }
@@ -76,14 +76,14 @@ switch ($url) {
             loc();
             break;
         }
-    case 'nam': {
-        nam();
-        break;
-    }
-    case 'nu': {
-        nu();
-        break;
-    }
+    // case 'nam': {
+    //     nam();
+    //     break;
+    // }
+    // case 'nu': {
+    //     nu();
+    //     break;
+    // }
 
         // CHI TIET SAN PHAM
     case 'chitietsanpham': {
@@ -120,6 +120,21 @@ switch ($url) {
             gioHang();
             break;
         }
+
+    case 'themgiohang': {
+            themGioHang();
+            break;
+    }
+
+    case 'xoasanphamgiohang': {
+            xoaSanPhamGioHang();
+            break;
+    }
+
+    case 'xoatoanbogiohang': {
+            xoaToanBoGioHang();
+            break;
+    }
 
         // THANH TOAN
     case 'thanhtoan': {
@@ -308,7 +323,7 @@ if (strpos($url, "admin") === 0) {
     include "includes/admin/footer.php";
 } else {
     // Footer user
-    if (!($url == 'dangnhap' || $url == 'dangky' || $url == 'khoiphucmatkhau')) {
+    if (!($url == 'dangnhap' || $url == 'dangky' || $url == 'khoiphucmatkhau' || $url == 'themgiohang')) {
         include "includes/users/footer.php";
     }
 }
