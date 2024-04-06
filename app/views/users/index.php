@@ -108,7 +108,7 @@
 										<?php else : ?>
 											<p class="low-price"><?php echo $sanpham["gia"] ?> VNĐ</p>
 										<?php endif ?>
-                    
+
 										<div class="stars"><img src="<?php echo SWEETPICK_URL ?>upload/stars.png" alt=""></div>
 									</div>
 								</div>

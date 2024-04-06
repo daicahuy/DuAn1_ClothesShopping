@@ -1,15 +1,15 @@
 <?php
-if (checkLogin("Bạn cần phải đăng nhập để quản trị")) {
-    if ($_SESSION["user"]["quyen"] == 0) {
-        echo "
+    if(checkLogin("Bạn cần phải đăng nhập để quản trị")) {
+        if($_SESSION["user"]["quyen"] == 0) {
+            echo "
                 <script>
                     alert('Bạn không có quyền để quản trị');
                 </script>
             ";
-        nextPage('?');
-        die;
+            nextPage('?');
+            die;
+        }
     }
-}
 
 ?>
 
@@ -38,9 +38,6 @@ if (checkLogin("Bạn cần phải đăng nhập để quản trị")) {
     <link href="<?php echo LIBS_URL ?>toastr/build/toastr.min.css" rel="stylesheet">
 
     <link href="<?php echo CSS_URL ?>style.min.css" rel="stylesheet">
-    <!-- Icon  -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.7.2/font/bootstrap-icons.min.css">
-
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -82,21 +79,21 @@ if (checkLogin("Bạn cần phải đăng nhập để quản trị")) {
                             <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                             <!-- Dark Logo icon -->
                             <img src="<?php echo IMAGES_URL ?>logo-icon.png" alt="homepage" class="light-logo" />
-
+                           
                         </b>
                         <!--End Logo icon -->
-                        <!-- Logo text -->
+                         <!-- Logo text -->
                         <span class="logo-text">
-                            <!-- dark Logo text -->
-                            <img src="<?php echo IMAGES_URL ?>logo-text.png" alt="homepage" class="light-logo" />
-
+                             <!-- dark Logo text -->
+                             <img src="<?php echo IMAGES_URL ?>logo-text.png" alt="homepage" class="light-logo" />
+                            
                         </span>
                         <!-- Logo icon -->
                         <!-- <b class="logo-icon"> -->
-                        <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
-                        <!-- Dark Logo icon -->
-                        <!-- <img src="<?php echo IMAGES_URL ?>logo-text.png" alt="homepage" class="light-logo" /> -->
-
+                            <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+                            <!-- Dark Logo icon -->
+                            <!-- <img src="<?php echo IMAGES_URL ?>logo-text.png" alt="homepage" class="light-logo" /> -->
+                            
                         <!-- </b> -->
                         <!--End Logo icon -->
                     </a>
@@ -106,7 +103,15 @@ if (checkLogin("Bạn cần phải đăng nhập để quản trị")) {
                     <!-- ============================================================== -->
                     <!-- Toggle which is visible on mobile only -->
                     <!-- ============================================================== -->
-                    <a class="topbartoggler d-block d-md-none waves-effect waves-light" href="javascript:void(0)" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <a
+                        class="topbartoggler d-block d-md-none waves-effect waves-light"
+                        href="javascript:void(0)"
+                        data-toggle="collapse"
+                        data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                    >
                         <i class="ti-more"></i>
                     </a>
                 </div>
@@ -119,16 +124,24 @@ if (checkLogin("Bạn cần phải đăng nhập để quản trị")) {
                     <!-- ============================================================== -->
                     <ul class="navbar-nav float-left mr-auto">
                         <li class="nav-item d-none d-md-block">
-                            <a class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)" data-sidebartype="mini-sidebar">
+                            <a
+                                class="nav-link sidebartoggler waves-effect waves-light"
+                                href="javascript:void(0)"
+                                data-sidebartype="mini-sidebar"
+                            >
                                 <i class="mdi mdi-menu font-24"></i>
                             </a>
                         </li>
                         <!-- ============================================================== -->
                         <!-- Search -->
                         <!-- ============================================================== -->
-                        <li class="nav-item search-box">
-                            <a class="nav-link waves-effect waves-dark" href="javascript:void(0)">
-                                <i class="ti-search"></i>
+                        <li
+                            class="nav-item search-box">
+                            <a
+                                class="nav-link waves-effect waves-dark"
+                                href="javascript:void(0)"
+                            >
+                            <i class="ti-search"></i>
                             </a>
                             <form class="app-search position-absolute">
                                 <input type="text" class="form-control" placeholder="Tìm kiếm danh mục, sản phẩm, người dùng...">
@@ -147,11 +160,16 @@ if (checkLogin("Bạn cần phải đăng nhập để quản trị")) {
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#!" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="d-none d-md-block">Chào, <?php echo $_SESSION["user"]["email"] ?></span>
+                             <span class="d-none d-md-block">Chào, <?php echo $_SESSION["user"]["email"] ?></span>
                             </a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic"
+                                href=""
+                                data-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                            >
                                 <img src="<?php echo IMAGES_URL . $_SESSION["user"]["anh_dai_dien"] ?>" alt="user" class="rounded-circle" width="31">
                             </a>
                             <div class="dropdown-menu dropdown-menu-right user-dd animated">
@@ -193,7 +211,11 @@ if (checkLogin("Bạn cần phải đăng nhập để quản trị")) {
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="?url=admin/danhmuc" aria-expanded="false">
+                            <a
+                                class="sidebar-link waves-effect waves-dark sidebar-link"
+                                href="?url=admin/danhmuc"
+                                aria-expanded="false"
+                            >
                                 <i class="mdi mdi-book-open-page-variant"></i>
                                 <span class="hide-menu"><?php echo $textQuanLyDanhMuc ?></span>
                             </a>
@@ -206,18 +228,18 @@ if (checkLogin("Bạn cần phải đăng nhập để quản trị")) {
                             <ul aria-expanded="false" class="collapse  first-level">
                                 <li class="sidebar-item">
                                     <a href="?url=admin/sanpham/danhsach" class="sidebar-link">
-                                        <span class="hide-menu"><?php echo $textDanhSachSanPham ?></span>
-                                    </a>
+                                    <span class="hide-menu"><?php echo $textDanhSachSanPham ?></span>
+                                </a>
                                 </li>
                                 <li class="sidebar-item">
                                     <a href="?url=admin/sanpham/mausac" class="sidebar-link">
-                                        <span class="hide-menu"><?php echo $textMauSac ?></span>
-                                    </a>
+                                    <span class="hide-menu"><?php echo $textMauSac ?></span>
+                                </a>
                                 </li>
                                 <li class="sidebar-item">
                                     <a href="?url=admin/sanpham/kichthuoc" class="sidebar-link">
-                                        <span class="hide-menu"><?php echo $textKichThuoc ?></span>
-                                    </a>
+                                    <span class="hide-menu"><?php echo $textKichThuoc ?></span>
+                                </a>
                                 </li>
                             </ul>
                         </li>
@@ -261,16 +283,16 @@ if (checkLogin("Bạn cần phải đăng nhập để quản trị")) {
             <!-- ============================================================== -->
             <!-- Bread crumb and right sidebar toggle -->
             <!-- ============================================================== -->
-            <div class="page-breadcrumb">
+             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
                         <h4 class="page-title"><?php echo $pageTitle ?></h4>
                         <div class="ml-auto text-right">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <?php if ($arrayDirectional) : ?>
+                                    <?php if($arrayDirectional) : ?>
                                         <li class="breadcrumb-item"><?php echo $pageTitle ?></li>
-                                        <?php foreach ($arrayDirectional as $directional) : ?>
+                                        <?php foreach($arrayDirectional as $directional) : ?>
                                             <li class="breadcrumb-item">
                                                 <?php echo $directional ?>
                                             </li>

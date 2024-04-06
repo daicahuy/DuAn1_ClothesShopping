@@ -29,6 +29,16 @@
         return getData($sql, false);
     }
 
+    // Lay chi tiet san pham theo id chi tiet san pham
+    function getChiTietSanPhamById($id) {
+        $sql = "SELECT A.ma_kich_thuoc, A.ma_mau_sac, A.gia_bien_dong,
+                B.ten_san_pham, B.gia, B.so_luong 
+                FROM chi_tiet_san_pham A
+                JOIN san_pham B ON A.ma_san_pham = B.ma_san_pham
+                WHERE A.ma_chi_tiet_san_pham = $id";
+        return getData($sql, false);
+    }
+
     // Lay gia cua chi tiet san pham theo id san pham
     function getGiaChiTietSanPhamIDSanPham($idSanPham, $max = true) {
         if($max) { $value = "MAX"; }

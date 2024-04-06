@@ -36,11 +36,4 @@
         return executeCommand($sql);
     }
 
-    // Xoa het san pham trong gio hang
-    function xoaAllSanPhamGioHang($maGioHang) {
-        $sql = "DELETE FROM chi_tiet_gio_hang WHERE ma_gio_hang = $maGioHang";
-        return executeCommand($sql);
-    }
-    
-
 ?>

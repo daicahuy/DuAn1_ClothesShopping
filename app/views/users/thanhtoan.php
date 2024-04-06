@@ -17,80 +17,176 @@
             </div>
 
             <div class="checkout-infos">
-                <div class="row">
-                    <div class="col-md-8">
-
-                        <div id="accordion-container" class="checkout-accordion"> 
-
-                            
-                            <h2 class="accordion-header">Thông tin khách hàng</h2>
-                            <div class="accordion-content second-row">
-
-                                <label>Họ và tên <span>*</span></label>
-                                <input type="text">
-
-
+                <form action="?url=thanhtoan" method="post">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <div id="accordion-container" class="checkout-accordion">
+                                <h2 class="accordion-header">Thông tin khách hàng</h2>
+                                <div class="accordion-content second-row">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <label>Họ và tên <span>*</span></label>
+                                            <input type="text" value="<?php echo $_SESSION["user"]["ho_va_ten"]?>" name="hoVaTen">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Số điện thoại <span>*</span></label>
+                                            <input type="text" value="<?php echo $_SESSION["user"]["so_dien_thoai"]?>" name="soDienThoai">
+                                        </div>
+                                        <div class="col-md-12">
+                                            <label>Địa chỉ <span>*</span></label>
+                                            <input type="text" value="<?php echo $_SESSION["user"]["dia_chi"]?>" name="diaChi">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="accordion-container" class="checkout-accordion">
+                    
+                                <h2 class="accordion-header">Phương thức thanh toán</h2>
+                                <div class="accordion-content second-row">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <input type="radio" name="pay" value="1">
+                                            <p style="display: inline-block; margin-left: 8px;">Thanh toán khi nhận hàng</p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div style="display: flex; justify-content: space-around;">
+                                                <div width="10%">
+                                                    <input type="radio" name="pay" value="2">
+                                                </div>
+                                                <div width="90%">
+                                                    <div style="display: flex; justify-content: center;">
+                                                        <img
+                                                            src="<?php echo IMAGES_URL ?>payment/MoMo_Logo.png"
+                                                            alt=""
+                                                            style="width: 30px; height: 30px; object-fit: contain;"
+                                                        >
+                                                    </div>
+                                                    <p style="text-align: center;">Momo</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div style="display: flex; justify-content: space-around;">
+                                                <div width="10%">
+                                                    <input type="radio" name="pay" value="3">
+                                                </div>
+                                                <div width="90%">
+                                                    <div style="display: flex; justify-content: center;">
+                                                        <img
+                                                            src="<?php echo IMAGES_URL ?>payment/VNPay_Logo.png"
+                                                            alt=""
+                                                            style="width: 30px; height: 30px; object-fit: contain;"
+                                                        >
+                                                    </div>
+                                                    <p style="text-align: center;">VnPay</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div style="display: flex; justify-content: space-around;">
+                                                <div width="10%">
+                                                    <input type="radio" name="pay" value="4">
+                                                </div>
+                                                <div width="90%">
+                                                    <div style="display: flex; justify-content: center;">
+                                                        <img
+                                                            src="<?php echo IMAGES_URL ?>payment/PayPal_Logo.png"
+                                                            alt=""
+                                                            style="width: 30px; height: 30px; object-fit: contain;"
+                                                        >
+                                                    </div>
+                                                    <p style="text-align: center;">Paypal</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="check-aside">
+                                <div class="orders second-order mb20">
+                                    <h6>Đơn đặt hàng của bạn</h6>
+                                    <?php foreach($listSanPham as $sanPham) : ?>
+                                        <?php $sanPhamChiTiet = getChiTietSanPhamById($sanPham["ma_chi_tiet_san_pham"]);?>
+                                        <?php if($sanPhamChiTiet["so_luong"] == NULL) : ?>
+                                            <?php
+                                                $kichThuoc = getKichThuocID($sanPhamChiTiet["ma_kich_thuoc"]);
+                                                $mauSac = getMauSacID($sanPhamChiTiet["ma_mau_sac"]);
+                                                $sumProducts += ($sanPhamChiTiet["gia"] + $sanPhamChiTiet["gia_bien_dong"])*$sanPham["so_luong_muon_mua"];
+                                            ?>
+                                            <div class="order-box row" style="align-items: center;">
+                                                <div class="col-md-8">
+                                                    <p>
+                                                        <p>
+                                                            <?php echo $sanPhamChiTiet["ten_san_pham"] ?>
+                                                            <br>
+                                                            <label
+                                                                style="font-style: italic; color: #909090; font-weight: 700;"
+                                                            >
+                                                                Size: <?php echo $kichThuoc["ten_kich_thuoc"]?>, <?php echo $mauSac["ten_mau"]?>
+                                                            </label>
+                                                        </p>
+                                                        <div class="quantity">Số lượng: <?php echo $sanPham["so_luong_muon_mua"] ?></div>
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <p style="text-align: right;"><?php echo ($sanPhamChiTiet["gia"] + $sanPhamChiTiet["gia_bien_dong"])*$sanPham["so_luong_muon_mua"] ?> VNĐ</p>
+                                                </div>
+                                            </div>
+                                        <?php else : ?>
+                                            <?php $sumProducts += $sanPhamChiTiet["gia"]*$sanPham["so_luong_muon_mua"]; ?>
+                                            <div class="order-box row" style="align-items: center;">
+                                                <div class="col-md-8">
+                                                    <p>
+                                                        <?php echo $sanPhamChiTiet["ten_san_pham"] ?>
+                                                        <div class="quantity">Số lượng: <?php echo $sanPham["so_luong_muon_mua"] ?></div>
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <p style="text-align: right;" ><?php echo $sanPhamChiTiet["gia"]*$sanPham["so_luong_muon_mua"] ?> VNĐ</p>
+                                                </div>
+                                            </div>
+                                        <?php endif ?>
+                                    <?php endforeach ?>
+                                    <div class="order-box">
+                                        <p>Tổng phụ đơn hàng: <span><?php echo $sumProducts ?> VNĐ</span></p>
+                                    </div>
+                                    <div class="order-box mb20">
+                                        <p>Phí vận chuyển: <span><?php echo $shipping ?> VNĐ</span></p>
+                                    </div>
+                    
+                                    <p><strong>Tổng đơn hàng: <span style="font-weight: 700;"><?php echo $sumProducts + $shipping ?> VNĐ</span></strong></p>
+                                    <input type="hidden" name="tongDonHang" value="<?php echo $sumProducts + $shipping ?>">
+                                </div>
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Số điện thoại <span>*</span></label>
-                                        <input type="text">
+                                    <div class="col-md-4">
+                                        <button
+                                            href="?url=thanhtoan"
+                                            class="btn medium-button button-brown mb10 float-right"
+                                            style="width: 100%;"
+                                            name="btn-cancel"
+                                            type="submit"
+                                        >
+                                            Hủy bỏ
+                                        </button>
                                     </div>
-                                    <div class="col-md-6">
-                                        <label>Địa chỉ <span>*</span></label>
-                                        <input type="text">
+                                    <div class="col-md-8">
+                                        <button
+                                            href="?url=thanhtoan"
+                                            class="btn medium-button button-red mb10 float-right"
+                                            style="width: 100%;"
+                                            name="btn-payment"
+                                            type="submit"
+                                        >
+                                            Thanh toán
+                                        </button>
                                     </div>
                                 </div>
-
                             </div>
-
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="check-aside">
-                            <div class="orders second-order mb20">
-                                <h6>Đơn đặt hàng của bạn</h6>
-
-                                <div class="order-box">
-                                    <p>Grey California Dress <span>$ 3 199</span></p>
-                                    <div class="quantity">Quantity: 1</div>
-                                </div>
-
-                                <div class="order-box">
-                                    <p>Brown Leather Hand Bag <span>$ 999</span></p>
-                                    <div class="quantity">Quantity: 1</div>
-                                </div>
-
-                                <div class="order-box">
-                                    <p>Cart Subtotal: <span>$ 4 122</span></p>
-                                </div>
-
-                                <div class="order-box mb20">
-                                    <p>Shipping and Handling: <span>$ 250</span></p>
-                                </div>
-
-                            
-                                <p><strong>Total: <span>$ 4 372</span></strong></p>
-
-                            </div>
-
-                            <div class="payment-method">
-                                <h6>Phương thức thanh toán</h6>
-                                <form>
-                                    <input type="radio" name="pay" value="direct" checked> <p>Thanh toán khi nhận hàng</p>
-                                    <br>
-                                    <input type="radio" name="pay" value="cheque"><p class="mb10">Thanh toán online</p>
-                                </form>
-                            </div>
-                            <a
-                                    href="?url=thanhtoan"
-                                    class="medium-button button-red mb10 float-right"
-                                    style="width: 100%; margin-top: 15px;"
-                            >
-                                Thanh toán
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                </form>
             </div>
 
         </div>

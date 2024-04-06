@@ -22,7 +22,6 @@
                                 <img src="<?php echo IMAGES_URL . $sanpham["anh"] ?>" alt="">
                             </a>
                         <?php endif ?>
-              
                         <?php foreach($listBoSuuTap as $boSuuTap ) : ?>
                             <a href="<?php echo IMAGES_URL . $boSuuTap["anh"] ?>">
                                 <img src="<?php echo IMAGES_URL . $boSuuTap["anh"] ?>" alt="">
@@ -33,7 +32,6 @@
                 </div>
             </div>
             <div class="col-md-6">
-
                 <?php if(isset($errors)) : ?>
                     <?php foreach($errors as $error ) : ?>
                         <div class="alert alert-danger" role="alert">
@@ -41,6 +39,11 @@
                         </div>
                     <?php endforeach ?>
                 <?php endif ?>
+                <?php if(isset($_GET["thongbao"]) && isset($_GET["type"])) : ?>
+                    <div class="alert alert-<?php echo $_GET["type"] ?>" role="alert">
+                        <?php echo $_GET["thongbao"] ?>
+                    </div>
+                <?php endif?>
                 <form action="?url=chitietsanpham&maSanPham=<?php echo $sanpham["ma_san_pham"] ?>" method="post">
                     <input
                         type="hidden"
@@ -334,9 +337,8 @@
     let btnLoadVariants = document.querySelector('.btn-load-variants');
 
     let urlParams = new URLSearchParams(window.location.search);
-  
+    
     let idSanPham = urlParams.get('maSanPham');
-
     let size = variantsSize.value;
     let color = variantsColor.value;
     
@@ -353,5 +355,5 @@
         }
     }
                             
- 
+    
 </script>

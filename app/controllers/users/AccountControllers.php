@@ -64,6 +64,7 @@
                 $thongbao = "Cập nhật thông tin thành công";
                 $type = "success";
                 $user = getNguoiDungEmail($email);
+                $_SESSION["user"] = $user;
             }
         }
 
