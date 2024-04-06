@@ -57,7 +57,7 @@ function loc()
 
         if (empty($maMauSacs) && empty($maKichThuocs)) {
             //  debug($min);
-            $sanPhams = getSanPhamLoai($maLoai, $maDanhMuc, $min, $max); // lọc rỗng lấy ra full sản phẩm
+            $sp = getSanPhamLoai($maLoai, $maDanhMuc, $min, $max); // lọc rỗng lấy ra full sản phẩm
             echo "lọc NULL";
 
             // Hiện full sản phâm nếu lọc rỗng
@@ -95,13 +95,23 @@ function loc()
                     }
                 }
             }
-            $sanPhams = array_unique($bienTam, SORT_REGULAR); // loại bỏ phần tử trùng lặp, so sánh mảng đa chiều
+            $sp = array_unique($bienTam, SORT_REGULAR); // loại bỏ phần tử trùng lặp, so sánh mảng đa chiều
+            // $trangHienTai = isset($_GET['soTrang']) ? $_GET['soTrang'] : 1;
+            // $tongSoTrang = ceil(COUNT($sp) / 10);
+            // $sanPhams = phanTrang($sp, $trangHienTai);
             // debug($sanPhams);
+
         }
     } else {
-        $sanPhams = getSanPhamLoai($maLoai, $maDanhMuc, $min = [], $max = []);
+        $sp = getSanPhamLoai($maLoai, $maDanhMuc, $min = [], $max = []);
+       
+
+        // debug($tongSoTrang);
         // debug($danhMucNam);
     }
+    $trangHienTai = isset($_GET['soTrang']) ? $_GET['soTrang'] : 1;
+    $tongSoTrang = ceil(COUNT($sp) / 10);
+    $sanPhams = phanTrang($sp, $trangHienTai);
     include VIEWS_URL . "users/loc.php";
 }
 

@@ -38,7 +38,11 @@
 	<!-- Style Switch -->
 	
 	<link rel="stylesheet" type="text/css" href="<?php echo CLIENT_URL ?>max-themes.net/demos/sweetpick/css/colors/red-black.css" title="red" media="screen" />
+  <!-- Icon  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.7.2/font/bootstrap-icons.min.css">
 
+
+   
 </head>
 <body>
 
