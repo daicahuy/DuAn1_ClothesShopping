@@ -76,6 +76,10 @@ switch ($url) {
             loc();
             break;
         }
+    case 'timkiem': {
+        timKiem();
+        break;
+    }
     // case 'nam': {
     //     nam();
     //     break;
@@ -303,6 +307,26 @@ switch ($url) {
         // QUAN LY DON HANG
     case 'admin/donhang': {
             quanLyDonHang();
+            break;
+        }
+    case 'admin/donhang/donggoi': {
+            dongGoiDonHang();
+            break;
+    }
+    case 'admin/donhang/vanchuyen': {
+            vanChuyenDonHang();
+            break;
+        }
+    case 'admin/donhang/thanhcong': {
+            giaoThanhCong();
+            break;
+        }
+    case 'admin/donhang/huy': {
+            huy();
+            break;
+        }
+    case 'admin/donhang/chitietdonhang': {
+            chiTietDonHang();
             break;
         }
 

@@ -71,4 +71,31 @@
         include VIEWS_URL . "users/taikhoan.php";
     }
 
+    // Đơn hàng 
+    function donHangUser() {
+        include VIEWS_URL . "users/donhang.php";
+    }
+
+    function chiTietDonHangUser() {
+        include VIEWS_URL . "users/ChiTietDonHang.php";
+    }
+
+// function vanChuyenDonHang() {
+//     include VIEWS_URL . "users/donhang/VanChuyenDonHang.php";
+// }
+
+// function giaoThanhCong() {
+//     include VIEWS_URL . "users/donhang/GiaoThanhCong.php";
+// }
+
+// function huy() {
+//     include VIEWS_URL . "users/donhang/GiaoKhongThanhCong.php";
+// }
+
+// function chiTietDonHang() {
+//     // $param = getAllParam($_GET);
+//     // debug($param);
+//     include VIEWS_URL . "users/donhang/ChiTietDonHang.php";
+// }
+
 ?>

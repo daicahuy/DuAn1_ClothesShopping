@@ -38,10 +38,10 @@
                     <ul class="nav nav-line nav-uppercase nav-vertical" style="margin-top: 15px;">
 
                         <li style="border-bottom: 1px solid #ccc;">
-                            <a href="#">Tài khoản</a>
+                            <a href="?url=taikhoan">Tài khoản</a>
                         </li>
                         <li style="border-bottom: 1px solid #ccc;">
-                            <a href="">Đơn hàng</a>
+                            <a href="?url=taikhoan/donhang">Đơn hàng</a>
                         </li>
                         <li style="border-bottom: 1px solid #ccc;">
                             <a href="">Thoát</a>
