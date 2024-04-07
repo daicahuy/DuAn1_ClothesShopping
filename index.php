@@ -76,14 +76,18 @@ switch ($url) {
             loc();
             break;
         }
-    // case 'nam': {
-    //     nam();
-    //     break;
-    // }
-    // case 'nu': {
-    //     nu();
-    //     break;
-    // }
+    case 'timkiem': {
+            timKiem();
+            break;
+        }
+        // case 'nam': {
+        //     nam();
+        //     break;
+        // }
+        // case 'nu': {
+        //     nu();
+        //     break;
+        // }
 
         // CHI TIET SAN PHAM
     case 'chitietsanpham': {
@@ -121,17 +125,20 @@ switch ($url) {
             break;
         }
 
-        // Them Vao Gio Hang
     case 'themgiohang': {
             themGioHang();
             break;
-    }
+        }
 
-        // Xoa 1 san pham trong gio hang
     case 'xoasanphamgiohang': {
             xoaSanPhamGioHang();
             break;
-    }
+        }
+
+    case 'xoatoanbogiohang': {
+            xoaToanBoGioHang();
+            break;
+        }
 
         // THANH TOAN
     case 'thanhtoan': {
@@ -154,6 +161,15 @@ switch ($url) {
             taiKhoan();
             break;
         }
+    case 'taikhoan/donhang': {
+        donHangUser();
+        break;
+    }
+    case 'taikhoan/chitiet': {
+        chiTietDonHangUser();
+        break;
+    }
+
 
         // QUAN LY DANH MUC
     case 'admin/danhmuc': {
@@ -305,6 +321,27 @@ switch ($url) {
             quanLyDonHang();
             break;
         }
+    case 'admin/donhang/donggoi': {
+        dongGoiDonHang();
+        break;
+    }
+    case 'admin/donhang/vanchuyen': {
+            vanChuyenDonHang();
+            break;
+        }
+    case 'admin/donhang/thanhcong': {
+            giaoThanhCong();
+            break;
+        }
+    case 'admin/donhang/huy': {
+            huy();
+            break;
+        }
+    case 'admin/donhang/chitietdonhang': {
+            chiTietDonHang();
+            break;
+        }
+
 
         // THONG KE
     case 'admin/thongke': {

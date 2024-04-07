@@ -28,7 +28,7 @@
         background: #007bff;
         color: white;
         border-radius: 5px;
-        
+        /* Bo tròn góc bên phải */
         cursor: pointer;
     }
 
@@ -36,15 +36,14 @@
         background: #0056b3;
     }
 </style>
-
 <div class="content-wrapper">
     <div class="card" style="border: 1px solid gray; width: 98%; margin: 10px auto;">
         <div class="card-header border-0">
-            <h3>Xác nhận đơn hàng</h3>
+            <h3>Vận chuyển đơn hàng</h3>
         </div>
         <div class="actions-search-container" style="display: flex; justify-content: space-between; align-items: center; margin: 20px 10px;">
             <div class="action-buttons">
-                <a href="?url=admin/donhang" class="btn btn-primary">Chờ xác nhận</a>
+            <a href="?url=admin/donhang" class="btn btn-primary">Chờ xác nhận</a>
                 <a href="?url=admin/donhang/donggoi" class="btn btn-warning">Đang đóng gói</a>
                 <a href="?url=admin/donhang/vanchuyen" class="btn btn-info">Đang vận chuyển</a>
                 <a href="?url=admin/donhang/thanhcong" class="btn btn-success">Giao thành công</a>
@@ -57,8 +56,6 @@
                 </form>
             </div>
         </div>
-
-
 
         <div class="card-body table-responsive p-0">
             <table class="table table-striped table-valign-middle">
@@ -82,17 +79,17 @@
                         <td>Nguyễn Văn A</td>
                         <!-- <td>2</td> -->
                         <td>500,000 VND</td>
-                        <td>Chờ xác nhận</td>
+                        <td>Đang giao</td>
                         <td>
                             <a href="?url=admin/donhang/chitietdonhang" class="btn btn-primary">
                                 <i class="bi bi-eye-fill"></i>
                             </a>
-                            <a href="GiaoKhongThanhCong.html" class="btn btn-danger" style="margin: 0 10px;">
-                                <i class="bi bi-x-circle-fill"></i>
-                            </a>
-                            <a href="#" class="btn btn-success" style="margin: 0 10px;">
+                            <!-- <a href="GiaoThanhCong.html" class="btn btn-success" style="margin: 0 10px;">
                                 <i class="bi bi-check-lg"></i>
                             </a>
+                            <a href="GiaoKhongThanhCong.html" class="btn btn-danger" style="margin: 0 10px;">
+                                <i class="bi bi-x-circle-fill"></i> 
+                            </a> -->
 
                         </td>
                     </tr>
@@ -103,17 +100,12 @@
                         <td>Nguyễn Văn A</td>
                         <!-- <td>2</td> -->
                         <td>500,000 VND</td>
-                        <td>Chờ xác nhận</td>
+                        <td>Đang giao</td>
                         <td>
                             <a href="?url=admin/donhang/chitietdonhang" class="btn btn-primary">
                                 <i class="bi bi-eye-fill"></i>
                             </a>
-                            <a href="GiaoKhongThanhCong.html" class="btn btn-danger" style="margin: 0 10px;">
-                                <i class="bi bi-x-circle-fill"></i>
-                            </a>
-                            <a href="#" class="btn btn-success" style="margin: 0 10px;">
-                                <i class="bi bi-check-lg"></i>
-                            </a>
+
 
                         </td>
                     </tr>
@@ -124,17 +116,12 @@
                         <td>Nguyễn Văn A</td>
                         <!-- <td>2</td> -->
                         <td>500,000 VND</td>
-                        <td>Chờ xác nhận</td>
+                        <td>Đang giao</td>
                         <td>
                             <a href="?url=admin/donhang/chitietdonhang" class="btn btn-primary">
                                 <i class="bi bi-eye-fill"></i> <!--Chi tiết-->
                             </a>
-                            <a href="GiaoKhongThanhCong.html" class="btn btn-danger" style="margin: 0 10px;">
-                                <i class="bi bi-x-circle-fill"></i>
-                            </a>
-                            <a href="#" class="btn btn-success" style="margin: 0 10px;">
-                                <i class="bi bi-check-lg"></i>
-                            </a>
+
 
                         </td>
                     </tr>
@@ -153,7 +140,6 @@
                 </ul>
             </div>
         </div>
-
     </div>
     <!-- /.card -->
 </div>

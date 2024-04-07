@@ -1,7 +1,10 @@
 <?php
 
 // Lấy danh mục của Nam  
-
+ function timKiemSanPham($tenSanPham){
+    $sql = "SELECT * FROM san_pham WHERE ten_san_pham LIKE '%$tenSanPham%' ";
+    return getData($sql);
+ }
 function danhMuc($maLoai){
     $sql = "SELECT * FROM danh_muc WHERE ma_loai = $maLoai AND trang_thai=1";
     return getData($sql);

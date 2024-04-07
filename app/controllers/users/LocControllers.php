@@ -1,5 +1,31 @@
 <?php
+function timKiem()
+{
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $maLoai = isset($_GET['ma_loai']) ? $_GET['ma_loai'] : '';
+        $maDanhMuc = isset($_GET['ma_danh_muc']) ? $_GET['ma_danh_muc'] : 0;
+        $danhMucs = danhMuc($maLoai);
+        $getKichThuocs = getKichThuoc($maLoai, $maDanhMuc);
+        $getMauSacs = getMauSac($maLoai, $maDanhMuc);
+        $soLuongTatCaSanPham = soLuongSanPhamDanhMuc($maDanhMuc, $maLoai);
+        $tenSanPham = isset($_POST['tim_kiem']) ? $_POST['tim_kiem'] : '';
+        $sp = timKiemSanPham($tenSanPham);
+    }else {
+       $maLoai = isset($_GET['ma_loai']) ? $_GET['ma_loai'] : '';
+    $maDanhMuc = isset($_GET['ma_danh_muc']) ? $_GET['ma_danh_muc'] : 0;
+    $danhMucs = danhMuc($maLoai);
+    $getKichThuocs = getKichThuoc($maLoai, $maDanhMuc);
+    $getMauSacs = getMauSac($maLoai, $maDanhMuc);
+    $soLuongTatCaSanPham = soLuongSanPhamDanhMuc($maDanhMuc, $maLoai);
+    $sp = timKiemSanPham($tenSanPham='');
+    }
+    
 
+    $trangHienTai = isset($_GET['soTrang']) ? $_GET['soTrang'] : 1;
+    $tongSoTrang = ceil(COUNT($sp) / 10);
+    $sanPhams = phanTrang($sp, $trangHienTai);
+    include VIEWS_URL . "users/loc.php";
+}
 function loc()
 {
     $maLoai = isset($_GET['ma_loai']) ? $_GET['ma_loai'] : '';
@@ -9,6 +35,12 @@ function loc()
     $getMauSacs = getMauSac($maLoai, $maDanhMuc);
     $soLuongTatCaSanPham = soLuongSanPhamDanhMuc($maDanhMuc, $maLoai);
 
+    // if (isset($_POST['search'])) {
+    //     $tenSanPham = isset($_POST['tim_kiem']) ? $_POST['tim_kiem'] : '';
+    //     $sanPhams = timKiemSanPham($tenSanPham);
+    // }
+
+
 
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $maLoai = isset($_GET['ma_loai']) ? $_GET['ma_loai'] : '';
@@ -16,21 +48,21 @@ function loc()
         $maKichThuocs = isset($_POST['ma_kich_thuoc']) ? $_POST['ma_kich_thuoc'] : [];
         // PRICE 
         // if (isset($_POST['price'])) {
-            $chuoiGia = $_POST['price']; // chuỗi giá chưa cắt
-            $catChuoi = [];
-            // tách chuỗi  chỉ lấy phần số
-            preg_match_all('/\d+/', $chuoiGia, $catChuoi);
+        $chuoiGia = $_POST['price']; // chuỗi giá chưa cắt
+        $catChuoi = [];
+        // tách chuỗi  chỉ lấy phần số
+        preg_match_all('/\d+/', $chuoiGia, $catChuoi);
+        //    debug($catChuoi);
+
+        if (!empty($catChuoi[0])) {
             //    debug($catChuoi);
 
-            if (!empty($catChuoi[0])) {
-                //    debug($catChuoi);
-
-                foreach ($catChuoi[0] as $key => $value) {
-                    $khoangGia[] = (int)$value;
-                }
-                //    debug($khoangGia);
-               
+            foreach ($catChuoi[0] as $key => $value) {
+                $khoangGia[] = (int)$value;
             }
+            //    debug($khoangGia);
+
+        }
         // }
         $min = $khoangGia[0];
         $max = $khoangGia[1];
@@ -38,9 +70,9 @@ function loc()
 
         if (empty($maMauSacs) && empty($maKichThuocs)) {
             //  debug($min);
-            $sanPhams = getSanPhamLoai($maLoai, $maDanhMuc,$min,$max); // lọc rỗng lấy ra full sản phẩm
+            $sp = getSanPhamLoai($maLoai, $maDanhMuc, $min, $max); // lọc rỗng lấy ra full sản phẩm
             echo "lọc NULL";
-           
+
             // Hiện full sản phâm nếu lọc rỗng
         } else {
             $bienTam = []; //Hứng kết quả tạm thời 
@@ -48,7 +80,7 @@ function loc()
             if (!empty($maMauSacs) && empty($maKichThuocs)) {
                 foreach ($maMauSacs as $key => $maMauSac) {
                     // debug($maMauSac);
-                    $getSanPham = locSanPham($maLoai, $maMauSac, $maKichThuoc = 0,$min,$max);
+                    $getSanPham = locSanPham($maLoai, $maMauSac, $maKichThuoc = 0, $min, $max);
                     $bienTam = array_merge($bienTam, $getSanPham); // nối mảng
 
                     echo "MÀu ///";
@@ -59,7 +91,7 @@ function loc()
             //TH2:  CHỈ CHỌN SIZE
             if (empty($maMauSacs) && !empty($maKichThuocs)) {
                 foreach ($maKichThuocs as $key => $maKichThuoc) {
-                    $bienTam = array_merge($bienTam, locSanPham($maLoai, $maMauSac = 0, $maKichThuoc,$min,$max));
+                    $bienTam = array_merge($bienTam, locSanPham($maLoai, $maMauSac = 0, $maKichThuoc, $min, $max));
                     // $sanPhams = locSanPham($maLoai, $maMauSac = 0, $maKichThuoc);
                     echo "SIZE ///";
                 }
@@ -68,7 +100,7 @@ function loc()
             if (!empty($maMauSacs) && !empty($maKichThuocs)) {
                 foreach ($maMauSacs as $key => $maMauSac) {
                     foreach ($maKichThuocs as $key => $maKichThuoc) {
-                        $bienTam = array_merge($bienTam, locSanPham($maLoai, $maMauSac, $maKichThuoc,$min,$max));
+                        $bienTam = array_merge($bienTam, locSanPham($maLoai, $maMauSac, $maKichThuoc, $min, $max));
                         // $sanPhams = locSanPham($maLoai, $maMauSac, $maKichThuoc);
                         // echo "<pre>";
                         // print_r($sanPhams);
@@ -76,13 +108,23 @@ function loc()
                     }
                 }
             }
-            $sanPhams = array_unique($bienTam, SORT_REGULAR); // loại bỏ phần tử trùng lặp, so sánh mảng đa chiều
+            $sp = array_unique($bienTam, SORT_REGULAR); // loại bỏ phần tử trùng lặp, so sánh mảng đa chiều
+            // $trangHienTai = isset($_GET['soTrang']) ? $_GET['soTrang'] : 1;
+            // $tongSoTrang = ceil(COUNT($sp) / 10);
+            // $sanPhams = phanTrang($sp, $trangHienTai);
             // debug($sanPhams);
+
         }
     } else {
-        $sanPhams = getSanPhamLoai($maLoai, $maDanhMuc,$min=[],$max=[]);
+        $sp = getSanPhamLoai($maLoai, $maDanhMuc, $min = [], $max = []);
+       
+
+        // debug($tongSoTrang);
         // debug($danhMucNam);
     }
+    $trangHienTai = isset($_GET['soTrang']) ? $_GET['soTrang'] : 1;
+    $tongSoTrang = ceil(COUNT($sp) / 10);
+    $sanPhams = phanTrang($sp, $trangHienTai);
     include VIEWS_URL . "users/loc.php";
 }
 
