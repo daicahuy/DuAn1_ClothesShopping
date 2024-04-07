@@ -9,8 +9,21 @@ function timKiem()
         $getMauSacs = getMauSac($maLoai, $maDanhMuc);
         $soLuongTatCaSanPham = soLuongSanPhamDanhMuc($maDanhMuc, $maLoai);
         $tenSanPham = isset($_POST['tim_kiem']) ? $_POST['tim_kiem'] : '';
-        $sanPhams = timKiemSanPham($tenSanPham);
+        $sp = timKiemSanPham($tenSanPham);
+    }else {
+       $maLoai = isset($_GET['ma_loai']) ? $_GET['ma_loai'] : '';
+    $maDanhMuc = isset($_GET['ma_danh_muc']) ? $_GET['ma_danh_muc'] : 0;
+    $danhMucs = danhMuc($maLoai);
+    $getKichThuocs = getKichThuoc($maLoai, $maDanhMuc);
+    $getMauSacs = getMauSac($maLoai, $maDanhMuc);
+    $soLuongTatCaSanPham = soLuongSanPhamDanhMuc($maDanhMuc, $maLoai);
+    $sp = timKiemSanPham($tenSanPham='');
     }
+    
+
+    $trangHienTai = isset($_GET['soTrang']) ? $_GET['soTrang'] : 1;
+    $tongSoTrang = ceil(COUNT($sp) / 10);
+    $sanPhams = phanTrang($sp, $trangHienTai);
     include VIEWS_URL . "users/loc.php";
 }
 function loc()
