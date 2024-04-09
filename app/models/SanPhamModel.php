@@ -100,5 +100,27 @@
 
         return getData($sql);
     }
-
+    function SanPhamTuongTu($maSanPham){
+        $sql = "SELECT DISTINCT san_pham.*, giam_gia.ten_giam_gia
+        FROM san_pham
+        LEFT JOIN giam_gia ON san_pham.ma_giam_gia = giam_gia.ma_giam_gia
+        JOIN chi_tiet_danh_muc ON san_pham.ma_san_pham = chi_tiet_danh_muc.ma_san_pham
+        JOIN danh_muc ON chi_tiet_danh_muc.ma_danh_muc = danh_muc.ma_danh_muc
+        WHERE (chi_tiet_danh_muc.ma_danh_muc IN (
+            SELECT ma_danh_muc
+            FROM chi_tiet_danh_muc
+            WHERE ma_san_pham = $maSanPham
+        )
+        OR danh_muc.ten_danh_muc IN (
+            SELECT ten_danh_muc
+            FROM danh_muc
+            JOIN chi_tiet_danh_muc ON danh_muc.ma_danh_muc = chi_tiet_danh_muc.ma_danh_muc
+            WHERE chi_tiet_danh_muc.ma_san_pham = $maSanPham
+        ))
+        AND san_pham.trang_thai = 1
+        
+        ";
+        
+        return getData($sql);
+    }
 ?>
