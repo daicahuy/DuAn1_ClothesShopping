@@ -10,7 +10,7 @@
         $sql = "SELECT COUNT(*) AS tong FROM chi_tiet_gio_hang WHERE ma_gio_hang = $maGioHang";
         return getData($sql, false);
     }
-
+ 
     // Lay tat ca san pham trong ma gio hang
     function getAllProductInCart($maGioHang) {
         $sql = "SELECT A.ma_chi_tiet_san_pham, A.so_luong AS so_luong_muon_mua,
