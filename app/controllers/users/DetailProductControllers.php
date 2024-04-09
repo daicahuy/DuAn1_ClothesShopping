@@ -1,6 +1,20 @@
 <?php
     function chiTietSanPham() {
         $maSanPham = $_GET['maSanPham'];
+        
+        if (isset($_POST['guibinhluan'])) {
+            $noi_Dung = $_POST["comment"];
+    
+            insertBinhLuan($_SESSION["user"]["ma_nguoi_dung"], $noi_Dung, $maSanPham);
+            nextPage("?url=chitietsanpham&maSanPham=$maSanPham");
+        }
+        if (isset($_POST['submitButton'])) {
+            $maBinhLuan = $_POST['matrl'];
+            $noi_Dung = $_POST["commentmin"];
+            insertBinhLuanNho($maBinhLuan, $noi_Dung, $_SESSION["user"]["ma_nguoi_dung"]);
+            nextPage("?url=chitietsanpham&maSanPham=$maSanPham");
+        }
+    
 
         if(isset($_POST["btn-load-variants"])) {
 
@@ -82,7 +96,8 @@
             }
 
         }
-
+        $listBinhLuan = getBinhLuanID($maSanPham);
+        $listSPTT = SanPhamTuongTu($maSanPham);
         $sanpham = getSanPhamID($maSanPham);
         $listBoSuuTap = getBoSuuTapIDSanPham($sanpham["ma_san_pham"]);
 
