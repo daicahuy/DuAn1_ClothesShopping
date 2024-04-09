@@ -7,7 +7,9 @@ requireFiles(CONTROLLERS_URL . "users");
 requireFiles(MODELS_URL);
 
 session_start();
+ob_start();
 setlocale(LC_MONETARY, 'vi_VN');
+date_default_timezone_set('Asia/Ho_Chi_Minh');
 
 // ROUTER
 $url = isset($_GET["url"]) ? $_GET["url"] : '/';
@@ -138,10 +140,15 @@ switch ($url) {
     }
 
         // THANH TOAN
-    case 'thanhtoan': {
-            thanhToan();
+    case 'dathang': {
+            datHang();
             break;
         }
+    
+    case 'trangthaidathang': {
+        trangThaiDatHang();
+        break;
+    }
 
     case 'confirm': {
             confirm();
@@ -158,6 +165,18 @@ switch ($url) {
             taiKhoan();
             break;
         }
+    case 'taikhoan/donhang': {
+        donHangUser();
+        break;
+    }
+    case 'taikhoan/donhang/chitiet': {
+        chiTietDonHangUser();
+        break;
+    }
+    case 'taikhoan/donhang/update': {
+        updateDonHangUser();
+        break;
+    }
 
         // QUAN LY DANH MUC
     case 'admin/danhmuc': {
@@ -309,24 +328,14 @@ switch ($url) {
             quanLyDonHang();
             break;
         }
-    case 'admin/donhang/donggoi': {
-            dongGoiDonHang();
-            break;
-    }
-    case 'admin/donhang/vanchuyen': {
-            vanChuyenDonHang();
-            break;
-        }
-    case 'admin/donhang/thanhcong': {
-            giaoThanhCong();
-            break;
-        }
-    case 'admin/donhang/huy': {
-            huy();
-            break;
-        }
-    case 'admin/donhang/chitietdonhang': {
+
+    case 'admin/donhang/chitiet': {
             chiTietDonHang();
+            break;
+        }
+
+    case 'admin/donhang/update': {
+            updateDonHangAdmin();
             break;
         }
 
@@ -348,3 +357,6 @@ if (strpos($url, "admin") === 0) {
         include "includes/users/footer.php";
     }
 }
+
+session_write_close();
+ob_end_flush();

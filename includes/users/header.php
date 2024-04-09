@@ -31,6 +31,8 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo CLIENT_URL ?>max-themes.net/demos/sweetpick/css/jquery.bxslider.css" media="screen">
 	<link rel="stylesheet" type="text/css" href="<?php echo CLIENT_URL ?>max-themes.net/demos/sweetpick/css/style.css" media="screen">
 	<link rel="stylesheet" type="text/css" href="<?php echo CLIENT_URL ?>max-themes.net/demos/sweetpick/css/responsive.css" media="screen">
+
+	<link rel="stylesheet" type="text/css" href="<?php echo CSS_URL ?>/icons/font-awesome/css/fontawesome-all.css">
 	
 	<link rel="shortcut icon" href="<?php echo IMAGES_URL ?>favicon.png" type="image/x-icon">
 	<link rel="icon" href="<?php echo IMAGES_URL ?>favicon.png" type="image/x-icon">
@@ -92,9 +94,6 @@
 								<?php endif?>
 								<li>
 									<a href="?url=taikhoan">Tài khoản</a>
-								</li>
-								<li>
-									<a href="?url=dangxuat">Đăng xuất</a>
 								</li>
 							<?php } else { ?>
 								<li>

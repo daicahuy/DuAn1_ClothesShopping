@@ -73,29 +73,82 @@
 
     // Đơn hàng 
     function donHangUser() {
+        $url = getAllParam($_GET);
+
+        if(isset($_GET["maTinhTrang"])) {
+            $maTinhTrang = $_GET["maTinhTrang"];
+        }
+        else {
+            $maTinhTrang = 1;
+        }
+
+        $listTinhTrang = getAllTinhTrang();
+        $donHangByTinhTrang = getDonHangByNguoiDungAndTinhTrang($maTinhTrang, $_SESSION["user"]["ma_nguoi_dung"]);
+        $shipping = 30000;
         include VIEWS_URL . "users/donhang.php";
     }
 
+    // Chi Tiet Don Hang
     function chiTietDonHangUser() {
-        include VIEWS_URL . "users/ChiTietDonHang.php";
+        $idDonHang = $_GET["id"];
+
+        $view = $_GET["view"];
+        $url = str_replace("$", "&", $view);
+
+
+        $donHang = getDonHangById($idDonHang);
+        $sanPhamDonHang = getAllSanPhamDonHangById($idDonHang);
+        $shipping = 30000;
+        $sum = 0;
+        // debug($sanPhamDonHang);
+        include VIEWS_URL . "users/chitietdonhang.php";
     }
 
-// function vanChuyenDonHang() {
-//     include VIEWS_URL . "users/donhang/VanChuyenDonHang.php";
-// }
+    // Update don hang user
+    function updateDonHangUser() {
+        $idDonHang = $_GET["id"];
+        $maDonHang = $_GET["ma"];
+        $action = $_GET["action"];
 
-// function giaoThanhCong() {
-//     include VIEWS_URL . "users/donhang/GiaoThanhCong.php";
-// }
+        $view = $_GET["view"];
+        $url = str_replace("$", "&", $view);
 
-// function huy() {
-//     include VIEWS_URL . "users/donhang/GiaoKhongThanhCong.php";
-// }
+        $thongbao = "";
+        $type = "";
 
-// function chiTietDonHang() {
-//     // $param = getAllParam($_GET);
-//     // debug($param);
-//     include VIEWS_URL . "users/donhang/ChiTietDonHang.php";
-// }
+        if($action == "huy") {
+            updateDonHang($idDonHang, 5);
+            $thongbao = "Hủy đơn hàng $maDonHang thành công !";
+            $type = "success";
+        }
+
+        if($action == "xacnhan") {
+            updateDonHang($idDonHang, 4);
+            $sanPhamDonHang = getAllSanPhamDonHangById($idDonHang);
+            foreach($sanPhamDonHang as $sanPham) {
+                if($sanPham["so_luong"] == NULL) {
+                    $soLuongCanUpdate = $sanPham["so_luong_bien_the"] - $sanPham["so_luong_muon_mua"];
+                    updateSoLuongSanPhamBienThe($soLuongCanUpdate, $sanPham["ma_san_pham"]);
+                }
+                else {
+                    $soLuongCanUpdate = $sanPham["so_luong"] - $sanPham["so_luong_muon_mua"];
+                    updateSoLuongSanPhamBinhThuong($soLuongCanUpdate, $sanPham["ma_san_pham"]);
+                }
+            }
+
+
+            $thongbao = "Xác nhận đã nhận được hàng thành công !";
+            $type = "success";
+        }
+
+        if($action == "mualai") {
+            updateDonHang($idDonHang, 1);
+            $thongbao = "Mua lại đơn hàng đã hủy $maDonHang thành công !";
+            $type = "success";
+        }
+
+        nextPage("?$url&thongbao=$thongbao&type=$type");
+        die;
+    }
 
 ?>

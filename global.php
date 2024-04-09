@@ -95,14 +95,29 @@
     // Phân trang
     function phanTrang($mangSanPhams,$trangHienTai) {
         $soLuongHien = 10; // Số lượng sản phẩm sẽ hiện 
-       $trangHienTai; // lấy trên url nếu không có mặc định 1
-       // Tính key bắt đầu hiện thị của mỗi trang
-       $keyStart = ($trangHienTai - 1) * $soLuongHien; // trang đâu tiên sản phẩm hiện từ key =0
-       // Tính tổng số trang 
-       $tongSoTrang = ceil(COUNT($mangSanPhams) / $soLuongHien);  //Tổng số trang theo số lượng sản phẩm, làm tròn lên 
-       // Thêm dữ liệu vào mảng hiện thị 
-       $ketQuas = array_slice($mangSanPhams,$keyStart,$soLuongHien);
-       return $ketQuas;
+        $trangHienTai; // lấy trên url nếu không có mặc định 1
+        // Tính key bắt đầu hiện thị của mỗi trang
+        $keyStart = ($trangHienTai - 1) * $soLuongHien; // trang đâu tiên sản phẩm hiện từ key =0
+        // Tính tổng số trang 
+        $tongSoTrang = ceil(COUNT($mangSanPhams) / $soLuongHien);  //Tổng số trang theo số lượng sản phẩm, làm tròn lên 
+        // Thêm dữ liệu vào mảng hiện thị 
+        $ketQuas = array_slice($mangSanPhams,$keyStart,$soLuongHien);
+        return $ketQuas;
+    }
+
+    // Random Mã đơn hàng
+    function randomCodeOrder() {
+        $randomString = '';
+        $lengthRandomString = 2;
+
+        $number = rand(000,999999);
+
+        for($i = 0; $i < $lengthRandomString; $i++) {
+            $randomChar = chr(mt_rand(65, 90));
+            $randomString .= $randomChar;
+        }
+
+        return $randomString . $number;
     }
 
 ?>

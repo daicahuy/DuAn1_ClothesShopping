@@ -4,8 +4,8 @@
             <div class='alert alert-<?= $_GET['type'] ?>' role='alert'> <?= $_GET['tb'] ?? '' ?> </div>
         <?php } ?>
         <h5 class="card-title">Danh sách người dùng</h5>
-        <a href="?url=admin/nguoidung/taikhoanbikhoa" class="btn btn-success">
-            Danh sách các tài khoản đã ẩn
+        <a href="?url=admin/nguoidung/taikhoanbikhoa" class="btn btn-success" style="margin-bottom: 16px;">
+            Danh sách các tài khoản đã khóa
         </a>
         <div class="table-responsive">
             <table id="zero_config" class="table table-striped table-bordered">
@@ -51,7 +51,7 @@
 
 
 
-                            < <!-- <td>Nguyen Huu Huy</td>
+                                <!-- <td>Nguyen Huu Huy</td>
                                 <td>Áo Thun SUPIMA COTTON Cổ Tròn Ngắn Tay</td>
                                 <td>Quần</td>
                                 <td>Quần</td> -->

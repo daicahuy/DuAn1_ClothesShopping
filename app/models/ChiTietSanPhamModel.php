@@ -109,6 +109,12 @@
         return executeCommand($sql);
     }
 
+    // Update So luong Cua San Pham Bien The
+    function updateSoLuongSanPhamBienThe($soLuong, $maChiTietSanPham) {
+        $sql = "UPDATE chi_tiet_san_pham SET so_luong = $soLuong WHERE ma_chi_tiet_san_pham = $maChiTietSanPham";
+        return executeCommand($sql);
+    }
+
     // Xoa chi tiet san pham
     function deleteChiTietSanPham($id) {
         $sql = "DELETE FROM chi_tiet_san_pham WHERE ma_chi_tiet_san_pham = $id";

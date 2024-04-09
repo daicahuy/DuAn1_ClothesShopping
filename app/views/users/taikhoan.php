@@ -44,7 +44,7 @@
                             <a href="?url=taikhoan/donhang">Đơn hàng</a>
                         </li>
                         <li style="border-bottom: 1px solid #ccc;">
-                            <a href="">Thoát</a>
+                            <a href="?url=dangxuat">Thoát</a>
                         </li>
                     </ul>
 
@@ -67,7 +67,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <p>
-                                    <label class="btn-block" >Họ và tên*</label>
+                                    <label class="btn-block" >Họ và tên</label>
                                     <input
                                         type="text"
                                         name="hoVaTen"
@@ -78,7 +78,7 @@
                             </div>
                             <div class="col-md-6">
                                 <p>
-                                    <label class="btn-block" >Số điện thoại*</label>
+                                    <label class="btn-block" >Số điện thoại</label>
                                     <input
                                         type="text"
                                         name="soDienThoai"
@@ -89,7 +89,7 @@
                             </div>
                             <div class="col-md-12" style="margin: 30px 0;">
                                 <p>
-                                    <label class="btn-block" >Địa chỉ*</label>
+                                    <label class="btn-block" >Địa chỉ</label>
                                     <input
                                         type="text"
                                         name="diaChi"
