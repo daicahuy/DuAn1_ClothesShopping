@@ -7,7 +7,9 @@ requireFiles(CONTROLLERS_URL . "users");
 requireFiles(MODELS_URL);
 
 session_start();
+ob_start();
 setlocale(LC_MONETARY, 'vi_VN');
+date_default_timezone_set('Asia/Ho_Chi_Minh');
 
 // ROUTER
 $url = isset($_GET["url"]) ? $_GET["url"] : '/';
@@ -77,17 +79,17 @@ switch ($url) {
             break;
         }
     case 'timkiem': {
-            timKiem();
-            break;
-        }
-        // case 'nam': {
-        //     nam();
-        //     break;
-        // }
-        // case 'nu': {
-        //     nu();
-        //     break;
-        // }
+        timKiem();
+        break;
+    }
+    // case 'nam': {
+    //     nam();
+    //     break;
+    // }
+    // case 'nu': {
+    //     nu();
+    //     break;
+    // }
 
         // CHI TIET SAN PHAM
     case 'chitietsanpham': {
@@ -125,26 +127,28 @@ switch ($url) {
             break;
         }
 
+        // Them Vao Gio Hang
     case 'themgiohang': {
             themGioHang();
             break;
-        }
+    }
 
+        // Xoa 1 san pham trong gio hang
     case 'xoasanphamgiohang': {
             xoaSanPhamGioHang();
             break;
-        }
-
-    case 'xoatoanbogiohang': {
-            xoaToanBoGioHang();
-            break;
-        }
+    }
 
         // THANH TOAN
-    case 'thanhtoan': {
-            thanhToan();
+    case 'dathang': {
+            datHang();
             break;
         }
+    
+    case 'trangthaidathang': {
+        trangThaiDatHang();
+        break;
+    }
 
     case 'confirm': {
             confirm();
@@ -165,11 +169,14 @@ switch ($url) {
         donHangUser();
         break;
     }
-    case 'taikhoan/chitiet': {
+    case 'taikhoan/donhang/chitiet': {
         chiTietDonHangUser();
         break;
     }
-
+    case 'taikhoan/donhang/update': {
+        updateDonHangUser();
+        break;
+    }
 
         // QUAN LY DANH MUC
     case 'admin/danhmuc': {
@@ -321,27 +328,16 @@ switch ($url) {
             quanLyDonHang();
             break;
         }
-    case 'admin/donhang/donggoi': {
-        dongGoiDonHang();
-        break;
-    }
-    case 'admin/donhang/vanchuyen': {
-            vanChuyenDonHang();
-            break;
-        }
-    case 'admin/donhang/thanhcong': {
-            giaoThanhCong();
-            break;
-        }
-    case 'admin/donhang/huy': {
-            huy();
-            break;
-        }
-    case 'admin/donhang/chitietdonhang': {
+
+    case 'admin/donhang/chitiet': {
             chiTietDonHang();
             break;
         }
 
+    case 'admin/donhang/update': {
+            updateDonHangAdmin();
+            break;
+        }
 
         // THONG KE
     case 'admin/thongke': {
@@ -361,3 +357,6 @@ if (strpos($url, "admin") === 0) {
         include "includes/users/footer.php";
     }
 }
+
+session_write_close();
+ob_end_flush();

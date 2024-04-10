@@ -9,32 +9,51 @@
                 <div class="holder">
                     <ul>
                         <li><a href="?url=giohang"><i class="fa fa-star"></i> Giỏ hàng</a></li>
-                        <li class="active"><a href="#!"><i class="fa fa-star"></i> Thanh toán </a></li>
-                        <li><a href="#!"><i class="fa fa-star"></i> Đơn hàng thành công <i class="fa fa-star"></i></a></li>
+                        <li class="active"><a href="#!"><i class="fa fa-star"></i> Đặt hàng </a></li>
+                        <li><a href="#!"><i class="fa fa-star"></i> Trạng thái đặt hàng <i class="fa fa-star"></i></a></li>
                     </ul>
                     <div class="holder-border"></div>
                 </div>
             </div>
 
             <div class="checkout-infos">
-                <form action="?url=thanhtoan" method="post">
+                <form action="?url=dathang" method="post">
                     <div class="row">
                         <div class="col-md-7">
+                            <?php if(isset($errors)) : ?>
+                                <?php foreach($errors as $error ) : ?>
+                                    <div class="alert alert-danger" role="alert">
+                                        Lỗi: <?php echo $error ?>
+                                    </div>
+                                <?php endforeach ?>
+                            <?php endif ?>
                             <div id="accordion-container" class="checkout-accordion">
                                 <h2 class="accordion-header">Thông tin khách hàng</h2>
                                 <div class="accordion-content second-row">
                                     <div class="row">
                                         <div class="col-md-8">
                                             <label>Họ và tên <span>*</span></label>
-                                            <input type="text" value="<?php echo $_SESSION["user"]["ho_va_ten"]?>" name="hoVaTen">
+                                            <input
+                                                type="text"
+                                                value="<?php echo $hoVaTen ?? $_SESSION["user"]["ho_va_ten"]?>"
+                                                name="hoVaTen"
+                                            >
                                         </div>
                                         <div class="col-md-4">
                                             <label>Số điện thoại <span>*</span></label>
-                                            <input type="text" value="<?php echo $_SESSION["user"]["so_dien_thoai"]?>" name="soDienThoai">
+                                            <input
+                                                type="text"
+                                                value="<?php echo $soDienThoai ?? $_SESSION["user"]["so_dien_thoai"]?>"
+                                                name="soDienThoai"
+                                            >
                                         </div>
                                         <div class="col-md-12">
                                             <label>Địa chỉ <span>*</span></label>
-                                            <input type="text" value="<?php echo $_SESSION["user"]["dia_chi"]?>" name="diaChi">
+                                            <input
+                                                type="text"
+                                                value="<?php echo $diaChi ?? $_SESSION["user"]["dia_chi"]?>"
+                                                name="diaChi"
+                                            >
                                         </div>
                                     </div>
                                 </div>
@@ -45,13 +64,23 @@
                                 <div class="accordion-content second-row">
                                     <div class="row">
                                         <div class="col-md-5">
-                                            <input type="radio" name="pay" value="1">
+                                            <input
+                                                type="radio"
+                                                name="phuongThucThanhToan"
+                                                value="1"
+                                                <?php echo isset($phuongThucThanhToan) ? ($phuongThucThanhToan == 1 ? 'checked' : '') : '' ?>
+                                            >
                                             <p style="display: inline-block; margin-left: 8px;">Thanh toán khi nhận hàng</p>
                                         </div>
                                         <div class="col-md-2">
                                             <div style="display: flex; justify-content: space-around;">
                                                 <div width="10%">
-                                                    <input type="radio" name="pay" value="2">
+                                                    <input
+                                                        type="radio"
+                                                        name="phuongThucThanhToan"
+                                                        value="2"
+                                                        <?php echo isset($phuongThucThanhToan) ? ($phuongThucThanhToan == 2 ? 'checked' : '') : '' ?>
+                                                    >
                                                 </div>
                                                 <div width="90%">
                                                     <div style="display: flex; justify-content: center;">
@@ -68,7 +97,12 @@
                                         <div class="col-md-2">
                                             <div style="display: flex; justify-content: space-around;">
                                                 <div width="10%">
-                                                    <input type="radio" name="pay" value="3">
+                                                    <input
+                                                        type="radio"
+                                                        name="phuongThucThanhToan"
+                                                        value="3"
+                                                        <?php echo isset($phuongThucThanhToan) ? ($phuongThucThanhToan == 3 ? 'checked' : '') : '' ?>
+                                                    >
                                                 </div>
                                                 <div width="90%">
                                                     <div style="display: flex; justify-content: center;">
@@ -85,7 +119,12 @@
                                         <div class="col-md-2">
                                             <div style="display: flex; justify-content: space-around;">
                                                 <div width="10%">
-                                                    <input type="radio" name="pay" value="4">
+                                                    <input
+                                                        type="radio"
+                                                        name="phuongThucThanhToan"
+                                                        value="4"
+                                                        <?php echo isset($phuongThucThanhToan) ? ($phuongThucThanhToan == 4 ? 'checked' : '') : '' ?>
+                                                    >
                                                 </div>
                                                 <div width="90%">
                                                     <div style="display: flex; justify-content: center;">
@@ -149,15 +188,13 @@
                                             </div>
                                         <?php endif ?>
                                     <?php endforeach ?>
-                                    <div class="order-box">
-                                        <p>Tổng phụ đơn hàng: <span><?php echo $sumProducts ?> VNĐ</span></p>
-                                    </div>
                                     <div class="order-box mb20">
-                                        <p>Phí vận chuyển: <span><?php echo $shipping ?> VNĐ</span></p>
+                                        <input type="hidden" name="tongDonHang" value="<?php echo $sumProducts ?>">
+                                        <p>Tổng phụ đơn hàng: <span><?php echo $sumProducts ?> VNĐ</span></p>
+                                        <p style="margin-top: 12px;">Phí vận chuyển: <span><?php echo $shipping ?> VNĐ</span></p>
                                     </div>
                     
                                     <p><strong>Tổng đơn hàng: <span style="font-weight: 700;"><?php echo $sumProducts + $shipping ?> VNĐ</span></strong></p>
-                                    <input type="hidden" name="tongDonHang" value="<?php echo $sumProducts + $shipping ?>">
                                 </div>
                                 <div class="row">
                                     <div class="col-md-4">
@@ -179,7 +216,7 @@
                                             name="btn-payment"
                                             type="submit"
                                         >
-                                            Thanh toán
+                                            Đặt hàng
                                         </button>
                                     </div>
                                 </div>

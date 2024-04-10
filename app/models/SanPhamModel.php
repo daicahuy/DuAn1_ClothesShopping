@@ -90,6 +90,12 @@
         return executeCommand($sql);
     }
 
+    // Cap Nhat So Luong San Pham Binh Thuong
+    function updateSoLuongSanPhamBinhThuong($soLuong, $maSanPham) {
+        $sql = "UPDATE san_pham SET so_luong = $soLuong WHERE ma_san_pham = $maSanPham";
+        return executeCommand($sql);
+    }
+
     // Lay top 10 san pham ban chay
     function getAllSanPhamBanChay() {
         $sql = "SELECT * FROM san_pham

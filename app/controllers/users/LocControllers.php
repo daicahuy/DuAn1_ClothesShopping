@@ -7,7 +7,7 @@ function timKiem()
         $danhMucs = danhMuc($maLoai);
         $getKichThuocs = getKichThuoc($maLoai, $maDanhMuc);
         $getMauSacs = getMauSac($maLoai, $maDanhMuc);
-        $soLuongTatCaSanPham = soLuongSanPhamDanhMuc($maDanhMuc, $maLoai);
+        $soLuongTatCaSanPham = soLuongAllSanPham($maLoai);
         $tenSanPham = isset($_POST['tim_kiem']) ? $_POST['tim_kiem'] : '';
         $sp = timKiemSanPham($tenSanPham);
     }else {
@@ -16,7 +16,7 @@ function timKiem()
     $danhMucs = danhMuc($maLoai);
     $getKichThuocs = getKichThuoc($maLoai, $maDanhMuc);
     $getMauSacs = getMauSac($maLoai, $maDanhMuc);
-    $soLuongTatCaSanPham = soLuongSanPhamDanhMuc($maDanhMuc, $maLoai);
+    $soLuongTatCaSanPham = soLuongAllSanPham($maLoai);
     $sp = timKiemSanPham($tenSanPham='');
     }
     
@@ -33,7 +33,7 @@ function loc()
     $danhMucs = danhMuc($maLoai);
     $getKichThuocs = getKichThuoc($maLoai, $maDanhMuc);
     $getMauSacs = getMauSac($maLoai, $maDanhMuc);
-    $soLuongTatCaSanPham = soLuongSanPhamDanhMuc($maDanhMuc, $maLoai);
+    $soLuongTatCaSanPham = soLuongAllSanPham($maLoai);
 
     // if (isset($_POST['search'])) {
     //     $tenSanPham = isset($_POST['tim_kiem']) ? $_POST['tim_kiem'] : '';

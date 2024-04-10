@@ -401,7 +401,7 @@
     let moTa = document.querySelector('#moTa');
     let editor = document.querySelector('#editor');
 
-    editor.addEventListener('input', function() {
+    editor.addEventListener('keyup', function() {
         let qlEditor = document.querySelector('.ql-editor')
         moTa.innerHTML = qlEditor.innerHTML; 
     })

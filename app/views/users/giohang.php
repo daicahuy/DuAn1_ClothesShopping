@@ -9,8 +9,8 @@
                 <div class="holder">
                     <ul>
                         <li class="active"><a href="#!"><i class="fa fa-star"></i> Giỏ hàng </a></li>
-                        <li><a href="#!"><i class="fa fa-star"></i> Thanh toán </a></li>
-                        <li><a href="#!"><i class="fa fa-star"></i> Đơn hàng thành công <i class="fa fa-star"></i></a></li>
+                        <li><a href="#!"><i class="fa fa-star"></i> Đặt hàng </a></li>
+                        <li><a href="#!"><i class="fa fa-star"></i> Trạng thái đặt hàng <i class="fa fa-star"></i></a></li>
                     </ul>
                     <div class="holder-border"></div>
                 </div>
@@ -154,6 +154,16 @@
                                     </tbody>
                                 </table>
                             </div>
+                            <?php if(!$productsInCart) : ?>
+                                <div style="margin-top: 48px;">
+                                    <div style="text-align: center;">
+                                        <img style="width: 220px;" src="<?php echo IMAGES_URL ?>no-product.png" alt="">
+                                    </div>
+                                    <h3 style="text-align: center; line-height: 22px;">
+                                        Không có sản phẩm nào
+                                    </h3>
+                                </div>
+                            <?php endif ?>
                         </div>
                         <div class="col-md-3">
                             <div class="alert alert-danger error" role="alert" style="display: none;"></div>
@@ -203,23 +213,11 @@
                                         style="width: 100%;"
                                         name="btn-checkout"
                                     >
-                                        Tiến hành thanh toán
+                                        Tiến hành đặt hàng
                                     </button>
                                 </div>
                             <?php endif ?>
                         </div>
-                        <?php if(!$productsInCart) : ?>
-                            <div class="col-md-12">
-                                <div class="check-details">
-                                    <div style="text-align: center;">
-                                        <img style="width: 300px;" src="<?php echo IMAGES_URL ?>no-product.png" alt="">
-                                    </div>
-                                    <h4 style="text-align: center; line-height: 22px;">
-                                        Không có sản phẩm nào
-                                    </h4>
-                                </div>
-                            </div>
-                        <?php endif ?>
                     </div>
                 </form>
             </div>

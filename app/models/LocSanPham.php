@@ -2,7 +2,7 @@
 
 // Lấy danh mục của Nam  
  function timKiemSanPham($tenSanPham){
-    $sql = "SELECT * FROM san_pham WHERE ten_san_pham LIKE '%$tenSanPham%' ";
+    $sql = "SELECT * FROM san_pham WHERE ten_san_pham LIKE '%$tenSanPham%' AND trang_thai = 1";
     return getData($sql);
  }
 function danhMuc($maLoai){
@@ -12,9 +12,10 @@ function danhMuc($maLoai){
 
 // đếm số lượng sản phẩm của từng danh mục
 function soLuongSanPhamDanhMuc($danhMuc,$maLoai){
-    $sql = "SELECT A.*, COUNT(B.ma_san_pham) so_luong_san_pham FROM  danh_muc A  JOIN chi_tiet_danh_muc B 
-    ON A.ma_danh_muc = B.ma_danh_muc
-    WHERE   A.ma_loai = $maLoai AND A.trang_thai =1  ";
+    $sql = "SELECT A.*, COUNT(B.ma_san_pham) so_luong_san_pham FROM  danh_muc A
+            JOIN chi_tiet_danh_muc B ON A.ma_danh_muc = B.ma_danh_muc
+            JOIN san_pham C ON C.ma_san_pham = B.ma_san_pham
+            WHERE   A.ma_loai = $maLoai AND A.trang_thai = 1 AND C.trang_thai = 1";
     if ($danhMuc > 0) {
         $sql .=" AND A.ma_danh_muc=$danhMuc";
     }
@@ -35,6 +36,17 @@ function getSanPhamLoai($maLoai,$maDanhMuc,$min,$max){
             }
     return getData($sql);
 }
+
+// DEM TAT CA SO LUONG SAN PHAM
+function soLuongAllSanPham($maLoai) {
+    $sql = "SELECT COUNT(B.ma_san_pham) so_luong_san_pham FROM danh_muc A
+            JOIN chi_tiet_danh_muc B ON A.ma_danh_muc = B.ma_danh_muc
+            JOIN san_pham C ON C.ma_san_pham = B.ma_san_pham
+            WHERE A.ma_loai = $maLoai AND C.trang_thai = 1 ";
+
+    return getData($sql);
+}
+
 // Lấy kích thước theo loại và danh mục 
 function getKichThuoc($maLoai,$maDanhMuc){
     // DISTINCT loại bỏ giá trị trùng lặp 
@@ -44,7 +56,7 @@ function getKichThuoc($maLoai,$maDanhMuc){
             JOIN chi_tiet_danh_muc D ON D.ma_san_pham = C.ma_san_pham
             JOIN danh_muc E ON D.ma_danh_muc = E.ma_danh_muc
             JOIN loai F ON E.ma_loai = F.ma_loai
-            WHERE F.ma_loai = $maLoai ";
+            WHERE F.ma_loai = $maLoai AND C.trang_thai = 1";
             if ($maDanhMuc > 0) {
                 $sql .=" AND E.ma_danh_muc=$maDanhMuc";
             }
@@ -61,7 +73,7 @@ function getMauSac($maLoai,$maDanhMuc){
             JOIN chi_tiet_danh_muc D ON D.ma_san_pham = C.ma_san_pham
             JOIN danh_muc E ON D.ma_danh_muc = E.ma_danh_muc
             JOIN loai F ON E.ma_loai = F.ma_loai
-            WHERE F.ma_loai = $maLoai ";
+            WHERE F.ma_loai = $maLoai AND C.trang_thai = 1";
             if ($maDanhMuc > 0) {
                 $sql .=" AND E.ma_danh_muc=$maDanhMuc";
             }
@@ -72,7 +84,7 @@ function getMauSac($maLoai,$maDanhMuc){
     function getSanPhamMauSac($maMauSac){
         $sql = "SELECT * FROM san_pham A
                 JOIN chi_tiet_san_pham B ON A.ma_san_pham = B.ma_san_pham
-                WHERE B.ma_mau_sac = $maMauSac
+                WHERE B.ma_mau_sac = $maMauSac AND A.trang_thai = 1
                 GROUP BY A.ma_san_pham";
         return getData($sql);
     }
@@ -82,7 +94,7 @@ function getMauSac($maLoai,$maDanhMuc){
                 JOIN chi_tiet_danh_muc C ON B.ma_danh_muc = C.ma_danh_muc
                 JOIN san_pham D ON C.ma_san_pham = D.ma_san_pham
                 JOIN chi_tiet_san_pham E ON D.ma_san_pham = E.ma_san_pham
-                WHERE A.ma_loai =$maLoai  AND D.gia >= $min AND D.gia <= $max" ;
+                WHERE A.ma_loai =$maLoai  AND D.gia >= $min AND D.gia <= $max AND D.trang_thai = 1" ;
                 if ($maMauSac > 0 && $maKichThuoc > 0 ) {
                     $sql .=" AND E.ma_mau_sac = $maMauSac  AND E.ma_kich_thuoc = $maKichThuoc";
                 }
