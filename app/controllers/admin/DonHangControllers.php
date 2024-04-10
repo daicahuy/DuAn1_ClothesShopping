@@ -57,6 +57,8 @@
         }
 
         if($action == "xacnhanthanhtoan") {
+            $ngayThanhToan = date("Y-m-d H:i:s");
+            updateDayThanhToan($idDonHang, $ngayThanhToan);
             updateThanhToanDonHang($idDonHang, 2);
             $thongbao = "Xác nhận thanh toán cho đơn hàng $maDonHang thành công !";
             $type = "success";

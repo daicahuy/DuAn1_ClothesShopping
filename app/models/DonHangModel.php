@@ -75,4 +75,10 @@
         return executeCommand($sql);
     }
 
+    // UPDATE NGAY THANH TOAN DON HANG
+    function updateDayThanhToan($id, $ngay_thanh_toan) {
+        $sql = "UPDATE don_hang SET ngay_thanh_toan = '$ngay_thanh_toan' WHERE id_don_hang = $id";
+        return executeCommand($sql);
+    }
+
 ?>

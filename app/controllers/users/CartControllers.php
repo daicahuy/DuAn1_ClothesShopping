@@ -285,6 +285,18 @@
                     xoaSanPhamInGioHangById($maGioHang, $sanpham["ma_chi_tiet_san_pham"]);
                 }
 
+                $sanPhamDonHang = getAllSanPhamDonHangById($idDonHang);
+                foreach($sanPhamDonHang as $sanPham) {
+                    if($sanPham["so_luong"] == NULL) {
+                        $soLuongCanUpdate = $sanPham["so_luong_bien_the"] - $sanPham["so_luong_muon_mua"];
+                        updateSoLuongSanPhamBienThe($soLuongCanUpdate, $sanPham["ma_chi_tiet_san_pham"]);
+                    }
+                    else {
+                        $soLuongCanUpdate = $sanPham["so_luong"] - $sanPham["so_luong_muon_mua"];
+                        updateSoLuongSanPhamBinhThuong($soLuongCanUpdate, $sanPham["ma_san_pham"]);
+                    }
+                }
+
                 unset($_SESSION["donHang"]);
                 include VIEWS_URL . "users/ordersuccess.php";
             }

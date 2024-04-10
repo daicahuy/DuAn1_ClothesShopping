@@ -26,8 +26,6 @@
                     <?php
                     $i = 1;
                     foreach ($listNguoiDung as $key => $NguoiDung) :
-
-
                         if ($NguoiDung['trang_thai'] > 0) { 
                     ?>
 
