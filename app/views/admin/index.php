@@ -94,28 +94,28 @@
                             <div class="col-6">
                                 <div class="bg-dark p-10 text-white text-center">
                                     <i class="fa fa-user m-b-5 font-16"></i>
-                                    <h5 class="m-b-0 m-t-5">2540</h5>
+                                    <h5 class="m-b-0 m-t-5"><?=$nguoiDung[0]['so_luong']?></h5>
                                     <small class="font-light">Tổng người dùng</small>
                                 </div>
                             </div>
                                 <div class="col-6">
                                 <div class="bg-dark p-10 text-white text-center">
                                     <i class="fa fa-plus m-b-5 font-16"></i>
-                                    <h5 class="m-b-0 m-t-5">120</h5>
+                                    <h5 class="m-b-0 m-t-5"><?=$nguoiDungNew[0]['so_luong']?></h5>
                                     <small class="font-light">Người dùng mới</small>
                                 </div>
                             </div>
                                 <div class="col-6 m-t-15">
                                 <div class="bg-dark p-10 text-white text-center">
                                     <i class="fa fa-tag m-b-5 font-16"></i>
-                                    <h5 class="m-b-0 m-t-5">9540</h5>
+                                    <h5 class="m-b-0 m-t-5"><?=$tongDonHang[0]['so_luong']?></h5>
                                     <small class="font-light">Tổng đơn hàng</small>
                                 </div>
                             </div>
                             <div class="col-6 m-t-15">
                                 <div class="bg-dark p-10 text-white text-center">
                                     <i class="fa fa-table m-b-5 font-16"></i>
-                                    <h5 class="m-b-0 m-t-5">100</h5>
+                                    <h5 class="m-b-0 m-t-5"><?=$demDonThanhCong[0]['so_luong']?></h5>
                                     <small class="font-light">Đơn hàng thành công</small>
                                 </div>
                             </div>
