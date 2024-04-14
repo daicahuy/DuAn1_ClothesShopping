@@ -20,7 +20,21 @@
                 ";
         return getData($sql);
     }
-
+    //Tổng đơn hàng
+    function tongDonHang() {
+        $sql = "SELECT COUNT(*) so_luong FROM don_hang  ";
+        return getData($sql);
+    }
+    // Đếm đơn thành công 
+    function demDonThanhCong($idTinhTrang=4) {
+        $sql = "SELECT COUNT(A.ma_don_hang) so_luong FROM don_hang A 
+                JOIN trang_thai_thanh_toan B ON A.ma_trang_thai = B.ma_trang_thai
+                JOIN phuong_thuc_thanh_toan C ON A.ma_phuong_thuc = C.ma_phuong_thuc
+                WHERE ma_tinh_trang = $idTinhTrang
+                GROUP BY ma_tinh_trang
+                ";
+        return getData($sql);
+    }
     // LAY ALL DON HANG THEO NGUOI DUNG VA TINH TRANG
     function getDonHangByNguoiDungAndTinhTrang($idTinhTrang, $maNguoiDung) {
         $sql = "SELECT A.*, B.ten_trang_thai, C.ten_phuong_thuc FROM don_hang A 

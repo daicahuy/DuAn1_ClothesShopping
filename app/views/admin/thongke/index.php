@@ -1,22 +1,4 @@
-<!-- 
-<div class="row">
-  <div class="col-md-6">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Pie Chart</h5>
-        <div class="pie" style="height: 400px;"></div>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-6">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Line Chart</h5>
-        <div class="bars" id="pieChart" style="height: 400px;"></div>
-      </div>
-    </div>
-  </div>
-</div> -->
+
 
 
 
@@ -72,6 +54,81 @@
     }
   </script>
 </div>
+
+
+
+
+<!-- Biểu đồ đường  -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<div class="row">
+<div class="container mt-3">
+    <!-- Nút chuyển đổi giới tính -->
+    <!-- <a href="?url=admin/thongke&time=day"> <button class="btn gender-btn" >Theo ngày</button> </a>
+    <a href="?url=admin/thongke&time=moth"> <button class="btn gender-btn" >Theo tháng</button> </a> -->
+   
+  </div>
+  <div class="container">
+  <canvas id="ordersChart" width="400" height="200"></canvas>
+  </div>
+<script>
+var ctx = document.getElementById('ordersChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: [
+        <?php foreach ($thongkeDonHang as $key => $value) :?>
+         '<?=$value['thoi_gian']?>',
+          <?php endforeach ?>
+       
+        
+        ],
+        datasets: [{
+            label: 'Số đơn hàng',
+            data: [
+              <?php foreach ($thongkeDonHang as $key => $value) :?>
+              <?=$value['so_don_hang']?>,
+          <?php endforeach ?>
+             
+            ],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 99, 132, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(255, 99, 132, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+    
+});
+</script>
+
+</div>
+
+
+
+
+
 
 <style>
   /* Định nghĩa màu mặc định và màu hover cho nút */
