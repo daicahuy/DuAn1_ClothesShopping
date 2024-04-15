@@ -44,9 +44,6 @@ if (strpos($url, "admin") === 0) {
         }
     } else if (strpos($url, "nguoidung")) {
         $pageTitle = $textQuanLyNguoiDung;
-        if (strpos($url, "doimatkhau")) {
-            array_push($arrayDirectional, $textDoiMatKhau);
-        }
     } else if (strpos($url, "binhluan")) {
         $pageTitle = $textQuanLyBinhLuan;
     } else if (strpos($url, "donhang")) {

@@ -33,7 +33,7 @@
                             <td><?= $BinhLuanCT['noi_dung'] ?></td>
                             <td><?= $BinhLuanCT['ngay_binh_luan'] ?></td>
                             <td>
-                                <a onclick="return confirm('Bạn có chắc muốn xóa không')" href="index.php?url=admin/binhluan/xoatraloi&ma_binh_luan=<?=$ma_binh_luan?>&ma_chi_tiet_binh_luan=<?= $BinhLuanCT['ma_chi_tiet_binh_luan'] ?>">
+                                <a onclick="return confirm('Bạn có chắc muốn xóa không')" href="index.php?url=admin/binhluan/xoatraloi&ma_san_pham=<?php echo $ma_san_pham ?>&ma_binh_luan=<?=$ma_binh_luan?>&ma_chi_tiet_binh_luan=<?= $BinhLuanCT['ma_chi_tiet_binh_luan'] ?>">
                                     <button type="button" class="btn btn-danger btn-sm">
                                         Xóa
                                     </button>

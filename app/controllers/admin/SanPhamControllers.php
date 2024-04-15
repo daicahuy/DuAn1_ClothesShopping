@@ -16,6 +16,7 @@
         }
 
         $listSanPham = getAllSanPhamShow();
+        $listSanPhamTrongDonHang = getAllProductInOrder();
         include VIEWS_URL . "admin/sanpham/index.php";
     }
     
@@ -383,10 +384,6 @@
                         $thongbao = "Cập nhật sản phẩm thành công !";
                         $type = "warning";
                     }
-                    else {
-                        $errors[] = "Tên sản phẩm đã tồn tại";
-                    }
-                    
                 }
     
             }
@@ -473,10 +470,6 @@
                         $thongbao = "Cập nhật sản phẩm thành công !";
                         $type = "warning";
                     }
-                    else {
-                        $errors[] = "Tên sản phẩm đã tồn tại";
-                    }
-                    
                 }
     
             }

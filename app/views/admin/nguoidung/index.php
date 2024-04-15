@@ -62,7 +62,7 @@
                                             Reset Mật Khẩu
                                         </button>
                                     </a>
-                                    <a onclick="return confirm('Bạn có chắc muốn ẩn tài khoản không')" href="index.php?url=admin/nguoidung/an&ma_nguoi_dung=<?= $NguoiDung['ma_nguoi_dung'] ?>">
+                                    <a onclick="return confirm('Bạn có chắc muốn khóa tài khoản không')" href="index.php?url=admin/nguoidung/an&ma_nguoi_dung=<?= $NguoiDung['ma_nguoi_dung'] ?>">
                                         <button type="button" name="resset" class="btn btn-danger ">
                                           Khóa 
                                         </button>

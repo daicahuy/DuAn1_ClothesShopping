@@ -76,46 +76,62 @@
 				<div class="filters">
 					<div class="filter clearfix">
 						<div class="holder">
-								<li><a href="#!"><i class="fa fa-star"></i> Sản phẩm bán chạy</a></li>
+								<li><a href="#!"><i class="fa fa-star"></i>Top sản phẩm bán chạy</a></li>
 							<div class="holder-border"></div>
 						</div>
 					</div>
 					<div class="clear"></div>
 
 					<div class="demo1 clearfix">
-							<?php foreach ($listSanPhamBanChay as $sanpham) : ?>
-								<div class="col-md-3 grid-item mb30">
-									<div class="arrival-overlay">
-										<img src="<?php echo IMAGES_URL . $sanpham['anh'] ?>" alt="">
-										<div class="arrival-mask">
-											<a href="?url=chitietsanpham&maSanPham=<?= $sanpham['ma_san_pham'] ?>" class="medium-button button-red add-cart">Thêm vào giỏ hàng</a>
-											<a href="?url=chitietsanpham&maSanPham=<?= $sanpham['ma_san_pham'] ?>" class="wishlist">Xem chi tiết</a>
-										</div>
-									</div>
-									<div class="arr-content">
-										<a href="#!"><p><?= $sanpham['ten_san_pham'] ?></p></a>
-										<?php
-											$giaBienDongMax = getGiaChiTietSanPhamIDSanPham($sanpham["ma_san_pham"]);
-											$giaBienDongMin = getGiaChiTietSanPhamIDSanPham($sanpham["ma_san_pham"], false);
-											$tienMin = $sanpham["gia"] + $giaBienDongMin[0];
-											$tienMax = $sanpham["gia"] + $giaBienDongMax[0];
-										?>
-										<?php if($sanpham["so_luong"] == NULL) : ?>
-											<p class="low-price">
-												<?php echo $tienMin ?> VNĐ - 
-												<?php echo $tienMax ?> VNĐ
-											</p>
-										<?php else : ?>
-											<p class="low-price"><?php echo $sanpham["gia"] ?> VNĐ</p>
-										<?php endif ?>
-
-										<div class="stars"><img src="<?php echo SWEETPICK_URL ?>upload/stars.png" alt=""></div>
+						<?php foreach ($listSanPhamBanChay as $sanpham) : ?>
+							<div class="col-md-3 grid-item mb30">
+								<div class="arrival-overlay">
+									<img src="<?php echo IMAGES_URL . $sanpham['anh'] ?>" alt="" style="height: 260px; object-fit: cover;">
+									<div class="arrival-mask">
+										<a href="?url=chitietsanpham&maSanPham=<?= $sanpham['ma_san_pham'] ?>" class="medium-button button-red add-cart">Thêm vào giỏ hàng</a>
+										<a href="?url=chitietsanpham&maSanPham=<?= $sanpham['ma_san_pham'] ?>" class="wishlist">Xem chi tiết</a>
 									</div>
 								</div>
-							<?php endforeach ?>
+								<div class="arr-content">
+									<a href="?url=chitietsanpham&maSanPham=<?= $sanpham['ma_san_pham'] ?>">
+										<p
+											style="
+												height: 42px;
+												display: -webkit-box;
+												-webkit-box-orient: vertical;
+												overflow: hidden;
+												-webkit-line-clamp: 2;
+												text-align: left;"
+										>
+											<?= $sanpham['ten_san_pham'] ?>
+										</p>
+									</a>
+									<?php
+										$giaBienDongMax = getGiaChiTietSanPhamIDSanPham($sanpham["ma_san_pham"]);
+										$giaBienDongMin = getGiaChiTietSanPhamIDSanPham($sanpham["ma_san_pham"], false);
+										$tienMin = $sanpham["gia"] + $giaBienDongMin[0];
+										$tienMax = $sanpham["gia"] + $giaBienDongMax[0];
+									?>
+									<?php if($sanpham["so_luong"] == NULL) : ?>
+										<p class="low-price">
+											<?php echo $tienMin ?> VNĐ - 
+											<?php echo $tienMax ?> VNĐ
+										</p>
+									<?php else : ?>
+										<p class="low-price"><?php echo $sanpham["gia"] ?> VNĐ</p>
+									<?php endif ?>
+
+									<div class="stars" style="display: flex; justify-content: space-between; align-items: center; margin-top: 8px;">
+										<div>
+											<img src="<?php echo SWEETPICK_URL ?>upload/stars.png" alt="" style="opacity: 1; margin: 0;">
+										</div>
+										<p style="margin: 0;">Lượt mua: <?php echo $sanpham["luot_mua"] ?></p>
+									</div>
+								</div>
+							</div>
+						<?php endforeach ?>
 					</div>
 				</div>
-				<!-- End Filters -->
 
 			</div>
 

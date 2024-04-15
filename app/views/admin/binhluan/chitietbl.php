@@ -34,7 +34,7 @@
                                 <a href="?url=admin/binhluan/traloi&ma_san_pham=<?=$ma_san_pham?>&ma_binh_luan=<?= $BinhLuanID['ma_binh_luan'] ?>" class="btn btn-primary margin-5 text-white">
                                     Chi Tiết Trả lời
                                 </a>
-                                <a onclick="return confirm('Bạn có chắc muốn xóa không')" href="index.php?url=admin/binhluan/xoa&ma_binh_luan=<?= $BinhLuanID['ma_binh_luan'] ?>">
+                                <a onclick="return confirm('Bạn có chắc muốn xóa không')" href="?url=admin/binhluan/xoa&ma_san_pham=<?php echo $ma_san_pham ?>&ma_binh_luan=<?= $BinhLuanID['ma_binh_luan'] ?>">
                                     <button type="button" class="btn btn-danger ">
                                         Xóa
                                     </button>

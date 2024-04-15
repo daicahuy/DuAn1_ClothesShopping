@@ -378,43 +378,62 @@
         <h1>Sản phẩm tương tự</h1>
         <div class="list_carousel1 responsive">
 
+        <div class="row">
             <?php foreach ($listSPTT as $sptt) : ?>
                 <?php if ($sptt['ma_san_pham'] != $maSanPham) : ?>
-                    <div class="row">
                         <div class="col-md-3 grid-item mb30">
                             <div class="arrival-overlay">
-                                <img src="<?= IMAGES_URL . $sptt['anh'] ?>" height="200px" style="object-fit: cover;" alt="">
-                                <?php if (!($sptt['ma_giam_gia'] == NULL)) : ?>
-                                    <?php $giam_gia = getGiamGiaID($sptt['ma_giam_gia']); ?>
-                                    <p class="new" style="padding: 4px; background-color: red; color: #fff;">
-
-                                        <?= $giam_gia['ten_giam_gia'] ?>
-                                    </p>
-                                <?php endif ?>
+                                <img src="<?= IMAGES_URL . $sptt['anh'] ?>" style="height: 250px; object-fit: cover;" alt="">
                                 <div class="arrival-mask">
-                                    <a href="#" class="medium-button button-red add-cart">Thêm vào giỏ hàng</a>
+                                    <a href="?url=chitietsanpham&maSanPham=<?= $sptt['ma_san_pham'] ?>" class="medium-button button-red add-cart">Thêm vào giỏ hàng</a>
                                     <a href="?url=chitietsanpham&maSanPham=<?= $sptt['ma_san_pham'] ?>" class="wishlist">Xem chi tiết</a>
                                 </div>
                             </div>
                             <div class="arr-content">
-                                <a href="#">
-                                    <p><?= $sptt['ten_san_pham'] ?></p>
+                                <a href="?url=chitietsanpham&maSanPham=<?= $sptt['ma_san_pham'] ?>">
+                                    <p
+                                            style="
+												height: 42px;
+												display: -webkit-box;
+												-webkit-box-orient: vertical;
+												overflow: hidden;
+												-webkit-line-clamp: 2;
+												text-align: left;"
+                                    >
+                                        <?= $sptt['ten_san_pham'] ?>
+                                    </p>
                                 </a>
-                                <p class="high-price">6000000 VND</p>
-                                <p class="low-price"><?= $sptt['gia'] ?></p>
+                                <?php
+                                    $giaBienDongMax = getGiaChiTietSanPhamIDSanPham($sptt["ma_san_pham"]);
+                                    $giaBienDongMin = getGiaChiTietSanPhamIDSanPham($sptt["ma_san_pham"], false);
+                                    $tienMin = $sptt["gia"] + $giaBienDongMin[0];
+                                    $tienMax = $sptt["gia"] + $giaBienDongMax[0];
+                                ?>
+                                <?php if($sptt["so_luong"] == NULL) : ?>
+                                    <p class="low-price">
+                                        <?php echo $tienMin ?> VNĐ - 
+                                        <?php echo $tienMax ?> VNĐ
+                                    </p>
+                                <?php else : ?>
+                                    <p class="low-price"><?php echo $sptt["gia"] ?> VNĐ</p>
+                                <?php endif ?>
 
-                                <div class="stars"><img src="<?php echo SWEETPICK_URL ?>upload/stars.png" alt=""></div>
+                                <div class="stars" style="display: flex; justify-content: space-between; align-items: center; margin-top: 8px;">
+                                    <div>
+                                        <img src="<?php echo SWEETPICK_URL ?>upload/stars.png" alt="" style="opacity: 1; margin: 0;">
+                                    </div>
+                                    <p style="margin: 0;">Lượt mua: <?php echo $sptt["luot_mua"] ?></p>
+                                </div>
                             </div>
                         </div>
                     <?php endif ?>
                 <?php endforeach ?>
-
-                    </div>
-                    <div class="clearfix"></div>
-                    <div class="arrows">
-                        <a id="prev1" class="prev1" href="#"><i class="fa fa-angle-left"></i></a>
-                        <a id="next1" class="next1" href="#"><i class="fa fa-angle-right"></i></a>
-                    </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="arrows">
+                <a id="prev1" class="prev1" href="#"><i class="fa fa-angle-left"></i></a>
+                <a id="next1" class="next1" href="#"><i class="fa fa-angle-right"></i></a>
+            </div>
         </div>
         <?php if (!isset($sptt["ma_san_pham"])) : ?>
             <div style="padding-left: 165px;">

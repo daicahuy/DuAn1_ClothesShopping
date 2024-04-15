@@ -139,7 +139,7 @@
 
                             <div class="col-md-4 grid-item mb30">
                                 <div class="arrival-overlay">
-                                    <img src="<?php echo IMAGES_URL . $sanpham['anh'] ?>" alt="">
+                                    <img src="<?php echo IMAGES_URL . $sanpham['anh'] ?>" alt="" style="height: 260px; object-fit: cover;">
 
                                     <div class="arrival-mask">
                                         <a href="?url=chitietsanpham&maSanPham=<?= $sanpham['ma_san_pham'] ?>" class="medium-button button-red add-cart">Thêm vào giỏ hàng</a>
@@ -147,8 +147,18 @@
                                     </div>
                                 </div>
                                 <div class="arr-content">
-                                    <a href="#">
-                                        <p><?= $sanpham['ten_san_pham'] ?></p>
+                                    <a href="?url=chitietsanpham&maSanPham=<?= $sanpham['ma_san_pham'] ?>">
+                                        <p
+                                            style="
+                                                height: 42px;
+                                                display: -webkit-box;
+                                                -webkit-box-orient: vertical;
+                                                overflow: hidden;
+                                                -webkit-line-clamp: 2;
+                                                text-align: left;"
+                                        >
+                                            <?= $sanpham['ten_san_pham'] ?>
+                                        </p>
                                     </a>
                                     <?php
                                     $giaBienDongMax = getGiaChiTietSanPhamIDSanPham($sanpham["ma_san_pham"]);
@@ -166,10 +176,23 @@
                                         <p class="low-price"><?php echo $sanpham["gia"] ?> VNĐ</p>
                                     <?php endif ?>
 
-                                    <div class="stars"><img src="<?php echo SWEETPICK_URL ?>upload/stars.png" alt=""></div>
+                                    <div class="stars" style="display: flex; justify-content: space-between; align-items: center; margin-top: 8px;">
+										<div>
+											<img src="<?php echo SWEETPICK_URL ?>upload/stars.png" alt="" style="opacity: 1; margin: 0;">
+										</div>
+										<p style="margin: 0;">Lượt mua: <?php echo $sanpham["luot_mua"] ?></p>
+									</div>
                                 </div>
                             </div>
                         <?php endforeach ?>
+                        <?php if(!$sanPhams) :  ?>
+                            <div style="padding: 24px 0;">
+                                <div style="display: flex; justify-content: center;">
+                                    <img src="<?php echo IMAGES_URL ?>box-png.png" alt="" width="200px" > 
+                                </div>
+                                <h3 style="text-align: center;">Không có sản phẩm nào</h3>
+                            </div>
+                        <?php endif ?>
 
                     </div>
                     <!-- Phân trang  -->

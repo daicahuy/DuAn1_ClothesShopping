@@ -60,6 +60,17 @@
         return getData($sql,false);
     }
 
+    // Lay tat ca san pham co trong don hang
+    function getAllProductInOrder() {
+        $sql = "SELECT A.ma_san_pham FROM san_pham A
+                JOIN chi_tiet_san_pham B ON A.ma_san_pham = B.ma_san_pham
+                JOIN chi_tiet_don_hang C ON B.ma_chi_tiet_san_pham = C.ma_chi_tiet_san_pham
+                GROUP BY A.ma_san_pham
+                ";
+
+        return getData($sql);
+    }
+
     // Insert San Pham
     function insertSanPham($ten_san_pham, $anh, $mo_ta, $trang_thai, $gia, $ma_giam_gia, $so_luong = 'NULL') {
         $sql = "INSERT INTO san_pham VALUES
@@ -101,7 +112,7 @@
         $sql = "SELECT * FROM san_pham
                 WHERE trang_thai = 1
                 ORDER BY luot_mua DESC
-                LIMIT 0, 10
+                LIMIT 0, 8
                 ";
 
         return getData($sql);
@@ -124,7 +135,7 @@
             WHERE chi_tiet_danh_muc.ma_san_pham = $maSanPham
         ))
         AND san_pham.trang_thai = 1
-        
+        LIMIT 0, 4
         ";
         
         return getData($sql);

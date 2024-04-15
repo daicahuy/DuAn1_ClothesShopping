@@ -5,7 +5,7 @@ function getAllNguoiDung(){
     // $sql = "SELECT A.*, B.so_luong FROM nguoi_dung AS A 
     //  JOIN chi_tiet_don_hang AS B ON B.ma_chi_tiet_san_pham = A.ma_nguoi_dung ";
     $sql = "SELECT * FROM `nguoi_dung` ";
-return getData($sql);
+    return getData($sql);
 }
 //Lấy người dùng theo ID
 function getNguoiDungID($ma_nguoi_dung){
