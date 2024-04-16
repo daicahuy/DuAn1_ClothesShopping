@@ -54,11 +54,17 @@ function dangNhap() {
                             $errors[] = "Mật khẩu không chính xác";
                         }
                         else {
-                            if(!$user["kich_hoat"]) {
-                                $errors[] = "Tài khoản email của bạn chưa được xác minh";
-                                $thongbao = "Vui lòng nhấn <a href='?url=dangnhap&email=$email&sendmail=true'>vào đây</a> để xác minh email của bạn";
-                                $type = "warning";
+                            if(!$user["trang_thai"]) {
+                                $errors[] = "Tài khoản của bạn đã bị khóa";
                             }
+                            else {
+                                if(!$user["kich_hoat"]) {
+                                    $errors[] = "Tài khoản email của bạn chưa được xác minh";
+                                    $thongbao = "Vui lòng nhấn <a href='?url=dangnhap&email=$email&sendmail=true'>vào đây</a> để xác minh email của bạn";
+                                    $type = "warning";
+                                }
+                            }
+
                         }
                     }
                     else {

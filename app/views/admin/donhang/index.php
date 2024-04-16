@@ -169,17 +169,6 @@
                 </div>
             <?php endif ?>
         </div>
-        <div class="card-footer clearfix">
-            <div class="pagination-container" style="display: flex; justify-content: center;">
-                <ul class="pagination">
-                    <li class="page-item disabled"><a class="page-link" href="#">&laquo; Trước</a></li>
-                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">Tiếp theo &raquo;</a></li>
-                </ul>
-            </div>
-        </div>
 
     </div>
     <!-- /.card -->

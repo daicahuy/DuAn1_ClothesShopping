@@ -35,6 +35,7 @@ function executeCommand($sql) {
         return true;
     }
     catch(PDOException $e) {
+        throw $e -> getMessage();
         return false;
     }
     finally {

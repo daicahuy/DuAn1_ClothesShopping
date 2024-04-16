@@ -15,7 +15,7 @@ function newUser()
     //  JOIN chi_tiet_don_hang AS B ON B.ma_chi_tiet_san_pham = A.ma_nguoi_dung ";
     $sql = "SELECT COUNT(*) AS so_luong
     FROM nguoi_dung
-    WHERE ngay_dang_ky = CURDATE() ";
+    WHERE ngay_tao = CURDATE() ";
     return getData($sql);
 }
 //Lấy toàn bộ người dùng

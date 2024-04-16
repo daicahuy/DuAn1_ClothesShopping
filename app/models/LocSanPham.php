@@ -42,7 +42,7 @@ function soLuongAllSanPham($maLoai) {
     $sql = "SELECT COUNT(B.ma_san_pham) so_luong_san_pham FROM danh_muc A
             JOIN chi_tiet_danh_muc B ON A.ma_danh_muc = B.ma_danh_muc
             JOIN san_pham C ON C.ma_san_pham = B.ma_san_pham
-            WHERE A.ma_loai = $maLoai AND C.trang_thai = 1 ";
+            WHERE A.ma_loai = $maLoai AND C.trang_thai = 1 AND A.trang_thai = 1";
 
     return getData($sql);
 }
@@ -88,7 +88,7 @@ function getMauSac($maLoai,$maDanhMuc){
                 GROUP BY A.ma_san_pham";
         return getData($sql);
     }
-    function locSanPham($maLoai,$maMauSac,$maKichThuoc,$min,$max){
+    function locSanPham($maLoai,$maMauSac,$maKichThuoc,$min,$max) {
         $sql = "SELECT D.* FROM loai A 
                 JOIN  danh_muc B ON A.ma_loai = B.ma_loai
                 JOIN chi_tiet_danh_muc C ON B.ma_danh_muc = C.ma_danh_muc

@@ -123,7 +123,7 @@ function loc()
         // debug($danhMucNam);
     }
     $trangHienTai = isset($_GET['soTrang']) ? $_GET['soTrang'] : 1;
-    $tongSoTrang = ceil(COUNT($sp) / 10);
+    $tongSoTrang = ceil(COUNT($sp) / 9);
     $sanPhams = phanTrang($sp, $trangHienTai);
     include VIEWS_URL . "users/loc.php";
 }

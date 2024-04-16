@@ -61,7 +61,7 @@
 
                                         <a onclick="return confirm('Bạn có chắc muốn mở tài khoản không')" href="index.php?url=admin/nguoidung/hien&ma_nguoi_dung=<?= $NguoiDung['ma_nguoi_dung'] ?>">
                                             <button type="button" name="resset" class="btn btn-danger btn-sm">
-                                                Hiện
+                                                Mở khóa
                                             </button>
                                         </a>
 

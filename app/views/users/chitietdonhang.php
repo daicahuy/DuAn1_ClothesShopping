@@ -56,18 +56,33 @@
                             <!-- info row -->
                             <div class="row invoice-info" style="margin-top: 12px;">
                                 <!-- /.col -->
-                                <div class="col-md-4 invoice-col">
-                                    <address>
-                                        <p>
-                                            <strong>Tên khách hàng: </strong><?php echo $donHang["ho_va_ten"] ?>
-                                        </p>
-                                        <p style="margin: 4px 0;">
-                                            <strong>Địa chỉ: </strong><?php echo $donHang["dia_chi"] ?>
-                                        </p>
-                                        <p>
-                                            <strong>Số điện thoại: </strong><?php echo $donHang["so_dien_thoai"] ?>
-                                        </p>
-                                    </address>
+                                <div class="col-md-8 invoice-col">
+                                    <div class="row">
+                                        <address class="col-md-6">
+                                            <p>
+                                                <strong>Tên khách hàng: </strong><?php echo $donHang["ho_va_ten"] ?>
+                                            </p>
+                                            <p style="margin: 4px 0;">
+                                                <strong>Địa chỉ: </strong><?php echo $donHang["dia_chi"] ?>
+                                            </p>
+                                            <p>
+                                                <strong>Số điện thoại: </strong><?php echo $donHang["so_dien_thoai"] ?>
+                                            </p>
+                                        </address>
+                                        <div class="col-md-6">
+                                            <p>
+                                                <strong>Ngày đặt: </strong><?php echo $donHang["ngay_dat"] ?>
+                                            </p>
+                                            <p>
+                                                <strong>Ngày thanh toán: </strong>
+                                                <?php if($donHang["ngay_thanh_toan"]) { ?>
+                                                    <?php echo $donHang["ngay_thanh_toan"] ?>
+                                                <?php } else { ?>
+                                                    chưa có
+                                                <?php } ?>
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <!-- /.row -->

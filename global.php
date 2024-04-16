@@ -53,8 +53,8 @@
     // Debug
     function debug($data) {
         echo "<pre>";
-        print_r($data);
-        // var_dump($data);
+        // print_r($data);
+        var_dump($data);
 
         die;
     }
@@ -94,7 +94,7 @@
 
     // Phân trang
     function phanTrang($mangSanPhams,$trangHienTai) {
-        $soLuongHien = 10; // Số lượng sản phẩm sẽ hiện 
+        $soLuongHien = 9; // Số lượng sản phẩm sẽ hiện 
         $trangHienTai; // lấy trên url nếu không có mặc định 1
         // Tính key bắt đầu hiện thị của mỗi trang
         $keyStart = ($trangHienTai - 1) * $soLuongHien; // trang đâu tiên sản phẩm hiện từ key =0

@@ -91,8 +91,16 @@
                             <h6><?php echo $sanPham["ten_san_pham"] ?></h6>
                             <div>
                                 <a href="?url=admin/sanpham/danhsach/sua&maSanPham=<?php echo $sanPham["ma_san_pham"] ?>" class="text-primary">Chỉnh sửa</a>
-                                |
-                                <a href="#" class="text-danger" data-toggle="modal" data-target="#Modal<?php echo $key+1 ?>">Ẩn</a>
+                                <?php $checkSanPhamTrongDonHang = false; ?>
+                                <?php foreach($listSanPhamTrongDonHang as $sanPhamTrongDonHang) :  ?>
+                                    <?php if($sanPhamTrongDonHang["ma_san_pham"] == $sanPham["ma_san_pham"]) : ?>
+                                        <?php  $checkSanPhamTrongDonHang = true; break; ?>
+                                    <?php endif ?>
+                                <?php endforeach ?>
+                                <?php if(!$checkSanPhamTrongDonHang) : ?>
+                                    |
+                                    <a href="#" class="text-danger" data-toggle="modal" data-target="#Modal<?php echo $key+1 ?>">Ẩn</a>
+                                <?php endif ?>
                             </div>
                             <div class="modal fade" id="Modal<?php echo $key+1 ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">

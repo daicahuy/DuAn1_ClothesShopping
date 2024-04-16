@@ -12,7 +12,7 @@ function getSanPhamDanhMuc($maLoai)
 }
 
 // Thống kê đơn hàng theo ngày
-function getDonHangTheoNgay()
+function getDonHangTheoNgay()   
 {
     $sql = "SELECT DATE(A.ngay_thanh_toan) thoi_gian,COUNT(A.id_don_hang) so_don_hang
                 FROM don_hang A 
